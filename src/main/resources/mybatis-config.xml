@@ -23,7 +23,7 @@
     </typeAliases>
 
     <typeHandlers>
-        <typeHandler handler="com.sh.semi.common.ListStringTypeHandler"/>
+        <typeHandler handler="com.sh.diet.common.ListStringTypeHandler"/>
     </typeHandlers>
 
     <environments default="development">
