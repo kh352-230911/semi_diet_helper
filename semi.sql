@@ -52,3 +52,31 @@ INSERT INTO member (
 COMMIT;
 
 select * from member;
+
+
+-- 질답 게시판 QnAtest 테이블 (테스트용)
+create table semitest(
+qb_no varchar2(10),
+member_no varchar2(10),
+title varchar2(50),
+content varchar2(2000),
+count number,
+reg_date date default sysdate,
+constraint pk_semitest_qb_no primary key(qb_no)
+);
+
+create sequence seq_qb_no;
+
+insert into semi.semitest(qb_no,member_no,title,content,count,reg_date) values(seq_qb_no.nextval,'12','안녕하세용','블라블라 얄라리얄라',default, default);
+insert into semi.semitest(qb_no,member_no,title,content,count,reg_date) values(seq_qb_no.nextval,'133','하이하이','하하하하하',default, default);
+insert into semi.semitest(qb_no,member_no,title,content,count,reg_date) values(seq_qb_no.nextval,'14','쿠쿠쿠','뷁즐',default, default);
+insert into semi.semitest(qb_no,member_no,title,content,count,reg_date) values(seq_qb_no.nextval,'22','크크크','즐거워요',default, default);
+insert into semi.semitest(qb_no,member_no,title,content,count,reg_date) values(seq_qb_no.nextval,'77','호호호','반가워요호호',default, default);
+insert into semi.semitest(qb_no,member_no,title,content,count,reg_date) values(seq_qb_no.nextval,'33','뱌뱌뱌뱌','하하하햐햐',default, default);
+insert into semi.semitest(qb_no,member_no,title,content,count,reg_date) values(seq_qb_no.nextval,'1','유유유유','안녕하소',default, default);
+select * from semitest;
+
+
+-- DROP SEQUENCE seq_qb_no;
+-- drop table semitest;
+
