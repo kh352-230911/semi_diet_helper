@@ -53,30 +53,61 @@ COMMIT;
 
 select * from member;
 
-
--- Áú´ä °Ô½ÃÆÇ QnAtest Å×ÀÌºí (Å×½ºÆ®¿ë)
-create table semitest(
-qb_no varchar2(10),
-member_no varchar2(10),
-title varchar2(50),
-content varchar2(2000),
-count number,
-reg_date date default sysdate,
-constraint pk_semitest_qb_no primary key(qb_no)
+--ì§ˆë¬¸ê²Œì‹œíŒ Q
+create table question_board (
+                                qb_no varchar2(10) not null,
+                                member_no varchar2(10) not null,
+                                title varchar2(50) not null,
+                                content varchar2(4000) not null,
+                                reg_date date default sysdate,
+                                admin_choice number default 0,
+                                constraints pk_qb_no primary key(qb_no),
+                                constraints ck_admin_choice check (admin_choice in (0, 1)),
+                                constraints fk_question_member_no foreign key (member_no) references member(member_no) on delete set null
 );
-
 create sequence seq_qb_no;
+insert into semi.question_board(qb_no,member_no,title,content,reg_date,admin_choice) values(seq_qb_no.nextval,'1','ì•ˆë…•í•˜ì„¸ìš©','ë¸”ë¼ë¸”ë¼ ì–„ë¼ë¦¬ì–„ë¼',default, default);
+insert into semi.question_board(qb_no,member_no,title,content,reg_date,admin_choice) values(seq_qb_no.nextval,'2','í•˜ì´í•˜ì´','í•˜í•˜í•˜í•˜í•˜',default, default);
+--insert into semi.question_board(qb_no,member_no,title,content,reg_date,admin_choice) values(seq_qb_no.nextval,'14','ì¿ ì¿ ì¿ ','ë·ì¦',default, default);
+--insert into semi.question_board(qb_no,member_no,title,content,reg_date,admin_choice) values(seq_qb_no.nextval,'22','í¬í¬í¬','ì¦ê±°ì›Œìš”',default, default);
+--insert into semi.question_board(qb_no,member_no,title,content,reg_date,admin_choice) values(seq_qb_no.nextval,'77','í˜¸í˜¸í˜¸','ë°˜ê°€ì›Œìš”í˜¸í˜¸',default, default);
+--insert into semi.question_board(qb_no,member_no,title,content,reg_date,admin_choice) values(seq_qb_no.nextval,'33','ë±Œë±Œë±Œë±Œ','í•˜í•˜í•˜í–í–',default, default);
+--insert into semi.question_board(qb_no,member_no,title,content,reg_date,admin_choice) values(seq_qb_no.nextval,'131','ìœ ìœ ìœ ìœ ','ì•ˆë…•í•˜ì†Œ',default, default);
+--insert into semi.question_board(qb_no,member_no,title,content,reg_date,admin_choice) values(seq_qb_no.nextval,'221','ì´í¸ì§€ëŠ” ì˜êµ­ì—ì„œ..','ì¦ê±°ì›Œìš”',default, default);
+--insert into semi.question_board(qb_no,member_no,title,content,reg_date,admin_choice) values(seq_qb_no.nextval,'7','1ì›”1ì¼ì´ë„¤','ì¹˜í”¼ì¹˜í”¼ì°¨íŒŒì°¨íŒŒ',default, default);
+--insert into semi.question_board(qb_no,member_no,title,content,reg_date,admin_choice) values(seq_qb_no.nextval,'43','ì„¸ìƒì—!!','ë£¨ë¹„ë£¨ë¹„ë¼ë°”ë¼ë°”',default, default);
+--insert into semi.question_board(qb_no,member_no,title,content,reg_date,admin_choice) values(seq_qb_no.nextval,'10','ë†€ë¼ì›Œë¼','ë¶ë¶ë¶',default, default);
+--insert into semi.question_board(qb_no,member_no,title,content,reg_date,admin_choice) values(seq_qb_no.nextval,'43','ê·¸ëŒ€ë¥¼ë§Œë‚˜ê³ ~','ë§¤ë‹ˆì•…ë§¤ë‹ˆì•…ë§¤ë‹ˆì•…~',default, default);
+--insert into semi.question_board(qb_no,member_no,title,content,reg_date,admin_choice) values(seq_qb_no.nextval,'10','ìš°ìš°ìš°','ë§Œë‚¨ì€ì‰½ê³ ~ì´ë³„ì€ì–´ë ¤ì›Œ ã… ~',default, default);
 
-insert into semi.semitest(qb_no,member_no,title,content,count,reg_date) values(seq_qb_no.nextval,'12','¾È³çÇÏ¼¼¿ë','ºí¶óºí¶ó ¾â¶ó¸®¾â¶ó',default, default);
-insert into semi.semitest(qb_no,member_no,title,content,count,reg_date) values(seq_qb_no.nextval,'133','ÇÏÀÌÇÏÀÌ','ÇÏÇÏÇÏÇÏÇÏ',default, default);
-insert into semi.semitest(qb_no,member_no,title,content,count,reg_date) values(seq_qb_no.nextval,'14','ÄíÄíÄí','”îÁñ',default, default);
-insert into semi.semitest(qb_no,member_no,title,content,count,reg_date) values(seq_qb_no.nextval,'22','Å©Å©Å©','Áñ°Å¿ö¿ä',default, default);
-insert into semi.semitest(qb_no,member_no,title,content,count,reg_date) values(seq_qb_no.nextval,'77','È£È£È£','¹İ°¡¿ö¿äÈ£È£',default, default);
-insert into semi.semitest(qb_no,member_no,title,content,count,reg_date) values(seq_qb_no.nextval,'33','¹ò¹ò¹ò¹ò','ÇÏÇÏÇÏÇáÇá',default, default);
-insert into semi.semitest(qb_no,member_no,title,content,count,reg_date) values(seq_qb_no.nextval,'1','À¯À¯À¯À¯','¾È³çÇÏ¼Ò',default, default);
-select * from semitest;
+select * from question_board;
 
 
 -- DROP SEQUENCE seq_qb_no;
--- drop table semitest;
+-- drop table question_board;
 
+ë‹µë³€ A
+create table answer_comment (
+                                ac_no varchar2(10) not null,
+                                member_no varchar2(10) not null,
+                                qb_no varchar2(10) not null,
+                                title varchar2(50) not null,
+                                content varchar2(4000) not null,
+                                choice number default 0 not null,
+                                like_count number default 0,
+                                reg_date date default sysdate,
+                                constraints pk_ac_no primary key(ac_no),
+                                constraints ck_choice check (choice in (1,0)),
+                                constraints fk_answer_member_no foreign key (member_no) references member(member_no) on delete set null,
+                                constraints fk_answer_qb_no foreign key (qb_no) references question_board(qb_no) on delete cascade
+);
+create sequence seq_ac_no;
+
+--ALTER TABLE "SEMI"."ANSWER_COMMENT"
+--MODIFY QB_NO VARCHAR2(15);
+-- delete from answer_comment where title ='í•˜ì´í•˜ì´';
+insert into semi.answer_comment(ac_no,member_no,qb_no,title,content,choice,like_count,reg_date) values(seq_ac_no.nextval,'1','5','ë‹µë³€ë“œë¦¬ë¦¬ë‹¤','ì´ê²Œë§ë‚˜',default, default, default);
+insert into semi.answer_comment(ac_no,member_no,qb_no,title,content,choice,like_count,reg_date) values(seq_ac_no.nextval,'2','8','ë‹µë³€ ã…ã…‡','ìº¬ìº¬ìº¬',default, default, default);
+insert into semi.answer_comment(ac_no,member_no,qb_no,title,content,choice,like_count,reg_date) values(seq_ac_no.nextval,'2','8','ë‹µë³€ ã…ã…‡22','ì•ˆë…•',default, default, default);
+insert into semi.answer_comment(ac_no,member_no,qb_no,title,content,choice,like_count,reg_date) values(seq_ac_no.nextval,'1','8','ë‹µë³€ ã…ã…‡33','ì•ˆë…•',default, default, default);
+select * from answer_comment;

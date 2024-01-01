@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="qaBoard">
+    <select id="findAll" resultType="qaBoard">
+        select
+        *
+        from
+        question_board
+        order by
+        reg_date desc
+    </select>
+    <select id="findById" resultType="qaBoard">
+        select
+        *
+        from
+        question_board
+        where
+        qb_no = #{qbNo}
+    </select>
+    <insert id="insertQaBoard">
+    insert into
+        question_board
+        values(
+            seq_qb_no.nextval,
+            #{memberNo},
+            #{title},
+            #{content},
+            default, default)
+    </insert>
+    <update id="updateQaBoard">
+        update
+        question_board
+        set
+        member_no = #{memberNo},
+        title = #{title},
+        content = #{content}
+        where
+        qb_no = #{qbNo}
+    </update>
+    <delete id="deleteQaBoard">
+        delete
+        from
+        question_board
+        where
+        qb_no = #{qbNo}
+    </delete>
+    <select id="getTotalCount" resultType="_int">
+        select
+        count(*)
+        from
+        question_board
+    </select>
+    <select id="findByQaDetailBoardacNo" resultType="qaBoard">
+    select
+    *
+    from
+        answer_comment
+        where
+        ac_no = #{acNo}
+    </select>
+    <insert id="insertQadetailBoard">
+        insert into
+        answer_comment
+        values(
+        seq_ac_no.nextval,
+        #{memberNo},
+        #{qbNo},
+        #{title},
+        #{content},
+        default, default, default)
+    </insert>
+</mapper>

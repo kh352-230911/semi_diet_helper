@@ -50,6 +50,6 @@
 
     <mappers>
         <mapper resource="mapper/member/member-mapper.xml"/>
-        <mapper resource="mapper/member/semitest-mapper.xml"/>
+        <mapper resource="mapper/member/qaBoard-mapper.xml"/>
     </mappers>
 </configuration>
