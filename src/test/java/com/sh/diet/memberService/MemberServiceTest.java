@@ -1,8 +1,7 @@
-package com.sh.diet.MemberService;
+package com.sh.diet.memberService;
 
 import com.sh.diet.member.model.entity.Member;
 import com.sh.diet.member.model.service.MemberService;
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.*;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
