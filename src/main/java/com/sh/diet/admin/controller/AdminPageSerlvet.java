@@ -1,8 +1,8 @@
-package com.sh.diet.admin;
+package com.sh.diet.admin.controller;
 
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 
 @WebServlet("/admin")
-public class AdminpageSerlvet extends HttpServlet {
+public class AdminPageSerlvet extends HttpServlet {
 }

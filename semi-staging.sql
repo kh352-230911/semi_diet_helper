@@ -1,14 +1,14 @@
 alter session set"_oracle_script" =true;
 
-create user semi_test
-identified by 
+create user semi_diet
+identified by K1H3isgood123
 default tablespace users;
 
 commit;
 show user;
 
-grant connect, resource to semi_test;
-alter user semi_test quota unlimited on users;
+grant connect, resource to semi_diet;
+alter user semi_diet quota unlimited on users;
 
 --SELECT 'DROP TABLE "' || TABLE_NAME || '" CASCADE CONSTRAINTS;' FROM user_tables; 모든 테이블 드랍문
 
@@ -35,6 +35,9 @@ create sequence seq_local_no;
 --insert into location_code 
 --values ('LC' || seq_local_no.nextval, '서울특별시', '서초구');
 
+
+
+
 --헬스장 db G
 create table gym_data (
     gym_no varchar2(10) not null,
@@ -46,8 +49,8 @@ create table gym_data (
     constraints fk_gym_local_no foreign key (local_no) references location_code(local_no) on delete set null
 );
 create sequence seq_gym_no;
---insert into location_code 
---values ('G' || seq_gym_no.nextval, '서울특별시', '강남구');
+--insert into gym_data 
+--values ('G' || seq_gym_no.nextval,'LC1', '강남헬스', '서울특별시 강남구 역삼동 123번지', '010-2312-2134');
 
 
 --닉네임 N
@@ -59,8 +62,10 @@ create table nickname_title (
 );
 create sequence seq_title_no;
 
-insert into nickname_title
-values ('N' || seq_title_no.nextval, '초보', '10');
+--insert into nickname_title
+--values ('N' || seq_title_no.nextval, '초보', '10');
+select * from nickname_title;
+
 
 --멤버 M
 create table member(
@@ -74,9 +79,10 @@ create table member(
     reg_date date default sysdate,
     birthday varchar2(8),
     weight_loss_goal number ,
-    point number,
+    point number default 0,
+    answer varchar2(300) default '',
     local_no varchar2(10),
-    title_no varchar2(10),
+    title_no varchar2(10) default 'N1',
     constraints pk_member_no primary key(member_no),
     constraints uq_member_id unique(member_id),
     constraints uq_member_nickname unique(nickname),
@@ -86,8 +92,19 @@ create table member(
 );
 create sequence seq_member_no;
 --alter table member add password varchar2(50) default '' not null;
+-- alter table member add answer varchar2(200) default '';
+--alter table member modify point default 0;
+--alter table member modify title_no default 'N1';
+
+insert into member 
+values ('M' || seq_member_no.nextval, 'honggd', 'asd123@', '홍길동', '길동길',175,'M', default, '19910101', 10, default,'LC1', default);
+
+insert into member 
+values ('M' || 0, 'Admin', 'admin', '관리자','관리자', 200, 'A', default, '19910101', default, 100000,'LC1', default);
 
 
+select * from member;
+delete from member where name = '홍길동';
 
 --질문게시판 Q
 create table question_board (
@@ -102,6 +119,8 @@ create table question_board (
     constraints fk_question_member_no foreign key (member_no) references member(member_no) on delete set null
 );
 create sequence seq_qb_no;
+insert into question_board 
+values ('Q' || seq_qb_no.nextval,'M4', '테스트 게시물', '테스트입니다 123', default, default );
 
 
 --답변 A
@@ -135,6 +154,8 @@ create table daily_recode (
 create sequence seq_daily_no;
 
 
+
+
 --운동데이터 E
 create table exercies_data(
     ex_no varchar2(10) not null, 
@@ -147,6 +168,10 @@ create table exercies_data(
 );
 create sequence seq_ex_no; 
 -- 기존 유무산소 구분 컬럼 삭제했음. 유산소의 경우 body_part(자극부위)를 유산소로 설정
+-- 이두, 어깨, 삼두, 하체, 가슴, 등, 유산소 
+insert into exercies_data 
+values('E' || seq_ex_no.nextval, '달리기', 120, '유산소', 'https://youtu.be/Ggbm_coe5uM?si=0e7d2x6vkRQ3HHlE');
+select * from exercies_data;
 
 --운동 스크랩 보관 테이블 SE
 create table scrap_exercise (
@@ -173,7 +198,7 @@ create sequence seq_de_no;
 
 
 --눈바디 첨부파일 저장 EA
-create table eyebody_attatchment (
+create table eyebody_attachment (
     ea_no varchar2(10) not null,
     daily_no varchar2(10) not null,
     original_file varchar2(100) not null,
@@ -182,7 +207,7 @@ create table eyebody_attatchment (
     constraints fk_ea_daily_no foreign key(daily_no) references daily_recode(daily_no) on delete cascade
 );
 create sequence seq_ea_no;
- 
+
 --음식 F
 create table food_data (
     food_no varchar2(10) not null,
@@ -194,6 +219,12 @@ create table food_data (
     constraints pk_food_no primary key(food_no)
 );
 create sequence seq_food_no;
+
+select * from food_data;
+insert into exercies_data 
+values('F' || food_data.nextval, '사과', 130, 35, 1.5, 0.5);
+
+
 
 --식단 일일기록 테이블 DF
 create table daily_food (
@@ -246,6 +277,9 @@ create table group_list (
     constraints pk_group_no primary key (group_no)
 );
 create sequence seq_group_list;
+
+insert into group_list
+values ();
  
 -- 그룹 회원관리 GM
 create table group_member(
@@ -255,7 +289,6 @@ create table group_member(
     state varchar2(4),
     grade varchar2(1),
     reg_date date default sysdate,
-    constraints pk_gm_no primary key (gm_no),
     constraints fk_gm_group_no foreign key (group_no) references group_list(group_no) on delete cascade,
     constraints fk_gm_member_no foreign key (member_no) references member(member_no) on delete cascade,
     constraints ck_state check (state in ('join', 'out')),

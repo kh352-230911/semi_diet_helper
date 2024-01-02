@@ -9,7 +9,7 @@ public class Member {
     private String password;
     private String name;
     private String nickName;
-    private String height;
+    private long height;
     private Role role;
 
     private LocalDate regDate;
@@ -20,7 +20,10 @@ public class Member {
     private String localNo;
     private String titleNo;
 
-    public Member(String memberNo, String memberId, String password, String name, String nickName, String height, Role role, LocalDate regDate, String birthDay, int weightLossGoal, int point, String answer, String localNo, String titleNo) {
+    public Member() {
+    }
+
+    public Member(String memberNo, String memberId, String password, String name, String nickName, long height, Role role, LocalDate regDate, String birthDay, int weightLossGoal, int point, String answer, String localNo, String titleNo) {
         this.memberNo = memberNo;
         this.memberId = memberId;
         this.password = password;
@@ -35,29 +38,6 @@ public class Member {
         this.answer = answer;
         this.localNo = localNo;
         this.titleNo = titleNo;
-    }
-
-    @Override
-    public String toString() {
-        return "Member{" +
-                "memberNo='" + memberNo + '\'' +
-                ", memberId='" + memberId + '\'' +
-                ", password='" + password + '\'' +
-                ", name='" + name + '\'' +
-                ", nickName='" + nickName + '\'' +
-                ", height='" + height + '\'' +
-                ", role=" + role +
-                ", regDate=" + regDate +
-                ", birthDay='" + birthDay + '\'' +
-                ", weightLossGoal=" + weightLossGoal +
-                ", point=" + point +
-                ", answer='" + answer + '\'' +
-                ", localNo='" + localNo + '\'' +
-                ", titleNo='" + titleNo + '\'' +
-                '}';
-    }
-
-    public Member() {
     }
 
     public String getMemberNo() {
@@ -100,11 +80,11 @@ public class Member {
         this.nickName = nickName;
     }
 
-    public String getHeight() {
+    public long getHeight() {
         return height;
     }
 
-    public void setHeight(String height) {
+    public void setHeight(long height) {
         this.height = height;
     }
 
@@ -170,5 +150,25 @@ public class Member {
 
     public void setTitleNo(String titleNo) {
         this.titleNo = titleNo;
+    }
+
+    @Override
+    public String toString() {
+        return "Member{" +
+                "memberNo='" + memberNo + '\'' +
+                ", memberId='" + memberId + '\'' +
+                ", password='" + password + '\'' +
+                ", name='" + name + '\'' +
+                ", nickName='" + nickName + '\'' +
+                ", height=" + height +
+                ", role=" + role +
+                ", regDate=" + regDate +
+                ", birthDay='" + birthDay + '\'' +
+                ", weightLossGoal=" + weightLossGoal +
+                ", point=" + point +
+                ", answer='" + answer + '\'' +
+                ", localNo='" + localNo + '\'' +
+                ", titleNo='" + titleNo + '\'' +
+                '}';
     }
 }
