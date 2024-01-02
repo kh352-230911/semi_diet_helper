@@ -3,6 +3,7 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -17,6 +18,7 @@
     <script>
         const contextPath = '${pageContext.request.contextPath}';
         <c:if test="${msg != null}">
+
         alert(`${msg}`)
         // 여러줄 작성을 위해 `` 을 사용해 감싸준다
         <%--session 속성 msg를 제거해서 1회만 출력되도록 한다 --%>
@@ -38,19 +40,19 @@
             </a>
             <c:if test="${login.member == null}">
                 <nav class="md:ml-auto  flex flex-wrap items-center text-base justify-center">
-                    <a class="text-xl mr-5 hover:text-gray-900">로그인</a>
-                    <a class="text-xl mr-5 hover:text-gray-900">회원가입</a>
+                    <a href="${pageContext.request.contextPath}/member/memberLogin" class="text-xl mr-5 hover:text-gray-900">로그인</a>
+                    <a href="${pageContext.request.contextPath}/member/memberRegister" class="text-xl mr-5 hover:text-gray-900">회원가입</a>
                 </nav>
             </c:if>
             <c:if test="${login.member != null}">
                 <nav class="md:ml-auto flex text-3xl flex-wrap items-center text-base justify-center">
-                    <a class="text-xl mr-5 hover:text-gray-900">로그인</a>
+                    <a href=class="text-xl mr-5 hover:text-gray-900">로그인</a>
                     <a class="text-xl mr-5 hover:text-gray-900">회원가입</a>
                     <a class="text-xl mr-5 hover:text-gray-900">Third Link</a>
                     <a class="text-xl  mr-5 hover:text-gray-900">Fourth Link</a>
                 </nav>
             </c:if>
-            <c:if test="${login.member != null}">
+            <c:if test="${loginMember.role == Role.A}">
                 <nav class="md:ml-auto flex text-3xl flex-wrap items-center text-base justify-center">
                     <a class="text-xl mr-5 hover:text-gray-900">로그인</a>
                     <a class="text-xl mr-5 hover:text-gray-900">회원가입</a>
@@ -64,5 +66,6 @@
             <%--    </svg>--%>
             <%--</button>--%>
         </div>
+>>>>>>> 5d02007724c03a790bb0af4a2eaffd95cee03263
     </header>
     <main class="w-full min-h-[80vh]">

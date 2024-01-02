@@ -16,7 +16,7 @@ CREATE TABLE member (
     nickname VARCHAR2(50) NOT NULL,
     height NUMBER,
     role VARCHAR2(1) NOT NULL,
-    reg_date DATE NOT NULL,
+    reg_date date default sysdate,
     birthday VARCHAR2(8),
     weight_loss_goal NUMBER,
     point NUMBER,
@@ -26,6 +26,7 @@ CREATE TABLE member (
     CONSTRAINT PK_MEMBER PRIMARY KEY (member_no)
 );
 
+drop table member;
 select * from member;
 
 -- Inserting sample data into the "member" table
@@ -33,7 +34,7 @@ INSERT INTO member (
     member_no, member_id, password, name, nickname, height, role, reg_date, birthday,
     weight_loss_goal, point, answer, local_no, title_no
 ) VALUES (
-    '1', 'user123', 'password123', 'John Doe', 'johndoe', 175, 'U', TO_DATE('2023-01-01', 'YYYY-MM-DD'), '19900101',
+    '1', 'user123', 'password123', 'John Doe', 'johndoe', 175, 'U', default, '19900101',
     5, 100, 'Answer123', 'L001', 'T001'
 );
 
@@ -41,7 +42,7 @@ INSERT INTO member (
     member_no, member_id, password, name, nickname, height, role, reg_date, birthday,
     weight_loss_goal, point, answer, local_no, title_no
 ) VALUES (
-    '2', 'admin456', 'adminPass', 'Admin User', 'adminuser', 180, 'A', TO_DATE('2023-01-02', 'YYYY-MM-DD'), '19851231',
+    '2', 'admin456', 'adminPass', 'Admin User', 'adminuser', 180, 'A', default, '19851231',
     10, 200, 'Answer456', 'L002', 'T002'
 );
 
@@ -53,30 +54,4 @@ COMMIT;
 
 select * from member;
 
-
--- Áú´ä °Ô½ÃÆÇ QnAtest Å×ÀÌºí (Å×½ºÆ®¿ë)
-create table semitest(
-qb_no varchar2(10),
-member_no varchar2(10),
-title varchar2(50),
-content varchar2(2000),
-count number,
-reg_date date default sysdate,
-constraint pk_semitest_qb_no primary key(qb_no)
-);
-
-create sequence seq_qb_no;
-
-insert into semi.semitest(qb_no,member_no,title,content,count,reg_date) values(seq_qb_no.nextval,'12','¾È³çÇÏ¼¼¿ë','ºí¶óºí¶ó ¾â¶ó¸®¾â¶ó',default, default);
-insert into semi.semitest(qb_no,member_no,title,content,count,reg_date) values(seq_qb_no.nextval,'133','ÇÏÀÌÇÏÀÌ','ÇÏÇÏÇÏÇÏÇÏ',default, default);
-insert into semi.semitest(qb_no,member_no,title,content,count,reg_date) values(seq_qb_no.nextval,'14','ÄíÄíÄí','”îÁñ',default, default);
-insert into semi.semitest(qb_no,member_no,title,content,count,reg_date) values(seq_qb_no.nextval,'22','Å©Å©Å©','Áñ°Å¿ö¿ä',default, default);
-insert into semi.semitest(qb_no,member_no,title,content,count,reg_date) values(seq_qb_no.nextval,'77','È£È£È£','¹Ý°¡¿ö¿äÈ£È£',default, default);
-insert into semi.semitest(qb_no,member_no,title,content,count,reg_date) values(seq_qb_no.nextval,'33','¹ò¹ò¹ò¹ò','ÇÏÇÏÇÏÇáÇá',default, default);
-insert into semi.semitest(qb_no,member_no,title,content,count,reg_date) values(seq_qb_no.nextval,'1','À¯À¯À¯À¯','¾È³çÇÏ¼Ò',default, default);
-select * from semitest;
-
-
--- DROP SEQUENCE seq_qb_no;
--- drop table semitest;
-
+select * from member where member_id = 'user123';
