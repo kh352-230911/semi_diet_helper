@@ -19,22 +19,20 @@
     <!--
         resultType속성은 한행과 매칭되는 타입 작성
     -->
-<!--    <select id="findAll" resultType="member">-->
-<!--        select-->
-<!--        *-->
-<!--        from-->
-<!--        member-->
-<!--        order by-->
-<!--        reg_date desc-->
-<!--    </select>-->
-<!--    <select id="findByName" resultType="member">-->
-<!--        select-->
-<!--        *-->
-<!--        from-->
-<!--        member-->
-<!--        where-->
-<!--        name like '%' || #{name} || '%'-->
-<!--    </select>-->
+    <select id="findAll" resultType="member">
+        select
+        *
+        from
+        member
+    </select>
+    <select id="findByName" resultType="member">
+        select
+        *
+        from
+        member
+        where
+        name like '%' || #{name} || '%'
+    </select>
 <!--    <select id="findByGender" resultType="member">-->
 <!--        select-->
 <!--        *-->
@@ -43,14 +41,14 @@
 <!--        where-->
 <!--        gender = #{gender}-->
 <!--    </select>-->
-<!--    <insert id="insertMember">-->
-<!--        insert into-->
-<!--        member-->
-<!--        values (-->
-<!--        #{id}, #{password}, #{name}, #{role}, #{gender}, #{birthday}, #{email}, #{phone},-->
-<!--        #{hobby, typeHandler=listStringTypeHandler}, default, default-->
-<!--        )-->
-<!--    </insert>-->
+    <insert id="insertMember">
+        insert into
+            member
+        values (
+            #{memberNo}, #{memberId}, #{password}, #{name}, #{nickName}, #{height}, #{role},
+            #{regDate}, #{birthDay}, #{weightLossGoal}, #{point}, #{answer}, #{localNo}, #{titleNo}
+        )
+    </insert>
 <!--    <update id="updateMember">-->
 <!--        update-->
 <!--        member-->
