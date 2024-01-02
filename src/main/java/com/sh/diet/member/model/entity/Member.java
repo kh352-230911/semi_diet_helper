@@ -57,7 +57,7 @@ public class Member {
                 '}';
     }
 
-    public Member() {
+    public Member(String memberNo, String memberId, String password, String name, String nickName, String height, Role u, LocalDate regDate, LocalDate birthday, String weightLossGoal, Object o, String answer, Object localNo, Object titleNo) {
     }
 
     public String getMemberNo() {
