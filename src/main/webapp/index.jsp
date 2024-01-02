@@ -12,8 +12,6 @@
         <p class="text-center text-8xl">🍘</p>
         <p class="text-center text-8xl">🍙</p>
         <p class="text-center text-8xl hidden md:block">🍚</p>
-        <ul>
-            <li><a href="member/memberLogin">TEST</a></li>
-        </ul>
+
     </div>
 </div>

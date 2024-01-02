@@ -45,6 +45,7 @@ public class MemberRegisterServlet extends HttpServlet {
         System.out.println(member);
 
         int result = memberService.insertMember(member);
+        System.out.println(result);
 
         req.getSession().setAttribute("msg", "회원가입 축하드립니다.");
 
