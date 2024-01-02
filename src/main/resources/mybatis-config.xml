@@ -53,7 +53,7 @@
     <mappers>
         <mapper resource="mapper/qnaBoard/qnaBoard-mapper.xml"/>
         <mapper resource="mapper/member/member-mapper.xml"/>
-        <mapper resource="mapper/member/qaBoard-mapper.xml"/>
+        <mapper resource="mapper/qnaBoard/qaBoard-mapper.xml"/>
         <mapper resource="mapper/daily/daily-mapper.xml"/>
     </mappers>
 </configuration>

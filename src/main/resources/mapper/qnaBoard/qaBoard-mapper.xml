@@ -3,6 +3,19 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="qaBoard">
+    <resultMap id="questionBoardVoMap" type="questionBoardVo">
+
+        <id column="qb_no" property="qbNo"/>
+        <result column="member_no" property="memberNo"/>
+        <result column="title" property="title"/>
+        <result column="content" property="content"/>
+        <result column="reg_date" property="regDate"/>
+        <result column="admin_choice" property="adminChoice"/>
+        <association property="member" javaType="member">
+            <result column="member_id" property="memberId"/>
+            <result column="name" property="name"/>
+        </association>
+    </resultMap>
     <select id="findAll" resultType="questionBoard">
         select
         *
