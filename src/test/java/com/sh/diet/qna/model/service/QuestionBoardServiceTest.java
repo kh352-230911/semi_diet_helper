@@ -1,7 +1,7 @@
 package com.sh.diet.qna.model.service;
 
-import com.sh.diet.qaboard.model.entity.QaBoard;
-import com.sh.diet.qaboard.model.service.QaBoardService;
+import com.sh.diet.qaboard.model.entity.QuestionBoard;
+import com.sh.diet.qaboard.model.service.QuestionBoardService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
@@ -13,44 +13,44 @@ import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class QaBoardServiceTest {
+public class QuestionBoardServiceTest {
     static final int limit = 10; // 페이지당 게시글수
-    QaBoardService qaBoardService;
+    QuestionBoardService questionBoardService;
     @BeforeEach
     void setUp(){
-        this.qaBoardService = new QaBoardService();
+        this.questionBoardService = new QuestionBoardService();
     }
     @DisplayName("질답게시글 전체조회")
     @Test
     void test1(){
-        List<QaBoard> qaBoards = qaBoardService.findAll();
-        assertThat(qaBoards)
+        List<QuestionBoard> questionBoards = questionBoardService.findAll();
+        assertThat(questionBoards)
                 .isNotNull()
-                .allSatisfy((qaBoard -> {
-                    assertThat(qaBoard.getMemberNo()).isNotNull();
-                    assertThat(qaBoard.getTitle()).isNotNull();
-                    assertThat(qaBoard.getContent()).isNotNull();
-                    assertThat(qaBoard.getRegDate()).isNotNull();
+                .allSatisfy((questionBoard -> {
+                    assertThat(questionBoard.getMemberNo()).isNotNull();
+                    assertThat(questionBoard.getTitle()).isNotNull();
+                    assertThat(questionBoard.getContent()).isNotNull();
+                    assertThat(questionBoard.getRegDate()).isNotNull();
                 }));
-        // System.out.println(qaBoards);
+         System.out.println(questionBoards);
     }
     @DisplayName("존재하는 질답게시글 한 건 조회")
     @Test
     void test2(){
         String qbNo = "3";
-        QaBoard qaBoard = qaBoardService.findById(qbNo);
-        assertThat(qaBoard).isNotNull();
-        assertThat(qaBoard.getMemberNo()).isNotNull();
-        assertThat(qaBoard.getTitle()).isNotNull();
-        assertThat(qaBoard.getContent()).isNotNull();
-        assertThat(qaBoard.getRegDate()).isNotNull();
-        System.out.println(qaBoard);
+        QuestionBoard questionBoard = questionBoardService.findById(qbNo);
+        assertThat(questionBoard).isNotNull();
+        assertThat(questionBoard.getMemberNo()).isNotNull();
+        assertThat(questionBoard.getTitle()).isNotNull();
+        assertThat(questionBoard.getContent()).isNotNull();
+        assertThat(questionBoard.getRegDate()).isNotNull();
+        System.out.println(questionBoard);
     }
     @DisplayName("존재하지 않는 질답게시글 한 건 조회")
     @Test
     void test3(){
-    QaBoard qaBoard = qaBoardService.findById("77");
-    assertThat(qaBoard).isNull();
+    QuestionBoard questionBoard = questionBoardService.findById("77");
+    assertThat(questionBoard).isNull();
     }
     @Disabled
     @DisplayName("질답게시글 등록")
@@ -61,61 +61,61 @@ public class QaBoardServiceTest {
         assertThat(title).isNotNull();
         assertThat(content).isNotNull();
 
-        QaBoard qaBoard = new QaBoard();
-        qaBoard.setMemberNo(memberNo);
-        qaBoard.setTitle(title);
-        qaBoard.setContent(content);
+        QuestionBoard questionBoard = new QuestionBoard();
+        questionBoard.setMemberNo(memberNo);
+        questionBoard.setTitle(title);
+        questionBoard.setContent(content);
 
-        int result = qaBoardService.insertQaBoard(qaBoard);
+        int result = questionBoardService.insertQuestionBoard(questionBoard);
         assertThat(result).isGreaterThan(0);
 
     }
     @Disabled
     @DisplayName("질답게시글 수정")
     @ParameterizedTest
-    @CsvSource({"1,수정했음,내일 2024년!!!"})
+    @CsvSource({"2,수정했음22,내일 2024년!!!"})
     void test5(String memberNo,String title, String content){
         String qbNo = "3";
-        QaBoard qaBoard = qaBoardService.findById(qbNo);
-        assertThat(qaBoard).isNotNull();
+        QuestionBoard questionBoard = questionBoardService.findById(qbNo);
+        assertThat(questionBoard).isNotNull();
 
-        qaBoard.setMemberNo(memberNo);
-        qaBoard.setTitle(title);
-        qaBoard.setContent(content);
+        questionBoard.setMemberNo(memberNo);
+        questionBoard.setTitle(title);
+        questionBoard.setContent(content);
 
-        int result = qaBoardService.updateQaBoard(qaBoard);
+        int result = questionBoardService.updateQuestionBoard(questionBoard);
         assertThat(result).isGreaterThan(0);
 
-        QaBoard qaBoard1 = qaBoardService.findById(qaBoard.getQbNo());
-        assertThat(qaBoard1).isNotNull();
-        assertThat(qaBoard1.getQbNo()).isEqualTo(qbNo);
-        assertThat(qaBoard1.getMemberNo()).isEqualTo(memberNo);
-        assertThat(qaBoard1.getTitle()).isEqualTo(title);
-        assertThat(qaBoard1.getContent()).isEqualTo(content);
+        QuestionBoard questionBoard1 = questionBoardService.findById(questionBoard.getQbNo());
+        assertThat(questionBoard1).isNotNull();
+        assertThat(questionBoard1.getQbNo()).isEqualTo(qbNo);
+        assertThat(questionBoard1.getMemberNo()).isEqualTo(memberNo);
+        assertThat(questionBoard1.getTitle()).isEqualTo(title);
+        assertThat(questionBoard1.getContent()).isEqualTo(content);
     }
     @Disabled
     @DisplayName("질답게시글 삭제")
     @Test
     void test6(){
-        String qbNo = "2";
-        QaBoard qaBoard = qaBoardService.findById(qbNo);
-        assertThat(qaBoard).isNotNull();
+        String qbNo = "18";
+        QuestionBoard questionBoard = questionBoardService.findById(qbNo);
+        assertThat(questionBoard).isNotNull();
 
-        int result = qaBoardService.deleteQaBoard(qbNo);
+        int result = questionBoardService.deleteQuestionBoard(qbNo);
         assertThat(result).isGreaterThan(0);
 
-        QaBoard qaBoard1 = qaBoardService.findById(qbNo);
-        assertThat(qaBoard1).isNull();
+        QuestionBoard questionBoard1 = questionBoardService.findById(qbNo);
+        assertThat(questionBoard1).isNull();
     }
     @DisplayName("전체 질답게시글수 조회")
     @Test
     void test7() {
         // given
         // when
-        int totalCount = qaBoardService.getTotalCount();
+        int totalCount = questionBoardService.getTotalCount();
         // then
         assertThat(totalCount).isNotNegative(); // 음수가 아니어야 한다. 0이상
-//        System.out.println(totalCount);
+        System.out.println(totalCount);
     }
 }
 //    @DisplayName("질답게시글 페이징 조회")

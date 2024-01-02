@@ -2,7 +2,7 @@ package com.sh.diet.qaboard.model.entity;
 
 import java.time.LocalDateTime;
 
-public class QaBoard {
+public class QuestionBoard {
     private String qbNo;
     private String memberNo;
     private String title;
@@ -11,10 +11,10 @@ public class QaBoard {
     private int adminChoice;
 
 
-    public QaBoard() {
+    public QuestionBoard() {
     }
 
-    public QaBoard(String qbNo, String memberNo, String title, String content, LocalDateTime regDate, int adminChoice) {
+    public QuestionBoard(String qbNo, String memberNo, String title, String content, LocalDateTime regDate, int adminChoice) {
         this.qbNo = qbNo;
         this.memberNo = memberNo;
         this.title = title;
@@ -73,7 +73,7 @@ public class QaBoard {
 
     @Override
     public String toString() {
-        return "QaBoard{" +
+        return "QuestionBoard{" +
                 "qbNo='" + qbNo + '\'' +
                 ", memberNo='" + memberNo + '\'' +
                 ", title='" + title + '\'' +
