@@ -3,7 +3,8 @@
         PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
         "https://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
-    <properties resource="datasource-local.properties"></properties>
+    <!-- 본인 local 파일로 테스트할거면 datasource-local.properties 로 바꾸고 사용할 것 -->
+    <properties resource="datasource-staging.properties"></properties>
 
     <settings>
         <!-- NULL데이터가 전달된 경우 NULL값으로 처리 -->
@@ -48,7 +49,6 @@
     </environments>
 
     <mappers>
-        <mapper resource="mapper/member/member-mapper.xml"/>
         <mapper resource="mapper/member/semitest-mapper.xml"/>
         <mapper resource="mapper/daily/daily-mapper.xml"/>
     </mappers>
