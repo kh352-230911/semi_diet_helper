@@ -143,6 +143,7 @@ public class Member {
         this.titleNo = titleNo;
     }
 
+
     public String getAnswer() {
         return answer;
     }
@@ -159,15 +160,17 @@ public class Member {
                 ", password='" + password + '\'' +
                 ", name='" + name + '\'' +
                 ", nickName='" + nickName + '\'' +
-                ", height=" + height +
+                ", height='" + height + '\'' +
                 ", role=" + role +
                 ", regDate=" + regDate +
                 ", birthDay='" + birthDay + '\'' +
                 ", weightLossGoal=" + weightLossGoal +
                 ", point=" + point +
+                ", answer='" + answer + '\'' +
                 ", localNo='" + localNo + '\'' +
                 ", titleNo='" + titleNo + '\'' +
-                ", answer='" + answer + '\'' +
                 '}';
     }
+
 }
+
