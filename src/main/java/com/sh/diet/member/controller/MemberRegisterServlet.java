@@ -1,4 +1,4 @@
-package com.sh.diet.member.model.controller;
+package com.sh.diet.member.controller;
 
 import com.sh.diet.common.DawumiUtils;
 import com.sh.diet.member.model.entity.Member;
