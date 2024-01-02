@@ -221,8 +221,8 @@ create table food_data (
 create sequence seq_food_no;
 
 select * from food_data;
-insert into exercies_data 
-values('F' || food_data.nextval, '사과', 130, 35, 1.5, 0.5);
+insert into food_data 
+values('F' || seq_food_no.nextval, '사과', 130, 35, 1.5, 0.5);
 
 
 
