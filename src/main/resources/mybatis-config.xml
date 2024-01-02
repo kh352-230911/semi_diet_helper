@@ -49,7 +49,8 @@
     </environments>
 
     <mappers>
-        <mapper resource="mapper/member/semitest-mapper.xml"/>
+        <mapper resource="mapper/qnaBoard/qnaBoard-mapper.xml"/>
+        <mapper resource="mapper/member/member-mapper.xml"/>
         <mapper resource="mapper/daily/daily-mapper.xml"/>
     </mappers>
 </configuration>
