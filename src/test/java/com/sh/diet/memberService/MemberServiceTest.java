@@ -1,17 +1,17 @@
-package com.sh.diet.MemberService;
+package com.sh.diet.memberService;
 
 import com.sh.diet.member.model.entity.Member;
 import com.sh.diet.member.model.entity.Role;
 import com.sh.diet.member.model.service.MemberService;
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.*;
 
 import java.time.LocalDate;
 import java.util.Arrays;
 import java.util.List;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.catchThrowable;
-import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
+
 
 
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
@@ -28,37 +28,37 @@ public class MemberServiceTest {
     @DisplayName("존재하는 회원이 정상적으로 조회된다.")
     @Test
     public void test2() {
-        String memberId = "user123";
+        String memberId = "honggd";
         Member member = memberService.findById(memberId);
         // 객체
-        Assertions.assertThat(member).isNotNull();
+       assertThat(member).isNotNull();
         // 필드
-        Assertions.assertThat(member.getMemberId()).isNotNull();
-        Assertions.assertThat(member.getPassword()).isNotNull();
-        Assertions.assertThat(member.getName()).isNotNull();
-        Assertions.assertThat(member.getRole()).isNotNull();
+        assertThat(member.getMemberId()).isNotNull();
+        assertThat(member.getPassword()).isNotNull();
+        assertThat(member.getName()).isNotNull();
+        assertThat(member.getRole()).isNotNull();
 
     }
     @DisplayName("존재하지않는 회원이 NULL이 반환되어야 한다.")
     @Test
     public void test3(){
         Member member = memberService.findById("nihaowoshihanchengxun");
-        Assertions.assertThat(member).isNull();
+        assertThat(member).isNull();
     }
     @DisplayName("회원 전체 조회")
     @Test
     public void test4(){
         List<Member> members = memberService.findAll();
-        Assertions.assertThat(members)
+        assertThat(members)
                 .isNotNull()
                 .isNotEmpty();
         // Consumer타입 람다식 : 매개변수가 하나 있고, 리턴타입은 없음.
         members.forEach((member) -> {
             System.out.println(member);
-            Assertions.assertThat(member.getMemberId()).isNotNull();
-            Assertions.assertThat(member.getPassword()).isNotNull();
-            Assertions.assertThat(member.getName()).isNotNull();
-            Assertions.assertThat(member.getRole()).isNotNull();
+            assertThat(member.getMemberId()).isNotNull();
+            assertThat(member.getPassword()).isNotNull();
+            assertThat(member.getName()).isNotNull();
+            assertThat(member.getRole()).isNotNull();
         });
     }
     @DisplayName("회원 이름 검색")
@@ -66,10 +66,10 @@ public class MemberServiceTest {
     public void test5(){
         String keyword = "John Doe";
         List<Member> members = memberService.findByName(keyword);
-        Assertions.assertThat(members)
+        assertThat(members)
                 .isNotNull()
                 .isNotEmpty();
-        members.forEach((member) -> Assertions.assertThat(member.getName()).contains(keyword));
+        members.forEach((member) -> assertThat(member.getName()).contains(keyword));
     }
     @Disabled
     @Order(1)
@@ -80,7 +80,7 @@ public class MemberServiceTest {
         String password = "1234";
         String name = "씨몽키";
         String nickName = "몽키";
-        String height = "170";
+        long height = 170;
 
 
         Member member = new Member(
@@ -117,13 +117,13 @@ public class MemberServiceTest {
     public void test12() {
         String memberId = "asdf1234";
         Member member = memberService.findById(memberId);
-        Assertions.assertThat(member).isNotNull();
+        assertThat(member).isNotNull();
 
         int result = memberService.deleteMember(memberId);
-        Assertions.assertThat(result).isGreaterThan(0);
+        assertThat(result).isGreaterThan(0);
 
         Member member2 = memberService.findById(memberId);
-        Assertions.assertThat(member2).isNull();
+        assertThat(member2).isNull();
     }
 
     @Order(4)
@@ -138,9 +138,9 @@ public class MemberServiceTest {
 
         int result = memberService.updateMemberPassword(member);
 
-        Assertions.assertThat(result).isGreaterThan(0);
+        assertThat(result).isGreaterThan(0);
         Member member2 = memberService.findById(id);
-        Assertions.assertThat(member2.getPassword()).isEqualTo(newPassword);
+        assertThat(member2.getPassword()).isEqualTo(newPassword);
     }
 
 

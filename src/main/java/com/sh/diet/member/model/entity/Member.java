@@ -9,16 +9,35 @@ public class Member {
     private String password;
     private String name;
     private String nickName;
-    private String height;
+    private long height;
     private Role role;
-
     private LocalDate regDate;
     private String birthDay;
     private int weightLossGoal;
     private int point;
-    private String answer;
     private String localNo;
     private String titleNo;
+    private String answer;
+
+    public Member() {
+    }
+
+    public Member(String memberNo, String memberId, String password, String name, String nickName, long height, Role role, LocalDate regDate, String birthDay, int weightLossGoal, int point, String localNo, String titleNo, String answer) {
+        this.memberNo = memberNo;
+        this.memberId = memberId;
+        this.password = password;
+        this.name = name;
+        this.nickName = nickName;
+        this.height = height;
+        this.role = role;
+        this.regDate = regDate;
+        this.birthDay = birthDay;
+        this.weightLossGoal = weightLossGoal;
+        this.point = point;
+        this.localNo = localNo;
+        this.titleNo = titleNo;
+        this.answer = answer;
+    }
 
     public String getMemberNo() {
         return memberNo;
@@ -60,11 +79,11 @@ public class Member {
         this.nickName = nickName;
     }
 
-    public String getHeight() {
+    public long getHeight() {
         return height;
     }
 
-    public void setHeight(String height) {
+    public void setHeight(long height) {
         this.height = height;
     }
 
@@ -108,14 +127,6 @@ public class Member {
         this.point = point;
     }
 
-    public String getAnswer() {
-        return answer;
-    }
-
-    public void setAnswer(String answer) {
-        this.answer = answer;
-    }
-
     public String getLocalNo() {
         return localNo;
     }
@@ -130,6 +141,15 @@ public class Member {
 
     public void setTitleNo(String titleNo) {
         this.titleNo = titleNo;
+    }
+
+
+    public String getAnswer() {
+        return answer;
+    }
+
+    public void setAnswer(String answer) {
+        this.answer = answer;
     }
 
     @Override
@@ -152,23 +172,5 @@ public class Member {
                 '}';
     }
 
-    public Member(String memberNo, String memberId, String password, String name, String nickName, String height, Role role, LocalDate regDate, String birthDay, int weightLossGoal, int point, String answer, String localNo, String titleNo) {
-        this.memberNo = memberNo;
-        this.memberId = memberId;
-        this.password = password;
-        this.name = name;
-        this.nickName = nickName;
-        this.height = height;
-        this.role = role;
-        this.regDate = regDate;
-        this.birthDay = birthDay;
-        this.weightLossGoal = weightLossGoal;
-        this.point = point;
-        this.answer = answer;
-        this.localNo = localNo;
-        this.titleNo = titleNo;
-    }
-
-    public Member() {
-    }
 }
+

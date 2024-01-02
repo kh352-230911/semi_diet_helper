@@ -41,15 +41,15 @@ public class MemberRegisterServlet extends HttpServlet {
 //                LocalDate.parse(_birthDay, DateTimeFormatter.ISO_DATE) :
 //                null;
 
-        Member member = new Member(null, memberId, password, name, nickName, height, Role.U, null, _birthDay, weightLossGoal, '0', answer, null, null);
-        System.out.println(member);
-
-        int result = memberService.insertMember(member);
-        System.out.println(result);
-
-        req.getSession().setAttribute("msg", "회원가입 축하드립니다.");
-
-        resp.sendRedirect(req.getContextPath() + "/");
+//        Member member = new Member(null, memberId, password, name, nickName, height, Role.M, null, _birthDay, weightLossGoal, '0', answer, null, null);
+//        System.out.println(member);
+//
+//        int result = memberService.insertMember(member);
+//        System.out.println(result);
+//
+//        req.getSession().setAttribute("msg", "회원가입 축하드립니다.");
+//
+//        resp.sendRedirect(req.getContextPath() + "/");
 
 
 

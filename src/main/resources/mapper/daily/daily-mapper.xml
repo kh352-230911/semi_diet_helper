@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="daily">
+
+    <select id="findByEaNo" resultType="eyebodyAttachment">
+        select
+         *
+        from
+            eyebody_attachment
+        where
+            ea_no = #{eaNo}
+    </select>
+
+    <insert id="insertEyebodyAttachment">
+        insert into
+        eyebody_attachment (ea_no, daily_no, original_file, renamed_file)
+        values (
+        'EA' || seq_ea_no.nextval,
+        #{dailyNo},
+        #{originalFile},
+        #{renamedFile}
+        )
+    </insert>
+
+    <insert id="insertDailyFood">
+        insert into
+            daily_food (df_no, food_time, food_no, daily_no)
+        values (
+            'DF' || seq_df_no.nextval,
+            #{foodTime},
+            #{foodNo},
+            #{dailyNo}
+        )
+    </insert>
+
+
+</mapper>

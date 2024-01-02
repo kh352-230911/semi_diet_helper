@@ -1,17 +1,14 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ page import="com.sh.diet.member.model.entity.Role" %>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+
 <!DOCTYPE html>
 <html>
 <head>
     <meta charset="UTF-8">
     <title>Hello MVC</title>
-    <link rel="presessionect" href="https://fonts.googleapis.com">
-    <link rel="presessionect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cute+Font&family=Gaegu:wght@300;400;700&family=Gowun+Dodum&family=Sunflower:wght@300;500;700&display=swap"
-          rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="${pageContext.request.contextPath}/js/tailwind.config.js"></script>
     <script
@@ -21,63 +18,54 @@
     <script>
         const contextPath = '${pageContext.request.contextPath}';
         <c:if test="${msg != null}">
-            alert(`${msg}`); // 여러줄 입력이 가능하도록 `(백틱)으로 감싸야한다.
-            <%-- session속성 msg 제거해서 1회만 출력되도록 한다. --%>
-            <%-- session.removeAttribute("msg"); --%>
-            <c:remove var="msg" scope="session" />
+
+        alert(`${msg}`)
+        // 여러줄 작성을 위해 `` 을 사용해 감싸준다
+        <%--session 속성 msg를 제거해서 1회만 출력되도록 한다 --%>
+        <c:remove var="msg" scope="session"/>
         </c:if>
     </script>
-    <c:if test="${loginMember != null}">
-        <script src="${pageContext.request.contextPath}/js/ws/ws.js"></script>
-    </c:if>
 </head>
 <body>
 <div class="3xl:container">
-    <header>
-        <nav class="bg-white border-gray-200">
-            <div class="flex flex-wrap justify-between items-center mx-auto max-w-screen-xl p-4">
-                <a href="${pageContext.request.contextPath}" class="flex items-center space-x-3 rtl:space-x-reverse">
-<%--                    <img src="${pageContext.request.contextPath}/images/logo.svg" class="h-8" alt="Hello MVC Logo"/>--%>
-                    <span class="self-center text-2xl font-semibold whitespace-nowrap">Hello MVC</span>
-                </a>
-                <div class="flex items-center space-x-6 rtl:space-x-reverse">
-<%--                    <c:if test="${loginMember == null}">--%>
-                        <a href="${pageContext.request.contextPath}/member/memberLogin" class="text-md text-gray-600 hover:underline">로그인</a>
-                        <a href="${pageContext.request.contextPath}/member/memberRegister" class="text-md text-gray-500 hover:underline">회원가입</a>
-<%--                    </c:if>--%>
-<%--                    <c:if test="${loginMember != null}">--%>
-<%--                        <a href="${pageContext.request.contextPath}/member/memberDetail" class="text-md text-gray-600 hover:underline">${loginMember.id}</a>님, 안녕하세요🥑--%>
-<%--                        <a href="${pageContext.request.contextPath}/member/memberLogout" class="text-md text-gray-500 hover:underline">로그아웃</a>--%>
-<%--                    </c:if>--%>
-
-                </div>
-            </div>
-        </nav>
-        <nav class="bg-gray-50">
-            <div class="max-w-screen-xl px-4 py-3 mx-auto">
-                <div class="flex items-center">
-                    <ul class="flex flex-row font-medium mt-0 space-x-8 rtl:space-x-reverse text-sm">
-                        <li>
-                           <a href="${pageContext.request.contextPath}" class="text-gray-900 hover:underline" aria-current="page">Home</a>
-                        </li>
-                        <li>
-                            <a href="#" class="text-gray-900 hover:underline">About</a>
-                        </li>
-                        <li>
-                            <a href="${pageContext.request.contextPath}/board/boardList" class="text-gray-900 hover:underline">Board</a>
-                        </li>
-                        <li>
-                            <a href="${pageContext.request.contextPath}/photo/photoList" class="text-gray-900 hover:underline">Photo</a>
-                        </li>
-                        <%-- 관리자로 로그인한 경우만 노출하기 --%>
-                        <c:if test="${loginMember.role == Role.A}">
-                            <li>
-                                <a href="${pageContext.request.contextPath}/admin/memberList" class="text-gray-900 hover:underline">Admin-Member</a>
-                            </li>
-                        </c:if>
-                    </ul>
-                </div>
-            </div>
-        </nav>
+    <header class=" bg-sky-200 text-gray-600 body-font">
+        <div class="container mx-auto flex flex-wrap p-5 flex-col md:flex-row items-center">
+            <a class="flex title-font font-medium items-center text-gray-900 mb-4 md:mb-0">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round"
+                     stroke-linejoin="round" stroke-width="2"
+                     class="w-10 h-10 text-white p-2 bg-indigo-500 rounded-full" viewBox="0 0 24 24">
+                    <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"></path>
+                </svg>
+                <span class="ml-3 text-3xl text-5xl">다우미</span>
+            </a>
+            <c:if test="${login.member == null}">
+                <nav class="md:ml-auto  flex flex-wrap items-center text-base justify-center">
+                    <a href="${pageContext.request.contextPath}/member/memberLogin" class="text-xl mr-5 hover:text-gray-900">로그인</a>
+                    <a href="${pageContext.request.contextPath}/member/memberRegister" class="text-xl mr-5 hover:text-gray-900">회원가입</a>
+                </nav>
+            </c:if>
+            <c:if test="${login.member != null}">
+                <nav class="md:ml-auto flex text-3xl flex-wrap items-center text-base justify-center">
+                    <a href=class="text-xl mr-5 hover:text-gray-900">로그인</a>
+                    <a class="text-xl mr-5 hover:text-gray-900">회원가입</a>
+                    <a class="text-xl mr-5 hover:text-gray-900">Third Link</a>
+                    <a class="text-xl  mr-5 hover:text-gray-900">Fourth Link</a>
+                </nav>
+            </c:if>
+            <c:if test="${loginMember.role == Role.A}">
+                <nav class="md:ml-auto flex text-3xl flex-wrap items-center text-base justify-center">
+                    <a class="text-xl mr-5 hover:text-gray-900">로그인</a>
+                    <a class="text-xl mr-5 hover:text-gray-900">회원가입</a>
+                    <a class="text-xl mr-5 hover:text-gray-900">Third Link</a>
+                    <a class="text-xl  mr-5 hover:text-gray-900">Fourth Link</a>
+                </nav>
+            </c:if>
+            <%--<button class="inline-flex items-center bg-gray-100 border-0 py-1 px-3 focus:outline-none hover:bg-gray-200 rounded text-base mt-4 md:mt-0">Button--%>
+            <%--    <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-4 h-4 ml-1" viewBox="0 0 24 24">--%>
+            <%--        <path d="M5 12h14M12 5l7 7-7 7"></path>--%>
+            <%--    </svg>--%>
+            <%--</button>--%>
+        </div>
+>>>>>>> 5d02007724c03a790bb0af4a2eaffd95cee03263
     </header>
     <main class="w-full min-h-[80vh]">
