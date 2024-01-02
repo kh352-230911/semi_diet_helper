@@ -121,7 +121,12 @@ create table question_board (
 create sequence seq_qb_no;
 insert into question_board 
 values ('Q' || seq_qb_no.nextval,'M4', '테스트 게시물', '테스트입니다 123', default, default );
-
+insert into question_board 
+values ('Q' || seq_qb_no.nextval,'M4', '테스트 게시물2', '2테스트입니다 123', default, default );
+insert into question_board 
+values ('Q' || seq_qb_no.nextval,'M4', '테스트 게시물3', '3테스트입니다 123', default, default );
+select * from question_board;insert into question_board 
+values ('Q' || seq_qb_no.nextval,'M4', '테스트 게시물4', '4테스트입니다 123', default, default );
 
 --답변 A
 create table answer_comment (
@@ -139,6 +144,9 @@ create table answer_comment (
     constraints fk_answer_qb_no foreign key (qb_no) references question_board(qb_no) on delete cascade
 );
 create sequence seq_ac_no;
+insert into answer_comment 
+values('A' || seq_ac_no.nextval, 'M4', 'Q1', '답변 테스트', '답변 테스트문 입니다', default,default,default );
+
 
 --일일기록 테이블 DR
 create table daily_recode (
@@ -152,8 +160,10 @@ create table daily_recode (
     constraints fk_daily_member_no foreign key (member_no) references member(member_no) on delete cascade
 );
 create sequence seq_daily_no;
+insert into daily_recode
+values ('DR'||seq_daily_no.nextval, 70, 'M4', default,default);
 
-
+select * from daily_recode;
 
 
 --운동데이터 E
@@ -196,6 +206,8 @@ create table daily_ex(
 );
 create sequence seq_de_no;
 
+insert into daily_ex values('DE'||seq_de_no.nextval, 'E2', 'DR2', 4);
+
 
 --눈바디 첨부파일 저장 EA
 create table eyebody_attachment (
@@ -221,8 +233,8 @@ create table food_data (
 create sequence seq_food_no;
 
 select * from food_data;
-insert into exercies_data 
-values('F' || food_data.nextval, '사과', 130, 35, 1.5, 0.5);
+insert into food_data 
+values('F' || seq_food_no.nextval, '사과', 130, 35, 1.5, 0.5);
 
 
 
@@ -309,6 +321,8 @@ create table group_board (
     constraints fk_gb_member_no foreign key (member_no) references member(member_no) on delete set null
 );
 create sequence seq_group_board;
+
+
 
 -- 그룹 게시판 댓글 GC
 Create table group_comment (
