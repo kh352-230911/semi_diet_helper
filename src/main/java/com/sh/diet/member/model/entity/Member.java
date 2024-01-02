@@ -20,46 +20,6 @@ public class Member {
     private String localNo;
     private String titleNo;
 
-    public Member(String memberNo, String memberId, String password, String name, String nickName, String height, Role role, LocalDate regDate, String birthDay, int weightLossGoal, int point, String answer, String localNo, String titleNo) {
-        this.memberNo = memberNo;
-        this.memberId = memberId;
-        this.password = password;
-        this.name = name;
-        this.nickName = nickName;
-        this.height = height;
-        this.role = role;
-        this.regDate = regDate;
-        this.birthDay = birthDay;
-        this.weightLossGoal = weightLossGoal;
-        this.point = point;
-        this.answer = answer;
-        this.localNo = localNo;
-        this.titleNo = titleNo;
-    }
-
-    @Override
-    public String toString() {
-        return "Member{" +
-                "memberNo='" + memberNo + '\'' +
-                ", memberId='" + memberId + '\'' +
-                ", password='" + password + '\'' +
-                ", name='" + name + '\'' +
-                ", nickName='" + nickName + '\'' +
-                ", height='" + height + '\'' +
-                ", role=" + role +
-                ", regDate=" + regDate +
-                ", birthDay='" + birthDay + '\'' +
-                ", weightLossGoal=" + weightLossGoal +
-                ", point=" + point +
-                ", answer='" + answer + '\'' +
-                ", localNo='" + localNo + '\'' +
-                ", titleNo='" + titleNo + '\'' +
-                '}';
-    }
-
-    public Member(String memberNo, String memberId, String password, String name, String nickName, String height, Role u, LocalDate regDate, LocalDate birthday, String weightLossGoal, Object o, String answer, Object localNo, Object titleNo) {
-    }
-
     public String getMemberNo() {
         return memberNo;
     }
@@ -170,5 +130,45 @@ public class Member {
 
     public void setTitleNo(String titleNo) {
         this.titleNo = titleNo;
+    }
+
+    @Override
+    public String toString() {
+        return "Member{" +
+                "memberNo='" + memberNo + '\'' +
+                ", memberId='" + memberId + '\'' +
+                ", password='" + password + '\'' +
+                ", name='" + name + '\'' +
+                ", nickName='" + nickName + '\'' +
+                ", height='" + height + '\'' +
+                ", role=" + role +
+                ", regDate=" + regDate +
+                ", birthDay='" + birthDay + '\'' +
+                ", weightLossGoal=" + weightLossGoal +
+                ", point=" + point +
+                ", answer='" + answer + '\'' +
+                ", localNo='" + localNo + '\'' +
+                ", titleNo='" + titleNo + '\'' +
+                '}';
+    }
+
+    public Member(String memberNo, String memberId, String password, String name, String nickName, String height, Role role, LocalDate regDate, String birthDay, int weightLossGoal, int point, String answer, String localNo, String titleNo) {
+        this.memberNo = memberNo;
+        this.memberId = memberId;
+        this.password = password;
+        this.name = name;
+        this.nickName = nickName;
+        this.height = height;
+        this.role = role;
+        this.regDate = regDate;
+        this.birthDay = birthDay;
+        this.weightLossGoal = weightLossGoal;
+        this.point = point;
+        this.answer = answer;
+        this.localNo = localNo;
+        this.titleNo = titleNo;
+    }
+
+    public Member() {
     }
 }

@@ -26,38 +26,49 @@ public class MemberLoginServlet extends HttpServlet {
 //
 //        if(!referer.equalsIgnoreCase("/member/memberLogin"))
 //            req.getSession().setAttribute("next", referer);
-        System.out.println("plag1");
+
         RequestDispatcher requestDispatcher = req.getRequestDispatcher("/WEB-INF/views/member/memberLogin.jsp");
-        System.out.println("plag2");
+
         requestDispatcher.forward(req, resp);
-        System.out.println("plag3");
+
     }
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        // 1. 사용자입력값 인코딩처리
+//        req.setCharacterEncoding("utf-8");
 
+        // 2. 사용자입력값 가져오기
         String memberId = req.getParameter("memberId");
-        String password = DawumiUtils.getEncryptedPassword(req.getParameter("password"), memberId);
+        String password = req.getParameter("password");
+        System.out.println(memberId + ", " + password);
 
+        // 3. 업무로직 (이번요청에 처리할 작업) -> 로그인(인증)
+        // id/password - db에서 읽어온 데이터(member객체) 비교
+        // 로그인 성공 (id/password 모두 일치)
+        // 로그인 실패 (존재하지 않는 id | password가 틀린 경우)
         Member member = memberService.findById(memberId);
         System.out.println(member);
 
+        // 세션생성/가져오기
+        // getSession(), getSession(true) : 세션이 존재하지 않으면 생성, 혹은 존재하는 세션을 반환
         HttpSession session = req.getSession();
         if(member != null && password.equals(member.getPassword())) {
-
+            // 로그인 성공
+            // pageContext, request, session, application 컨텍스트객체중에 login처리에 적합한 것은 session
+            // session객체는 사용자가 서버첫접속부터 세션해제시까지 유효
             session.setAttribute("loginMember", member);
-            String location = req.getContextPath() + "/";
-            String next = (String) req.getSession().getAttribute("next");
-            if(next != null) {
-                location = next;
-                req.getSession().removeAttribute("next");
-            }
-            resp.sendRedirect(location);
+            req.getRequestDispatcher("/member/loginSuccess").forward(req, resp);
         }
-        else{
-            session.setAttribute("msg", "아이디가 존재하지 않거나, 비밀번호가 틀립니다.");
-            resp.sendRedirect(req.getContextPath() + "/member/memberLogin"); //get방식
+        else {
+            // 로그인 실패
+            session.setAttribute("msg", "아이디가 존재하지 않거나, 비밀번호가 틀립니다. 😎");
+            resp.sendRedirect(req.getContextPath() + "/member/memberLogin"); // GET
         }
-        resp.sendRedirect(req.getContextPath() + "/");
+
+
+        // 4. view단처리 (forwarding) | redirect처리 (url변경)
+        // DML요청(POST), 로그인요청등은 반드시 redirect로 처리해서 url을 변경해야 한다.
+//        resp.sendRedirect(req.getContextPath() + "/");
     }
 }

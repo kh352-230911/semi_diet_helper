@@ -33,15 +33,15 @@ public class MemberRegisterServlet extends HttpServlet {
         String nickName = req.getParameter("nickName");
         String height = req.getParameter("height");
         String _birthDay = req.getParameter("birthDay");
-        String weightLossGoal = req.getParameter("weightLossGoal");
+        int weightLossGoal = Integer.parseInt(req.getParameter("weightLossGoal"));
         String answer = req.getParameter("answer");
         System.out.println(memberId + ", " + password + ", " + name + ", " + nickName + ", " + height + ", " + _birthDay + ", " + weightLossGoal + ", " + answer );
 
-        LocalDate birthday = _birthDay != null && !"".equals(_birthDay) ?
-                LocalDate.parse(_birthDay, DateTimeFormatter.ISO_DATE) :
-                null;
+//        LocalDate birthday = _birthDay != null && !"".equals(_birthDay) ?
+//                LocalDate.parse(_birthDay, DateTimeFormatter.ISO_DATE) :
+//                null;
 
-        Member member = new Member(null, memberId, password, name, nickName, height, Role.U, null, birthday, weightLossGoal, null, answer, null, null);
+        Member member = new Member(null, memberId, password, name, nickName, height, Role.U, null, _birthDay, weightLossGoal, '0', answer, null, null);
         System.out.println(member);
 
         int result = memberService.insertMember(member);
