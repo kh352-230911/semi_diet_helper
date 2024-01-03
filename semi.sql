@@ -16,7 +16,7 @@ CREATE TABLE member (
     nickname VARCHAR2(50) NOT NULL,
     height NUMBER,
     role VARCHAR2(1) NOT NULL,
-    reg_date DATE NOT NULL,
+    reg_date date default sysdate,
     birthday VARCHAR2(8),
     weight_loss_goal NUMBER,
     point NUMBER,
@@ -26,6 +26,7 @@ CREATE TABLE member (
     CONSTRAINT PK_MEMBER PRIMARY KEY (member_no)
 );
 
+drop table member;
 select * from member;
 
 -- Inserting sample data into the "member" table
@@ -33,7 +34,7 @@ INSERT INTO member (
     member_no, member_id, password, name, nickname, height, role, reg_date, birthday,
     weight_loss_goal, point, answer, local_no, title_no
 ) VALUES (
-    '1', 'user123', 'password123', 'John Doe', 'johndoe', 175, 'U', TO_DATE('2023-01-01', 'YYYY-MM-DD'), '19900101',
+    '1', 'user123', 'password123', 'John Doe', 'johndoe', 175, 'U', default, '19900101',
     5, 100, 'Answer123', 'L001', 'T001'
 );
 
@@ -41,7 +42,7 @@ INSERT INTO member (
     member_no, member_id, password, name, nickname, height, role, reg_date, birthday,
     weight_loss_goal, point, answer, local_no, title_no
 ) VALUES (
-    '2', 'admin456', 'adminPass', 'Admin User', 'adminuser', 180, 'A', TO_DATE('2023-01-02', 'YYYY-MM-DD'), '19851231',
+    '2', 'admin456', 'adminPass', 'Admin User', 'adminuser', 180, 'A', default, '19851231',
     10, 200, 'Answer456', 'L002', 'T002'
 );
 
@@ -52,6 +53,7 @@ INSERT INTO member (
 COMMIT;
 
 select * from member;
+
 
 --질문게시판 Q
 create table question_board (
@@ -118,3 +120,12 @@ select
         answer_comment;
 --    where
 --        ac_no = 19;
+
+select * from member where member_id = 'user123';
+
+select
+q.*, m.member_id, m.name
+from
+question_board q
+left join member m
+on q.member_no = m.member_no;

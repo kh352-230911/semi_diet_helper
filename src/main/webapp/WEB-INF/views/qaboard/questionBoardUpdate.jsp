@@ -3,6 +3,7 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<jsp:include page="/WEB-INF/views/common/header.jsp"/>
 <div class="py-8 px-4 mx-auto max-w-2xl lg:py-16">
     <h2 class="mb-4 text-xl font-bold text-gray-900">질답게시글 수정</h2>
     <form name="boardCreateFrm" method="post" enctype="multipart/form-data">
@@ -17,7 +18,7 @@
             <%--            </div>--%>
             <div class="sm:col-span-2">
                 <label for="memberNo" class="block mb-2 text-sm font-medium text-gray-900">회원고유번호</label>
-                <input type="text" name="memberNo" id="memberNo" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5" value="${qaboard.memberNo}" required readonly>
+                <input type="text" name="memberNo" id="memberNo" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5" value="${questionBoard.memberNo}" required readonly>
             </div>
             <div class="sm:col-span-2">
                 <label for="content" class="block mb-2 text-sm font-medium text-gray-900">본문</label>

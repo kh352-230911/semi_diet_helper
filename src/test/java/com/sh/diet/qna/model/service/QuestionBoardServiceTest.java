@@ -2,6 +2,7 @@ package com.sh.diet.qna.model.service;
 
 import com.sh.diet.qaboard.model.entity.QuestionBoard;
 import com.sh.diet.qaboard.model.service.QuestionBoardService;
+import com.sh.diet.qaboard.model.vo.QuestionBoardVo;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
@@ -26,25 +27,25 @@ public class QuestionBoardServiceTest {
         List<QuestionBoard> questionBoards = questionBoardService.findAll();
         assertThat(questionBoards)
                 .isNotNull()
-                .allSatisfy((questionBoard -> {
-                    assertThat(questionBoard.getMemberNo()).isNotNull();
-                    assertThat(questionBoard.getTitle()).isNotNull();
-                    assertThat(questionBoard.getContent()).isNotNull();
-                    assertThat(questionBoard.getRegDate()).isNotNull();
+                .allSatisfy((questionBoardVo -> {
+                    assertThat(questionBoardVo.getMemberNo()).isNotNull();
+                    assertThat(questionBoardVo.getTitle()).isNotNull();
+                    assertThat(questionBoardVo.getContent()).isNotNull();
+                    assertThat(questionBoardVo.getRegDate()).isNotNull();
                 }));
          System.out.println(questionBoards);
     }
     @DisplayName("존재하는 질답게시글 한 건 조회")
     @Test
     void test2(){
-        String qbNo = "3";
-        QuestionBoard questionBoard = questionBoardService.findById(qbNo);
-        assertThat(questionBoard).isNotNull();
-        assertThat(questionBoard.getMemberNo()).isNotNull();
-        assertThat(questionBoard.getTitle()).isNotNull();
-        assertThat(questionBoard.getContent()).isNotNull();
-        assertThat(questionBoard.getRegDate()).isNotNull();
-        System.out.println(questionBoard);
+        String qbNo = "Q7";
+        QuestionBoardVo questionBoardvo = questionBoardService.findById(qbNo);
+        assertThat(questionBoardvo).isNotNull();
+        assertThat(questionBoardvo.getMemberNo()).isNotNull();
+        assertThat(questionBoardvo.getTitle()).isNotNull();
+        assertThat(questionBoardvo.getContent()).isNotNull();
+        assertThat(questionBoardvo.getRegDate()).isNotNull();
+        System.out.println(questionBoardvo);
     }
     @DisplayName("존재하지 않는 질답게시글 한 건 조회")
     @Test

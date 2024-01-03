@@ -1,7 +1,9 @@
 package com.sh.diet.qaboard.model.service;
 
 import com.sh.diet.qaboard.model.dao.QuestionBoardDao;
+import com.sh.diet.qaboard.model.entity.AnswerBoard;
 import com.sh.diet.qaboard.model.entity.QuestionBoard;
+import com.sh.diet.qaboard.model.vo.QuestionBoardVo;
 import org.apache.ibatis.session.SqlSession;
 
 import java.util.List;
@@ -17,14 +19,38 @@ public class QuestionBoardService {
         session.close();
         return questionBoards;
     }
-
-    public QuestionBoard findById(String qbNo) {
+    public AnswerBoard findByAnswerBoardacNo(String acNo){
         SqlSession session = getSqlSession();
-        QuestionBoard questionBoard = questionBoardDao.findById(session, qbNo);
+        AnswerBoard answerBoard = questionBoardDao.findByAnswerBoardacNo(session, acNo);
         session.close();
-        return questionBoard;
+        return answerBoard;
     }
-
+    public AnswerBoard findByIdAnswer(String acNo){
+        SqlSession session = getSqlSession();
+        AnswerBoard answerBoard = questionBoardDao.findByIdAnswer(session, acNo);
+        session.close();
+        return answerBoard;
+    }
+    public QuestionBoardVo findById(String qbNo) {
+        SqlSession session = getSqlSession();
+        QuestionBoardVo questionBoardvo = questionBoardDao.findById(session, qbNo);
+        session.close();
+        return questionBoardvo;
+    }
+    public int insertAnswerBoard(AnswerBoard answerBoard){
+        int result = 0;
+        SqlSession session = getSqlSession();
+        try {
+            result = questionBoardDao.insertAnswerBoard(session, answerBoard);
+            session.commit();
+        } catch (Exception e) {
+            session.rollback();
+            throw e;
+        } finally {
+            session.close();
+        }
+        return result;
+    }
     public int insertQuestionBoard(QuestionBoard questionBoard) {
         int result = 0;
         SqlSession session = getSqlSession();
@@ -40,7 +66,20 @@ public class QuestionBoardService {
         return result;
     }
 
-
+    public int updateAnswerBoard(AnswerBoard answerBoard){
+        int result = 0;
+        SqlSession session =getSqlSession();
+        try{
+            result = questionBoardDao.updateAnswerBoard(session, answerBoard);
+            session.commit();
+        } catch (Exception e){
+            session.rollback();
+            throw e;
+        } finally {
+            session.close();
+        }
+        return result;
+    }
     public int updateQuestionBoard(QuestionBoard questionBoard) {
         int result = 0;
         SqlSession session =getSqlSession();
@@ -56,6 +95,20 @@ public class QuestionBoardService {
         return result;
     }
 
+    public int deleteAnswerBoard(String acNo){
+        int result = 0;
+        SqlSession session = getSqlSession();
+        try {
+            result = questionBoardDao.deleteAnswerBoard(session,acNo);
+            session.commit();
+        } catch (Exception e) {
+            session.rollback();
+            throw e;
+        } finally {
+            session.close();
+        }
+        return result;
+    }
     public int deleteQuestionBoard(String qbNo) {
         int result = 0;
         SqlSession session = getSqlSession();
@@ -78,11 +131,11 @@ public class QuestionBoardService {
         return totalCount;
     }
 
-    public List<QuestionBoard> findAll(Map<String, Object> param) {
+    public List<QuestionBoardVo> findAll(Map<String, Object> param) {
         SqlSession session = getSqlSession();
-        List<QuestionBoard> questionBoards = questionBoardDao.findAll(session, param);
+        List<QuestionBoardVo> questionBoardvos = questionBoardDao.findAll(session, param);
         session.close();
-        return questionBoards;
+        return questionBoardvos;
     }
 }
 

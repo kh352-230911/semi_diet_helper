@@ -66,6 +66,5 @@
             <%--    </svg>--%>
             <%--</button>--%>
         </div>
->>>>>>> 5d02007724c03a790bb0af4a2eaffd95cee03263
     </header>
     <main class="w-full min-h-[80vh]">

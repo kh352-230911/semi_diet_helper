@@ -34,9 +34,8 @@ public class AnswerBoardDaoTest {
     @DisplayName("특정 게시글에 대한 답글조회")
     @Test
     void test2(){
-        String acNo = "19";
+        String acNo = "A1";
         AnswerBoard answerBoard = questionBoardDao.findByAnswerBoardacNo(session,acNo);
-        System.out.println(answerBoard);
         assertThat(answerBoard).isNotNull();
                     assertThat(answerBoard.getMemberNo()).isNotNull();
                     assertThat(answerBoard.getAcNo()).isEqualTo(acNo);
@@ -47,7 +46,7 @@ public class AnswerBoardDaoTest {
 //    @Disabled
     @DisplayName("답글 등록")
     @ParameterizedTest
-    @CsvSource({"26,2,8,제발답글등록되어주세요....,plz"})
+    @CsvSource({"A5,M5,Q5,제발답글등록되어주세요....,plz"})
     void test3(String acNo, String memberNo,String qbNo, String title, String content){
         assertThat(acNo).isNotNull();
         assertThat(memberNo).isNotNull();
@@ -71,9 +70,9 @@ public class AnswerBoardDaoTest {
 //    @Disabled
     @DisplayName("답글 수정")
     @ParameterizedTest
-    @CsvSource({"2,답글 수정이라해~~,내일 학원간다...."})
+    @CsvSource({"M8,답글 수정이라해~~,내일 학원간다...."})
     void test4(String memberNo, String title, String content){
-        String acNo= "37";
+        String acNo= "A3";
         AnswerBoard answerBoard = questionBoardDao.findByIdAnswer(session, acNo);
         assertThat(answerBoard).isNotNull();
 
@@ -90,13 +89,13 @@ public class AnswerBoardDaoTest {
         assertThat(answerBoard1.getMemberNo()).isEqualTo(memberNo);
         assertThat(answerBoard1.getTitle()).isEqualTo(title);
         assertThat(answerBoard1.getContent()).isEqualTo(content);
-//        System.out.println(answerBoard);
+        System.out.println(answerBoard);
     }
 //    @Disabled
     @DisplayName("답글 삭제")
     @Test
     void test5(){
-        String acNo = "37";
+        String acNo = "A5";
         AnswerBoard answerBoard = questionBoardDao.findByIdAnswer(session,acNo);
         assertThat(answerBoard).isNotNull();
 
