@@ -38,31 +38,41 @@
                 </svg>
                 <span class="ml-3 text-3xl text-5xl">다우미</span>
             </a>
-            <c:if test="${login.member == null}">
+            <c:if test="${loginMember == null}">
                 <nav class="md:ml-auto  flex flex-wrap items-center text-base justify-center">
-                    <a href="${pageContext.request.contextPath}/member/memberLogin" class="text-xl mr-5 hover:text-gray-900">로그인</a>
-                    <a href="${pageContext.request.contextPath}/member/memberRegister" class="text-xl mr-5 hover:text-gray-900">회원가입</a>
+                    <a href="${pageContext.request.contextPath}/member/memberLogin"
+                       class="text-xl mr-5 hover:text-gray-900">로그인</a>
+                    <a href="${pageContext.request.contextPath}/member/memberRegister"
+                       class="text-xl mr-5 hover:text-gray-900">회원가입</a>
                 </nav>
             </c:if>
-            <c:if test="${login.member != null}">
-                <nav class="ml-auto flex text-3xl flex-wrap items-center text-base justify-center">
-                    <a href= "" class="text-xl mr-5 hover:text-gray-900">Group 페이지</a>
-                    <a class="text-xl mr-5 hover:text-gray-900">운동영상 조회</a>
-                    <a class="text-xl mr-5 hover:text-gray-900">질답 게시판</a>
-                    <a class="text-xl  mr-5 hover:text-gray-900">주변 헬스장 조회</a>
+            <c:if test="${loginMember != null}">
+                <nav class="md:mr-auto flex text-3xl flex-wrap items-center text-base justify-center">
+                    <a href="" class="text-xl ml-5 hover:text-gray-900">Group 페이지</a>
+                    <a class="text-xl ml-5 hover:text-gray-900">운동영상 조회</a>
+                    <a class="text-xl ml-5 hover:text-gray-900">질답 게시판</a>
+                    <a class="text-xl  ml-5 hover:text-gray-900">주변 헬스장 조회</a>
                     <a class="text-xl  mx-14 hover:text-gray-900"></a>
-                    <a class="text-xl  mx-5 hover:text-gray-900">정보 수정</a>
-                    <a class="text-xl  mr-5 hover:text-gray-900">로그아웃</a>
+                    <c:if test="${loginMember.role == Role.A}">
+                        <nav class="md:ml-auto flex text-3xl flex-wrap items-center text-base justify-center">
+                            <a class="text-xl mr-5 hover:text-gray-900">관리 페이지</a>
+                        </nav>
+                    </c:if>
+                    <nav class="md:ml-auto flex text-3xl flex-wrap items-center text-base justify-center">
+                    <a href="${pageContext.request.contextPath}/member/memberDetail"
+                       class="text-xl ml-auto text-gray-600 hover:underline">${loginMember.memberId}</a>님, 안녕하세요🥑
+                    <a class="text-xl  ml-5 hover:text-gray-900">로그아웃</a>
+                    </nav>
                 </nav>
             </c:if>
-<%--            <c:if test="${loginMember.role == Role.A}">--%>
-<%--                <nav class="md:ml-auto flex text-3xl flex-wrap items-center text-base justify-center">--%>
-<%--                    <a class="text-xl mr-5 hover:text-gray-900"></a>--%>
-<%--                    <a class="text-xl mr-5 hover:text-gray-900"></a>--%>
-<%--                    <a class="text-xl mr-5 hover:text-gray-900"></a>--%>
-<%--                    <a class="text-xl  mr-5 hover:text-gray-900"></a>--%>
-<%--                </nav>--%>
-<%--            </c:if>--%>
+            <%--            <c:if test="${loginMember.role == Role.A}">--%>
+            <%--                <nav class="md:ml-auto flex text-3xl flex-wrap items-center text-base justify-center">--%>
+            <%--                    <a class="text-xl mr-5 hover:text-gray-900"></a>--%>
+            <%--                    <a class="text-xl mr-5 hover:text-gray-900"></a>--%>
+            <%--                    <a class="text-xl mr-5 hover:text-gray-900"></a>--%>
+            <%--                    <a class="text-xl  mr-5 hover:text-gray-900"></a>--%>
+            <%--                </nav>--%>
+            <%--            </c:if>--%>
             <%--<button class="inline-flex items-center bg-gray-100 border-0 py-1 px-3 focus:outline-none hover:bg-gray-200 rounded text-base mt-4 md:mt-0">Button--%>
             <%--    <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-4 h-4 ml-1" viewBox="0 0 24 24">--%>
             <%--        <path d="M5 12h14M12 5l7 7-7 7"></path>--%>

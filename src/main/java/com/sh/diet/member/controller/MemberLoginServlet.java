@@ -20,12 +20,12 @@ public class MemberLoginServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        // Referer(사용자가 머물었던 페이지)를 세션에 저장
-//        String referer = req.getHeader("Referer");
-//        System.out.println("referer = " + referer);
-//
-//        if(!referer.equalsIgnoreCase("/member/memberLogin"))
-//            req.getSession().setAttribute("next", referer);
+//         Referer(사용자가 머물었던 페이지)를 세션에 저장
+        String referer = req.getHeader("Referer");
+        System.out.println("referer = " + referer);
+
+        if(!referer.equalsIgnoreCase("/member/memberLogin"))
+            req.getSession().setAttribute("next", referer);
 
         RequestDispatcher requestDispatcher = req.getRequestDispatcher("/WEB-INF/views/member/memberLogin.jsp");
 
