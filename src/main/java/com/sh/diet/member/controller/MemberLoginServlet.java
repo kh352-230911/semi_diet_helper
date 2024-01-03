@@ -21,11 +21,11 @@ public class MemberLoginServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 //         Referer(사용자가 머물었던 페이지)를 세션에 저장
-        String referer = req.getHeader("Referer");
-        System.out.println("referer = " + referer);
-
-        if(!referer.equalsIgnoreCase("/member/memberLogin"))
-            req.getSession().setAttribute("next", referer);
+//         String referer = req.getHeader("Referer");
+//         System.out.println("referer = " + referer);
+//
+//         if(!referer.equalsIgnoreCase("/member/memberLogin"))
+//             req.getSession().setAttribute("next", referer);
 
         RequestDispatcher requestDispatcher = req.getRequestDispatcher("/WEB-INF/views/member/memberLogin.jsp");
 
@@ -36,7 +36,7 @@ public class MemberLoginServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         // 1. 사용자입력값 인코딩처리
-//        req.setCharacterEncoding("utf-8");
+        req.setCharacterEncoding("utf-8");
 
         // 2. 사용자입력값 가져오기
         String memberId = req.getParameter("memberId");

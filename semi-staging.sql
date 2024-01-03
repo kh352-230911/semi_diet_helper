@@ -120,9 +120,9 @@ delete from member where name = '관리자';
 --질문게시판 Q
 create table question_board (
     qb_no varchar2(10) not null,
-    member_no varchar2(10) not null,
-    title varchar2(50) not null,
-    content varchar2(4000) not null, 
+--    member_no varchar2(10) not null,
+--    title varchar2(50) not null,
+--    content varchar2(4000) not null, 
     reg_date date default sysdate,
     admin_choice number default 0,
     constraints pk_qb_no primary key(qb_no),
@@ -171,6 +171,7 @@ create table daily_recode (
     constraints fk_daily_member_no foreign key (member_no) references member(member_no) on delete cascade
 );
 create sequence seq_daily_no;
+
 insert into daily_recode
 values ('DR'||seq_daily_no.nextval, 70, 'M4', default,default);
 
@@ -192,6 +193,17 @@ create sequence seq_ex_no;
 -- 이두, 어깨, 삼두, 하체, 가슴, 등, 유산소 
 insert into exercies_data 
 values('E' || seq_ex_no.nextval, '달리기', 120, '유산소', 'https://youtu.be/Ggbm_coe5uM?si=0e7d2x6vkRQ3HHlE');
+
+insert into exercies_data 
+values('E' || seq_ex_no.nextval, '덤벨 드래그 컬', 84, '이두근', 'https://youtu.be/1iuzb9Br_pc?si=xBAvIojZ3xincJL6');
+
+insert into exercies_data 
+values('E' || seq_ex_no.nextval, '덤벨 킥백', 90, '삼두근', 'https://youtu.be/mQlJ15jx6Q8?si=YgY6A7IbbvAVwFwA');
+
+insert into exercies_data 
+values('E' || seq_ex_no.nextval, '스쿼트', 98, '하체', 'https://youtu.be/50f62PSGY7k?si=Hi29PdAQjfaVK0Bm');
+
+
 select * from exercies_data;
 
 --운동 스크랩 보관 테이블 SE
@@ -349,3 +361,10 @@ Create table group_comment (
     constraints fk_gc_parent_comment_id foreign key (parent_comment_id) references group_comment on delete cascade -- 댓글 삭제시 자동삭제 
 );
 create sequence seq_group_comment;
+
+select
+            *
+        from
+            member
+        order by
+            reg_date desc;

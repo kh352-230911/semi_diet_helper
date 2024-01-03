@@ -132,4 +132,30 @@
 <!--        where-->
 <!--        ${searchType} like '%' || #{searchKeyword} || '%'-->
 <!--    </select>-->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <select id="findAllPage" resultType="member">
+        select
+            *
+        from
+            member
+        order by
+            reg_date desc
+    </select>
 </mapper>
