@@ -20,12 +20,12 @@ public class MemberLoginServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        // Referer(사용자가 머물었던 페이지)를 세션에 저장
-//        String referer = req.getHeader("Referer");
-//        System.out.println("referer = " + referer);
-//
-//        if(!referer.equalsIgnoreCase("/member/memberLogin"))
-//            req.getSession().setAttribute("next", referer);
+//         Referer(사용자가 머물었던 페이지)를 세션에 저장
+        String referer = req.getHeader("Referer");
+        System.out.println("referer = " + referer);
+
+        if(!referer.equalsIgnoreCase("/member/memberLogin"))
+            req.getSession().setAttribute("next", referer);
 
         RequestDispatcher requestDispatcher = req.getRequestDispatcher("/WEB-INF/views/member/memberLogin.jsp");
 
@@ -58,7 +58,7 @@ public class MemberLoginServlet extends HttpServlet {
             // pageContext, request, session, application 컨텍스트객체중에 login처리에 적합한 것은 session
             // session객체는 사용자가 서버첫접속부터 세션해제시까지 유효
             session.setAttribute("loginMember", member);
-            req.getRequestDispatcher("/member/loginSuccess").forward(req, resp);
+            req.getRequestDispatcher("/").forward(req, resp);
         }
         else {
             // 로그인 실패
@@ -69,6 +69,5 @@ public class MemberLoginServlet extends HttpServlet {
 
         // 4. view단처리 (forwarding) | redirect처리 (url변경)
         // DML요청(POST), 로그인요청등은 반드시 redirect로 처리해서 url을 변경해야 한다.
-//        resp.sendRedirect(req.getContextPath() + "/");
     }
 }

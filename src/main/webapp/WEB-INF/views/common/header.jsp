@@ -38,16 +38,15 @@
                 </svg>
                 <span class="ml-3 text-3xl text-5xl">다우미</span>
             </a>
-            <c:if test="${login.member == null}">
+            <c:if test="${loginMember == null}">
                 <nav class="md:ml-auto  flex flex-wrap items-center text-base justify-center">
                     <a href="${pageContext.request.contextPath}/member/memberLogin" class="text-xl mr-5 hover:text-gray-900">로그인</a>
                     <a href="${pageContext.request.contextPath}/member/memberRegister" class="text-xl mr-5 hover:text-gray-900">회원가입</a>
                 </nav>
             </c:if>
-            <c:if test="${login.member != null}">
+            <c:if test="${loginMember != null}">
                 <nav class="md:ml-auto flex text-3xl flex-wrap items-center text-base justify-center">
-                    <a href=class="text-xl mr-5 hover:text-gray-900">로그인</a>
-                    <a class="text-xl mr-5 hover:text-gray-900">회원가입</a>
+                    <a href="${pageContext.request.contextPath}/member/memberDetail" class="text-md text-gray-600 hover:underline">${loginMember.memberId}</a>님, 안녕하세요🥑
                     <a class="text-xl mr-5 hover:text-gray-900">Third Link</a>
                     <a class="text-xl  mr-5 hover:text-gray-900">Fourth Link</a>
                 </nav>
@@ -66,6 +65,5 @@
             <%--    </svg>--%>
             <%--</button>--%>
         </div>
->>>>>>> 5d02007724c03a790bb0af4a2eaffd95cee03263
     </header>
     <main class="w-full min-h-[80vh]">

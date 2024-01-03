@@ -62,22 +62,22 @@
 <!--        where-->
 <!--        id = #{id}-->
 <!--    </update>-->
-<!--    <update id="updateMemberPassword">-->
-<!--        update-->
-<!--        member-->
-<!--        set-->
-<!--        password = #{password}-->
-<!--        where-->
-<!--        id = #{id}-->
-<!--    </update>-->
-<!--    <update id="updateMemberRole">-->
-<!--        update-->
-<!--        member-->
-<!--        set-->
-<!--        role = #{role}-->
-<!--        where-->
-<!--        id = #{id}-->
-<!--    </update>-->
+    <update id="updateMemberPassword">
+        update
+        member
+        set
+        password = #{password}
+        where
+        member_id = #{memberId}
+    </update>
+    <update id="updateMemberRole">
+        update
+        member
+        set
+        role = #{role}
+        where
+        member_id = #{memberId}
+    </update>
 <!--    <select id="findAllPage" resultType="member">-->
 <!--        select-->
 <!--        *-->
