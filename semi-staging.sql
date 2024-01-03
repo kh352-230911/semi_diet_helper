@@ -192,6 +192,17 @@ create sequence seq_ex_no;
 -- 이두, 어깨, 삼두, 하체, 가슴, 등, 유산소 
 insert into exercies_data 
 values('E' || seq_ex_no.nextval, '달리기', 120, '유산소', 'https://youtu.be/Ggbm_coe5uM?si=0e7d2x6vkRQ3HHlE');
+
+insert into exercies_data 
+values('E' || seq_ex_no.nextval, '덤벨 드래그 컬', 84, '이두근', 'https://youtu.be/1iuzb9Br_pc?si=xBAvIojZ3xincJL6');
+
+insert into exercies_data 
+values('E' || seq_ex_no.nextval, '덤벨 킥백', 90, '삼두근', 'https://youtu.be/mQlJ15jx6Q8?si=YgY6A7IbbvAVwFwA');
+
+insert into exercies_data 
+values('E' || seq_ex_no.nextval, '스쿼트', 98, '하체', 'https://youtu.be/50f62PSGY7k?si=Hi29PdAQjfaVK0Bm');
+
+
 select * from exercies_data;
 
 --운동 스크랩 보관 테이블 SE

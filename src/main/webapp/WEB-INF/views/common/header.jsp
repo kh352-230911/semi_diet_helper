@@ -50,7 +50,7 @@
                 <nav class="md:mr-auto flex text-3xl flex-wrap items-center text-base justify-center">
                     <a href="" class="text-xl ml-5 hover:text-gray-900">Group 페이지</a>
                     <a class="text-xl ml-5 hover:text-gray-900">운동영상 조회</a>
-                    <a class="text-xl ml-5 hover:text-gray-900">질답 게시판</a>
+                    <a href="${pageContext.request.contextPath}/qaboard/questionBoardList" class="text-xl ml-5 hover:text-gray-900">질답 게시판</a>
                     <a class="text-xl  ml-5 hover:text-gray-900">주변 헬스장 조회</a>
                     <a class="text-xl  mx-14 hover:text-gray-900"></a>
                     <c:if test="${loginMember.role == Role.A}">
