@@ -15,9 +15,9 @@ public class Member {
     private String birthDay;
     private int weightLossGoal;
     private int point;
-    private String answer;
     private String localNo;
     private String titleNo;
+    private String answer;
 
     @Override
     public String toString() {
@@ -33,9 +33,9 @@ public class Member {
                 ", birthDay='" + birthDay + '\'' +
                 ", weightLossGoal=" + weightLossGoal +
                 ", point=" + point +
-                ", answer='" + answer + '\'' +
                 ", localNo='" + localNo + '\'' +
                 ", titleNo='" + titleNo + '\'' +
+                ", answer='" + answer + '\'' +
                 '}';
     }
 
@@ -127,14 +127,6 @@ public class Member {
         this.point = point;
     }
 
-    public String getAnswer() {
-        return answer;
-    }
-
-    public void setAnswer(String answer) {
-        this.answer = answer;
-    }
-
     public String getLocalNo() {
         return localNo;
     }
@@ -151,7 +143,15 @@ public class Member {
         this.titleNo = titleNo;
     }
 
-    public Member(String memberNo, String memberId, String password, String name, String nickName, float height, Role role, LocalDate regDate, String birthDay, int weightLossGoal, int point, String answer, String localNo, String titleNo) {
+    public String getAnswer() {
+        return answer;
+    }
+
+    public void setAnswer(String answer) {
+        this.answer = answer;
+    }
+
+    public Member(String memberNo, String memberId, String password, String name, String nickName, float height, Role role, LocalDate regDate, String birthDay, int weightLossGoal, int point, String localNo, String titleNo, String answer) {
         this.memberNo = memberNo;
         this.memberId = memberId;
         this.password = password;
@@ -163,12 +163,11 @@ public class Member {
         this.birthDay = birthDay;
         this.weightLossGoal = weightLossGoal;
         this.point = point;
-        this.answer = answer;
         this.localNo = localNo;
         this.titleNo = titleNo;
+        this.answer = answer;
     }
 
     public Member() {
     }
 }
-
