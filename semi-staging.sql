@@ -18,6 +18,15 @@ alter user semi_diet quota unlimited on users;
 --
 --select * from location_code;
 
+select 
+    q.*,
+    m.member_id
+from
+    question_board q 
+        left join member m
+            on q.member_no = m.member_no;
+
+    
 
 
 
@@ -100,11 +109,13 @@ insert into member
 values ('M' || seq_member_no.nextval, 'honggd', 'asd123@', '홍길동', '길동길',175,'M', default, '19910101', 10, default,'LC1', default);
 
 insert into member 
-values ('M' || 0, 'Admin', 'admin', '관리자','관리자', 200, 'A', default, '19910101', default, 100000,'LC1', default);
+values ('M' || 0, 'admin', 'admin', '관리자','관리자', 200, 'A', default, '19910101', default, 100000,'LC1', default,default);
 
 
-select * from member;
-delete from member where name = '홍길동';
+select * from member where member_id = 'admin';
+delete from member where name = '관리자';
+
+ 
 
 --질문게시판 Q
 create table question_board (
@@ -321,7 +332,6 @@ create table group_board (
     constraints fk_gb_member_no foreign key (member_no) references member(member_no) on delete set null
 );
 create sequence seq_group_board;
-
 
 
 -- 그룹 게시판 댓글 GC

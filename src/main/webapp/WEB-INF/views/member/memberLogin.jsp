@@ -39,6 +39,4 @@
         </form>
     </div>
 </div>
-<a href="${pageContext.request.contextPath}">홈으로</a>
-
 <script src="${pageContext.request.contextPath}/js/member/memberLogin.js"></script>

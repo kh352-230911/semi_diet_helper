@@ -22,8 +22,8 @@ public class QuestionBoardDao {
         return session.insert("qaBoard.insertQuestionBoard",questionBoard);
     }
 
-    public int updateQuestionBoard(SqlSession session, QuestionBoard questionBoard) {
-        return session.update("qaBoard.updateQuestionBoard",questionBoard);
+    public int updateQuestionBoard(SqlSession session, QuestionBoardVo questionBoardVo) {
+        return session.update("qaBoard.updateQuestionBoard",questionBoardVo);
     }
 
     public int deleteQuestionBoard(SqlSession session, String qbNo) {

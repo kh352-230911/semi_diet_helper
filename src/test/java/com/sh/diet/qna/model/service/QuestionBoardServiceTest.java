@@ -53,10 +53,10 @@ public class QuestionBoardServiceTest {
     QuestionBoard questionBoard = questionBoardService.findById("77");
     assertThat(questionBoard).isNull();
     }
-    @Disabled
+//    @Disabled
     @DisplayName("질답게시글 등록")
     @ParameterizedTest
-    @CsvSource({"2,예시,개발자할수있을까...?"})
+    @CsvSource({"M4,예시,개발자할수있을까...?"})
     void test4(String memberNo,String title, String content){
         assertThat(memberNo).isNotNull();
         assertThat(title).isNotNull();
@@ -74,25 +74,25 @@ public class QuestionBoardServiceTest {
     @Disabled
     @DisplayName("질답게시글 수정")
     @ParameterizedTest
-    @CsvSource({"2,수정했음22,내일 2024년!!!"})
+    @CsvSource({"M4,수정했음나나나,제발,,,,"})
     void test5(String memberNo,String title, String content){
-        String qbNo = "3";
-        QuestionBoard questionBoard = questionBoardService.findById(qbNo);
-        assertThat(questionBoard).isNotNull();
+        String qbNo = "Q36";
+        QuestionBoardVo questionBoardVo = questionBoardService.findById(qbNo);
+        assertThat(questionBoardVo).isNotNull();
 
-        questionBoard.setMemberNo(memberNo);
-        questionBoard.setTitle(title);
-        questionBoard.setContent(content);
+        questionBoardVo.setMemberNo(memberNo);
+        questionBoardVo.setTitle(title);
+        questionBoardVo.setContent(content);
 
-        int result = questionBoardService.updateQuestionBoard(questionBoard);
+        int result = questionBoardService.updateQuestionBoard(questionBoardVo);
         assertThat(result).isGreaterThan(0);
 
-        QuestionBoard questionBoard1 = questionBoardService.findById(questionBoard.getQbNo());
-        assertThat(questionBoard1).isNotNull();
-        assertThat(questionBoard1.getQbNo()).isEqualTo(qbNo);
-        assertThat(questionBoard1.getMemberNo()).isEqualTo(memberNo);
-        assertThat(questionBoard1.getTitle()).isEqualTo(title);
-        assertThat(questionBoard1.getContent()).isEqualTo(content);
+        QuestionBoardVo questionBoardVo1 = questionBoardService.findById(questionBoardVo.getQbNo());
+        assertThat(questionBoardVo1).isNotNull();
+        assertThat(questionBoardVo1.getQbNo()).isEqualTo(qbNo);
+        assertThat(questionBoardVo1.getMemberNo()).isEqualTo(memberNo);
+        assertThat(questionBoardVo1.getTitle()).isEqualTo(title);
+        assertThat(questionBoardVo1.getContent()).isEqualTo(content);
     }
     @Disabled
     @DisplayName("질답게시글 삭제")

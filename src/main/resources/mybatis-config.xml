@@ -5,8 +5,8 @@
 <configuration>
 
     <!-- 본인 local 파일로 테스트할거면 datasource-local.properties 로 바꾸고 사용할 것 -->
-
     <properties resource="datasource-staging.properties"></properties>
+
 
     <settings>
         <!-- NULL데이터가 전달된 경우 NULL값으로 처리 -->
@@ -51,7 +51,9 @@
     </environments>
 
     <mappers>
-        <mapper resource="mapper/qnaBoard/qaBoard-mapper.xml"/>
+
+        <mapper resource="mapper/member/member-mapper.xml"/>
+        <mapper resource="mapper/qaBoard/qaBoard-mapper.xml"/>
         <mapper resource="mapper/member/member-mapper.xml"/>
         <mapper resource="mapper/daily/daily-mapper.xml"/>
     </mappers>

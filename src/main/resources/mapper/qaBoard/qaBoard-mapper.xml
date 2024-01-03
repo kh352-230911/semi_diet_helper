@@ -39,12 +39,13 @@
     insert into
         question_board
         values(
-            seq_qb_no.nextval,
+        'Q' || seq_qb_no.nextval,
             #{memberNo},
             #{title},
             #{content},
             default, default)
     </insert>
+
     <update id="updateQuestionBoard">
         update
         question_board

@@ -76,4 +76,9 @@ public class MemberService {
         }
         return result;
     }
+
+    public int updateMemberRole(SqlSession session, Member member) {
+        return session.update("member.updateMemberRole", member);
+    }
+
 }

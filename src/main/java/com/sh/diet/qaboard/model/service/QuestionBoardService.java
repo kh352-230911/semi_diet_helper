@@ -33,9 +33,9 @@ public class QuestionBoardService {
     }
     public QuestionBoardVo findById(String qbNo) {
         SqlSession session = getSqlSession();
-        QuestionBoardVo questionBoardvo = questionBoardDao.findById(session, qbNo);
+        QuestionBoardVo questionBoardVo = questionBoardDao.findById(session, qbNo);
         session.close();
-        return questionBoardvo;
+        return questionBoardVo;
     }
     public int insertAnswerBoard(AnswerBoard answerBoard){
         int result = 0;
@@ -80,11 +80,11 @@ public class QuestionBoardService {
         }
         return result;
     }
-    public int updateQuestionBoard(QuestionBoard questionBoard) {
+    public int updateQuestionBoard(QuestionBoardVo questionBoardVo) {
         int result = 0;
         SqlSession session =getSqlSession();
         try{
-            result = questionBoardDao.updateQuestionBoard(session, questionBoard);
+            result = questionBoardDao.updateQuestionBoard(session, questionBoardVo);
             session.commit();
         } catch (Exception e){
             session.rollback();
