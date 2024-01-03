@@ -25,6 +25,7 @@ public class MemberRegisterServlet extends HttpServlet {
     //memberId, password, name, nickName, height, birthDay, weightLossGoal, answer
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        req.setCharacterEncoding("utf-8");
         String memberId = req.getParameter("memberId");
         String password = req.getParameter("password");
         String name = req.getParameter("name");
@@ -40,7 +41,7 @@ public class MemberRegisterServlet extends HttpServlet {
 //                null;
 
         Member member = new Member(null, memberId, password, name, nickName, height, Role.M, null,
-                _birthDay, weightLossGoal, 0, answer, null, null);
+                _birthDay, weightLossGoal, 0, null, null, answer);
         System.out.println(member);
 
         int result = memberService.insertMember(member);

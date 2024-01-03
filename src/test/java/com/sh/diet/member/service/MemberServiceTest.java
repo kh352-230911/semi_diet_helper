@@ -1,17 +1,13 @@
-package com.sh.diet.memberService;
+package com.sh.diet.member.service;
 
 import com.sh.diet.member.model.entity.Member;
 import com.sh.diet.member.model.entity.Role;
 import com.sh.diet.member.model.service.MemberService;
 import org.junit.jupiter.api.*;
 
-import java.time.LocalDate;
-import java.util.Arrays;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.Assertions.catchThrowable;
-
 
 
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
@@ -28,7 +24,7 @@ public class MemberServiceTest {
     @DisplayName("존재하는 회원이 정상적으로 조회된다.")
     @Test
     public void test2() {
-        String memberId = "user123";
+        String memberId = "honggd";
         Member member = memberService.findById(memberId);
         // 객체
         assertThat(member).isNotNull();
@@ -64,7 +60,7 @@ public class MemberServiceTest {
     @DisplayName("회원 이름 검색")
     @Test
     public void test5(){
-        String keyword = "John Doe";
+        String keyword = "홍길동";
         List<Member> members = memberService.findByName(keyword);
         assertThat(members)
                 .isNotNull()
@@ -84,7 +80,7 @@ public class MemberServiceTest {
 
 
         Member member = new Member(
-                "444", memberId, password, name, nickName, height, Role.A, null, null, 0, 0, "내가낸데", "1", "1"
+                "444", memberId, password, name, nickName, height, Role.A, null, null, 0, 0, "LC1", "N1", "내가낸데"
         );
 
         int result = memberService.insertMember(member);
@@ -110,7 +106,7 @@ public class MemberServiceTest {
 //        Assertions.assertThat(th).isInstanceOf(Exception.class);
 //    }
 
-    @Disabled
+
     @Order(3)
     @DisplayName("회원 삭제")
     @Test
@@ -131,9 +127,9 @@ public class MemberServiceTest {
     @Test
     public void test9() {
         // update member set password = ? where id = ?
-        String id = "user123";
+        String id = "orange";
         Member member = memberService.findById(id);
-        String newPassword = "qwer1234";
+        String newPassword = "love468!";
         member.setPassword(newPassword);
 
         int result = memberService.updateMemberPassword(member);
