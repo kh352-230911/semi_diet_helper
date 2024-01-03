@@ -47,9 +47,9 @@
         <span class="w-[141px] h-5 text-xl text-center text-black">신고 게시물 관리</span><br />
     </p>
     <div class="w-[161px] h-11 absolute left-[492px] top-[276px] bg-[#d9d9d9]"></div>
-    <a  class="w-[141px] h-5 absolute left-[503px] top-[289px] text-xl text-center text-black">
+    <a href="${pageContext.request.contextPath}/adminMemberManage" class="w-[141px] h-5 absolute left-[503px] top-[289px] text-xl text-center text-black">
         회원 관리
-        <%--href="${pageContext.reequest.contestPath}/adminMemberManage"--%>
+
     </a>
     <div class="w-[161px] h-11 absolute left-[725px] top-[276px] bg-[#d9d9d9]"></div>
     <p class="w-[141px] h-5 absolute left-[736px] top-[289px] text-xl text-center text-black">
