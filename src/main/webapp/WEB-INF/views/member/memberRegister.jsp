@@ -11,14 +11,8 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <jsp:include page="/WEB-INF/views/common/header.jsp"/>
 <section>
-    <!DOCTYPE html>
-    <html>
-    <head>
-        <title>User Registration Form</title>
-    </head>
-    <body>
 
-    <form action="memberRegisterFrm" method="post">
+<form action="memberRegister" method="post">
 
         <label for="memberId">아이디:</label>
         <input type="text" id="memberId" name="memberId" required><br>
@@ -44,10 +38,13 @@
         <label for="answer">비밀번호 찾기용 질문에 대한 답:</label>
         <input type="text" id="answer" name="answer" required><br>
 
-        <input type="submit" value="등록">
+        <button type="submit" class="text-white w-full bg-primary-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center">회원가입</button>
+        <p class="text-sm font-light text-gray-500">
+            이미 회원이신가요? <a href="#" class="font-medium text-primary-600 hover:underline">여기서 로그인하세요😀</a>
+        </p>
 
     </form>
 
-    </body>
+    </section>
+<script src="${pageContext.request.contextPath}/js/member/memberRegister.js"></script>
 
-    </html>
