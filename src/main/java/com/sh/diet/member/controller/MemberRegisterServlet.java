@@ -1,6 +1,5 @@
 package com.sh.diet.member.controller;
 
-import com.sh.diet.common.DawumiUtils;
 import com.sh.diet.member.model.entity.Member;
 import com.sh.diet.member.model.entity.Role;
 import com.sh.diet.member.model.service.MemberService;
@@ -11,8 +10,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
+
 
 @WebServlet("/member/memberRegister")
 public class MemberRegisterServlet extends HttpServlet {
@@ -27,6 +25,7 @@ public class MemberRegisterServlet extends HttpServlet {
     //memberId, password, name, nickName, height, birthDay, weightLossGoal, answer
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        req.setCharacterEncoding("utf-8");
         String memberId = req.getParameter("memberId");
         String password = req.getParameter("password");
         String name = req.getParameter("name");
@@ -42,7 +41,7 @@ public class MemberRegisterServlet extends HttpServlet {
 //                null;
 
         Member member = new Member(null, memberId, password, name, nickName, height, Role.M, null,
-                _birthDay, weightLossGoal, 0, answer, null, null);
+                _birthDay, weightLossGoal, 0, null, null, answer);
         System.out.println(member);
 
         int result = memberService.insertMember(member);

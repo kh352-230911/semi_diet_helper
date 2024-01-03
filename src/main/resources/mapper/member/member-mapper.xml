@@ -45,8 +45,9 @@
         insert into
             member
         values (
-            #{memberNo}, #{memberId}, #{password}, #{name}, #{nickName}, #{height}, #{role},
+           'M' || seq_member_no.nextval, #{memberId}, #{password}, #{name}, #{nickName}, #{height}, #{role},
             #{regDate}, #{birthDay}, #{weightLossGoal}, #{point}, #{localNo}, #{titleNo}, #{answer}
+
         )
     </insert>
 <!--    <update id="updateMember">-->
@@ -131,4 +132,30 @@
 <!--        where-->
 <!--        ${searchType} like '%' || #{searchKeyword} || '%'-->
 <!--    </select>-->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <select id="findAllPage" resultType="member">
+        select
+            *
+        from
+            member
+        order by
+            reg_date desc
+    </select>
 </mapper>

@@ -5,6 +5,7 @@ import com.sh.diet.member.model.entity.Member;
 import org.apache.ibatis.session.SqlSession;
 
 import java.util.List;
+import java.util.Map;
 
 import static com.sh.diet.common.SqlSessionTemplate.getSqlSession;
 
@@ -77,8 +78,38 @@ public class MemberService {
         return result;
     }
 
-    public int updateMemberRole(SqlSession session, Member member) {
-        return session.update("member.updateMemberRole", member);
+    public int updateMemberRole(Member member) {
+        int result = 0;
+        SqlSession session = getSqlSession();
+        try {
+            result = memberDao.updateMemberRole(session, member);
+            session.commit();
+        } catch (Exception e) {
+            session.rollback();
+            throw e;
+        } finally {
+            session.close();
+        }
+        return result;
     }
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+    public List<Member> findAll(Map<String, Object> param) {
+        SqlSession session = getSqlSession();
+        List<Member> members = memberDao.findAll(session, param);
+        session.close();
+        return members;
+    }
 }
