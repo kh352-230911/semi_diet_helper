@@ -45,7 +45,7 @@
         insert into
             member
         values (
-            #{memberNo}, #{memberId}, #{password}, #{name}, #{nickName}, #{height}, #{role},
+            'M' || seq_member_no.nextval, #{memberId}, #{password}, #{name}, #{nickName}, #{height}, #{role},
             #{regDate}, #{birthDay}, #{weightLossGoal}, #{point}, #{answer}, #{localNo}, #{titleNo}
         )
     </insert>

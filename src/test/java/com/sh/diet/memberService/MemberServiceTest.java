@@ -99,7 +99,7 @@ public class MemberServiceTest {
 //    @Order(2)
 //    @DisplayName("회원가입시 오류 체크")
 //    @Test
-//    public void test8() {
+//    public void test7() {
 //        Member member =
 //                new Member(
 //                        "444", "sinsa", "sinsa123", "신사", "신사임당", "160", Role.A,null, null, 0, 0, "내가낸데", "1", "1"
@@ -114,7 +114,7 @@ public class MemberServiceTest {
     @Order(3)
     @DisplayName("회원 삭제")
     @Test
-    public void test12() {
+    public void test8() {
         String memberId = "asdf1234";
         Member member = memberService.findById(memberId);
         assertThat(member).isNotNull();
@@ -129,7 +129,7 @@ public class MemberServiceTest {
     @Order(4)
     @DisplayName("회원 비밀번호 수정")
     @Test
-    public void test10() {
+    public void test9() {
         // update member set password = ? where id = ?
         String id = "user123";
         Member member = memberService.findById(id);
@@ -142,23 +142,23 @@ public class MemberServiceTest {
         Member member2 = memberService.findById(id);
         assertThat(member2.getPassword()).isEqualTo(newPassword);
     }
-//    @Order(5)
-//    @DisplayName("회원 권한 수정")
-//    @Test
-//    public void test11() {
-//        // update member set role = ? where id = ?
-//        String id = "honggd";
-//        Member member = memberService.findById(id);
-//        Role newRole = Role.A;
-//        member.setRole(newRole);
-//
-//        int result = memberService.updateMemberRole(member);
-//
-//        assertThat(result).isGreaterThan(0);
-//        Member member2 = memberService.findById(id);
-//        assertThat(member2.getRole()).isEqualTo(newRole);
-//        assertThat(member2.getRole().name()).isEqualTo(newRole.name());
-//    }
+    @Order(5)
+    @DisplayName("회원 권한 수정")
+    @Test
+    public void test10() {
+        // update member set role = ? where id = ?
+        String memberId = "admin456";
+        Member member = memberService.findById(memberId);
+        Role newRole = Role.A;
+        member.setRole(newRole);
+
+        int result = memberService.updateMemberRole(member);
+
+        assertThat(result).isGreaterThan(0);
+        Member member2 = memberService.findById(memberId);
+        assertThat(member2.getRole()).isEqualTo(newRole);
+        assertThat(member2.getRole().name()).isEqualTo(newRole.name());
+    }
 
 
 

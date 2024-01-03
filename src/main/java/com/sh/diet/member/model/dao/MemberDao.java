@@ -19,6 +19,7 @@ public class MemberDao {
     }
 
     public int insertMember(SqlSession session, Member member) {
+
         return session.insert("member.insertMember", member);
     }
 
@@ -28,5 +29,9 @@ public class MemberDao {
 
     public int updateMemberPassword(SqlSession session, Member member) {
         return session.update("member.updateMemberPassword", member);
+    }
+
+    public int updateMemberRole(SqlSession session, Member member) {
+        return session.update("member.updateMemberRole", member);
     }
 }

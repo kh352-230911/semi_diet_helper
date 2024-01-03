@@ -1,6 +1,5 @@
 package com.sh.diet.member.controller;
 
-import com.sh.diet.common.DawumiUtils;
 import com.sh.diet.member.model.entity.Member;
 import com.sh.diet.member.model.entity.Role;
 import com.sh.diet.member.model.service.MemberService;
@@ -11,8 +10,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
+
 
 @WebServlet("/member/memberRegister")
 public class MemberRegisterServlet extends HttpServlet {
