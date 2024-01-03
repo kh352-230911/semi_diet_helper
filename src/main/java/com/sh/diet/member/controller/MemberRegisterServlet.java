@@ -28,10 +28,10 @@ public class MemberRegisterServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String memberId = req.getParameter("memberId");
-        String password = DawumiUtils.getEncryptedPassword(req.getParameter("password"), memberId);
+        String password = req.getParameter("password");
         String name = req.getParameter("name");
         String nickName = req.getParameter("nickName");
-        String height = req.getParameter("height");
+        float height = Float.parseFloat(req.getParameter("height"));
         String _birthDay = req.getParameter("birthDay");
         int weightLossGoal = Integer.parseInt(req.getParameter("weightLossGoal"));
         String answer = req.getParameter("answer");
@@ -41,15 +41,16 @@ public class MemberRegisterServlet extends HttpServlet {
 //                LocalDate.parse(_birthDay, DateTimeFormatter.ISO_DATE) :
 //                null;
 
-//        Member member = new Member(null, memberId, password, name, nickName, height, Role.M, null, _birthDay, weightLossGoal, '0', answer, null, null);
-//        System.out.println(member);
+        Member member = new Member(null, memberId, password, name, nickName, height, Role.M, null,
+                _birthDay, weightLossGoal, 0, answer, null, null);
+        System.out.println(member);
+
+        int result = memberService.insertMember(member);
+        System.out.println(result);
 //
-//        int result = memberService.insertMember(member);
-//        System.out.println(result);
+        req.getSession().setAttribute("msg", "회원가입 축하드립니다.");
 //
-//        req.getSession().setAttribute("msg", "회원가입 축하드립니다.");
-//
-//        resp.sendRedirect(req.getContextPath() + "/");
+        resp.sendRedirect(req.getContextPath() + "/");
 
 
 

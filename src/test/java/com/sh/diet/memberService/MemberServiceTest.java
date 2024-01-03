@@ -28,10 +28,10 @@ public class MemberServiceTest {
     @DisplayName("존재하는 회원이 정상적으로 조회된다.")
     @Test
     public void test2() {
-        String memberId = "honggd";
+        String memberId = "user123";
         Member member = memberService.findById(memberId);
         // 객체
-       assertThat(member).isNotNull();
+        assertThat(member).isNotNull();
         // 필드
         assertThat(member.getMemberId()).isNotNull();
         assertThat(member.getPassword()).isNotNull();
@@ -142,6 +142,23 @@ public class MemberServiceTest {
         Member member2 = memberService.findById(id);
         assertThat(member2.getPassword()).isEqualTo(newPassword);
     }
+//    @Order(5)
+//    @DisplayName("회원 권한 수정")
+//    @Test
+//    public void test11() {
+//        // update member set role = ? where id = ?
+//        String id = "honggd";
+//        Member member = memberService.findById(id);
+//        Role newRole = Role.A;
+//        member.setRole(newRole);
+//
+//        int result = memberService.updateMemberRole(member);
+//
+//        assertThat(result).isGreaterThan(0);
+//        Member member2 = memberService.findById(id);
+//        assertThat(member2.getRole()).isEqualTo(newRole);
+//        assertThat(member2.getRole().name()).isEqualTo(newRole.name());
+//    }
 
 
 
