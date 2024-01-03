@@ -45,8 +45,9 @@
         insert into
             member
         values (
-            'M' || seq_member_no.nextval, #{memberId}, #{password}, #{name}, #{nickName}, #{height}, #{role},
+           'M' || seq_member_no.nextval, #{memberId}, #{password}, #{name}, #{nickName}, #{height}, #{role},
             #{regDate}, #{birthDay}, #{weightLossGoal}, #{point}, #{answer}, #{localNo}, #{titleNo}
+
         )
     </insert>
 <!--    <update id="updateMember">-->
