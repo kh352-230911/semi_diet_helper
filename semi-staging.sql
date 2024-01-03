@@ -120,9 +120,9 @@ delete from member where name = '관리자';
 --질문게시판 Q
 create table question_board (
     qb_no varchar2(10) not null,
-    member_no varchar2(10) not null,
-    title varchar2(50) not null,
-    content varchar2(4000) not null, 
+--    member_no varchar2(10) not null,
+--    title varchar2(50) not null,
+--    content varchar2(4000) not null, 
     reg_date date default sysdate,
     admin_choice number default 0,
     constraints pk_qb_no primary key(qb_no),
@@ -171,6 +171,7 @@ create table daily_recode (
     constraints fk_daily_member_no foreign key (member_no) references member(member_no) on delete cascade
 );
 create sequence seq_daily_no;
+
 insert into daily_recode
 values ('DR'||seq_daily_no.nextval, 70, 'M4', default,default);
 
@@ -360,3 +361,10 @@ Create table group_comment (
     constraints fk_gc_parent_comment_id foreign key (parent_comment_id) references group_comment on delete cascade -- 댓글 삭제시 자동삭제 
 );
 create sequence seq_group_comment;
+
+select
+            *
+        from
+            member
+        order by
+            reg_date desc;

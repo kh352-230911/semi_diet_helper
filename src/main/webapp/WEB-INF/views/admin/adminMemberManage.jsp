@@ -10,23 +10,29 @@
             <thead class="text-xs text-gray-700 uppercase bg-gray-50">
             <tr>
                 <th scope="col" class="px-6 py-3">회원번호</th>
+                <th scope="col" class="px-6 py-3">닉네임</th>
+                <th scope="col" class="px-6 py-3">이름</th>
                 <th scope="col" class="px-6 py-3">가입일</th>
-                <th scope="col" class="px-6 py-3">작성글 내역</th>
+                <th scope="col" class="px-6 py-3">포인트</th>
                 <th scope="col" class="px-6 py-3">회원 관리</th>
             </tr>
             </thead>
             <tbody>
             <c:forEach items="${members}" var="member" varStatus="vs">
-                <tr class="odd:bg-white even:bg-gray-50 border-b ">
-                    <td class="px-6 py-4">${member.memberNo}</td>
-                    <td class="px-6 py-4">${member.regDate}</td>
-                    <td class="px-6 py-4">
-                        <%--<a href="">총 ${} 건</a>--%>
-                    </td>
-                    <td class="px-6 py-4">
-                        <button
-                    </td>
-                </tr>
+                <form name="">
+                    <tr class="odd:bg-white even:bg-gray-50 border-b ">
+                        <td class="px-6 py-4">${member.memberNo}</td>
+                        <td class="px-6 py-4">${member.nickName}</td>
+                        <td class="px-6 py-4">${member.name}</td>
+                        <td class="px-6 py-4">${member.regDate}</td>
+                        <td class="px-6 py-4">${member.point}</td>
+                        <td class="px-6 py-4">
+                        <button type="submit"class="inline-flex items-center py-2.5 px-4 text-xs font-medium text-center text-white bg-blue-700 rounded-lg focus:ring-4 focus:ring-blue-200 hover:bg-blue-800">
+                            유저 삭제
+                        </button>
+                        </td>
+                    </tr>
+                </form>
             </c:forEach>
             </tbody>
         </table>
