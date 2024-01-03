@@ -12,6 +12,7 @@
         <result column="reg_date" property="regDate"/>
         <result column="admin_choice" property="adminChoice"/>
         <association property="member" javaType="member">
+            <id column="member_no" property="memberNo"/>
             <result column="member_id" property="memberId"/>
             <result column="name" property="name"/>
         </association>
