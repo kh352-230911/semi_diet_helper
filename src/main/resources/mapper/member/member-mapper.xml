@@ -46,7 +46,7 @@
             member
         values (
             #{memberNo}, #{memberId}, #{password}, #{name}, #{nickName}, #{height}, #{role},
-            #{regDate}, #{birthDay}, #{weightLossGoal}, #{point}, #{answer}, #{localNo}, #{titleNo}
+            #{regDate}, #{birthDay}, #{weightLossGoal}, #{point}, #{localNo}, #{titleNo}, #{answer}
         )
     </insert>
 <!--    <update id="updateMember">-->
