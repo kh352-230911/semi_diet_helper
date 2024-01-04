@@ -62,9 +62,9 @@ public class MemberLoginServlet extends HttpServlet {
             // session객체는 사용자가 서버첫접속부터 세션해제시까지 유효
             session.setAttribute("loginMember", member);
             if(member.getRole() == Role.A){
-                req.getRequestDispatcher("/adminMain").forward(req, resp);
+                resp.sendRedirect(req.getContextPath() + "/adminMain");
             }else{
-                req.getRequestDispatcher("/").forward(req, resp);
+                resp.sendRedirect(req.getContextPath() + "/");
             }
         }
         else {

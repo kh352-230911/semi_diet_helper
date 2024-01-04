@@ -147,7 +147,12 @@
 
 
 
-
+    <!--<delete id="deleteMember">-->
+    <!--    delete from-->
+    <!--        member-->
+    <!--    where-->
+    <!--        member_id = #{id}-->
+    <!--</delete>-->
 
 
     <select id="findAllPage" resultType="member">

@@ -54,5 +54,6 @@
         <mapper resource="mapper/member/member-mapper.xml"/>
         <mapper resource="mapper/qnaBoard/qaBoard-mapper.xml"/>
         <mapper resource="mapper/daily/daily-mapper.xml"/>
+        <mapper resource="mapper/exercise/exercise-mapper.xml"/>
     </mappers>
 </configuration>
