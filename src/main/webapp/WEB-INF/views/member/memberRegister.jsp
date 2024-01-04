@@ -20,6 +20,9 @@
         <label for="password">비밀번호:</label>
         <input type="password" id="password" name="password" required><br>
 
+        <label for="confirm-password">비밀번호:</label>
+        <input type="password" id="confirm-password" name="confirm-password" required><br>
+
         <label for="name">이름:</label>
         <input type="text" id="name" name="name" required><br>
 
