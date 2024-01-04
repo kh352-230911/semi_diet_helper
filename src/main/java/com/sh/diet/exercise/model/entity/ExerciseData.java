@@ -1,14 +1,12 @@
 package com.sh.diet.exercise.model.entity;
-
 public class ExerciseData {
-    String exNo;
-    String exName;
-    int kcal;
-    String bodyPart;
-    String exUrl;
+    private String exNo;
+    private String exName;
+    private int kcal;
+    private String bodyPart;
+    private String exUrl;
 
     public ExerciseData() {
-
     }
 
     public ExerciseData(String exNo, String exName, int kcal, String bodyPart, String exUrl) {

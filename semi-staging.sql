@@ -89,9 +89,9 @@ create table member(
     birthday varchar2(8),
     weight_loss_goal number ,
     point number default 0,
-    answer varchar2(300) default '',
     local_no varchar2(10),
     title_no varchar2(10) default 'N1',
+    answer varchar2(300) default '',
     constraints pk_member_no primary key(member_no),
     constraints uq_member_id unique(member_id),
     constraints uq_member_nickname unique(nickname),
@@ -111,8 +111,11 @@ values ('M' || seq_member_no.nextval, 'honggd', 'asd123@', '홍길동', '길동�
 insert into member 
 values ('M' || 0, 'admin', 'admin', '관리자','관리자', 200, 'A', default, '19910101', default, 100000,'LC1', default,default);
 
+insert into member 
+values ('M' || seq_member_no.nextval, 'delete', 'delete', '삭제테스트','삭제테스트', 200, 'A', default, '19910101', 6, default,'LC1', default,default);
 
-select * from member where member_id = 'admin';
+
+select * from member;
 delete from member where name = '관리자';
 
  
@@ -177,9 +180,10 @@ values ('DR'||seq_daily_no.nextval, 70, 'M4', default,default);
 
 select * from daily_recode;
 
+alter table exercies_data rename to exercise_data;
 
 --운동데이터 E
-create table exercies_data(
+create table exercise_data(
     ex_no varchar2(10) not null, 
     ex_name varchar2(50) not null,
     kcal number not null, 
@@ -191,20 +195,22 @@ create table exercies_data(
 create sequence seq_ex_no; 
 -- 기존 유무산소 구분 컬럼 삭제했음. 유산소의 경우 body_part(자극부위)를 유산소로 설정
 -- 이두, 어깨, 삼두, 하체, 가슴, 등, 유산소 
-insert into exercies_data 
+insert into exercise_data 
 values('E' || seq_ex_no.nextval, '달리기', 120, '유산소', 'https://youtu.be/Ggbm_coe5uM?si=0e7d2x6vkRQ3HHlE');
 
-insert into exercies_data 
+insert into exercise_data 
 values('E' || seq_ex_no.nextval, '덤벨 드래그 컬', 84, '이두근', 'https://youtu.be/1iuzb9Br_pc?si=xBAvIojZ3xincJL6');
 
-insert into exercies_data 
+insert into exercise_data 
 values('E' || seq_ex_no.nextval, '덤벨 킥백', 90, '삼두근', 'https://youtu.be/mQlJ15jx6Q8?si=YgY6A7IbbvAVwFwA');
 
-insert into exercies_data 
+insert into exercise_data 
 values('E' || seq_ex_no.nextval, '스쿼트', 98, '하체', 'https://youtu.be/50f62PSGY7k?si=Hi29PdAQjfaVK0Bm');
 
 
-select * from exercies_data;
+select * from exercise_data;
+select 'E'||seq_ex_no.currval from dual;
+
 
 --운동 스크랩 보관 테이블 SE
 create table scrap_exercise (
@@ -213,7 +219,7 @@ create table scrap_exercise (
     ex_no varchar2(10) not null,
     constraints pk_ex_scrap_no primary key(ex_scrap_no),
     constraints fk_se_member_no foreign key (member_no) references member(member_no) on delete set null,
-    constraints fk_se_ex_no foreign key (ex_no) references exercies_data(ex_no) on delete cascade
+    constraints fk_se_ex_no foreign key (ex_no) references exercise_data(ex_no) on delete cascade
 );
 create sequence seq_scrap_ex_no; 
 
@@ -224,13 +230,13 @@ create table daily_ex(
     daily_no varchar2(10) not null,
     ex_sets number,
     constraints pk_de_no primary key(de_no),
-    constraints fk_de_ex_id foreign key (ex_id) references exercies_data(ex_no) on delete cascade,
+    constraints fk_de_ex_id foreign key (ex_id) references exercise_data(ex_no) on delete cascade,
     constraints fk_de_daily_no foreign key (daily_no) references daily_recode(daily_no) on delete cascade
 );
 create sequence seq_de_no;
 
-insert into daily_ex values('DE'||seq_de_no.nextval, 'E2', 'DR2', 4);
-
+insert into daily_ex values('DE'||seq_de_no.nextval, 'E22', 'DR2', 4);
+select * from daily_ex;
 
 --눈바디 첨부파일 저장 EA
 create table eyebody_attachment (

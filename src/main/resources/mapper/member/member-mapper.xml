@@ -147,15 +147,10 @@
 
 
 
-
-
-
-    <select id="findAllPage" resultType="member">
-        select
-            *
-        from
-            member
-        order by
-            reg_date desc
-    </select>
+    <!--<delete id="deleteMember">-->
+    <!--    delete from-->
+    <!--        member-->
+    <!--    where-->
+    <!--        member_id = #{id}-->
+    <!--</delete>-->
 </mapper>

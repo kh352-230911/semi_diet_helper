@@ -12,6 +12,13 @@ import static com.sh.diet.common.SqlSessionTemplate.getSqlSession;
 public class ExerciseDataService{
 
     ExerciseDataDao exerciseDataDao = new ExerciseDataDao();
+
+    public List<ExerciseData> findAll() {
+        SqlSession session = getSqlSession();
+        List<ExerciseData> exerciseDatas = exerciseDataDao.findAll(session);
+        session.close();
+        return exerciseDatas;
+    }
     public List<ExerciseData> findByName(String name) {
         SqlSession session = getSqlSession();
         List<ExerciseData> exerciseDatas = exerciseDataDao.findByName(session, name);

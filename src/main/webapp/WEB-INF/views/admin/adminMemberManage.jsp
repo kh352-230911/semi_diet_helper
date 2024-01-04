@@ -19,7 +19,7 @@
             </thead>
             <tbody>
             <c:forEach items="${members}" var="member" varStatus="vs">
-                <form name="">
+                <form name="adminMemberManageFrm" method="post">
                     <tr class="odd:bg-white even:bg-gray-50 border-b ">
                         <td class="px-6 py-4">${member.memberNo}</td>
                         <td class="px-6 py-4">${member.nickName}</td>
@@ -30,6 +30,7 @@
                         <button type="submit"class="inline-flex items-center py-2.5 px-4 text-xs font-medium text-center text-white bg-blue-700 rounded-lg focus:ring-4 focus:ring-blue-200 hover:bg-blue-800">
                             유저 삭제
                         </button>
+                        <input type="hidden" value="${member.memberId}" name="memberId" id="memberId">
                         </td>
                     </tr>
                 </form>
