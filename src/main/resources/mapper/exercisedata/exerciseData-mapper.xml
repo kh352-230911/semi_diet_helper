@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="exerciseData">
+    
+    <select id="findByAll" resultType="exerciseData">
+        select
+            *
+        from
+            exercise_data
+    </select>
+
+    <select id="findByName" resultType="exerciseData">
+        select
+            *
+        from
+            exercise_data
+        where
+            ex_name LIKE '%' || #{exName} || '%'
+    </select>
+
+    <insert id="insertDailyExercise">
+        insert into
+            daily_ex
+        values
+            (
+            'DE' || seq_de_no.nextval,
+             #{exId},
+             #{dailyNo},
+             #{exSets}
+            )
+    </insert>
+
+    <select id="findDailyExerciseByDailyNo" resultType="exerciseData">
+        select
+            *
+        from
+            exercise_data
+        where
+            de_no = #{dailyNo}
+    </select>
+
+</mapper>

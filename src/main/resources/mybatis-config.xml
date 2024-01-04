@@ -49,7 +49,8 @@
     </environments>
 
     <mappers>
-        <mapper resource="mapper/member/semitest-mapper.xml"/>
         <mapper resource="mapper/daily/daily-mapper.xml"/>
+        <mapper resource="mapper/exerciseData/exerciseData-mapper.xml"/>
+        <mapper resource="mapper/food/foodData-mapper.xml"/>
     </mappers>
 </configuration>

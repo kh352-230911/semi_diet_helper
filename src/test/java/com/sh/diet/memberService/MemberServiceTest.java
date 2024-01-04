@@ -25,12 +25,6 @@ public class MemberServiceTest {
         Member member = memberService.findById(memberId);
         System.out.println(member);
 
-        // 객체
-//        assertThat(member).isNotNull();
-//        // 필드
-////        Assertions.assertThat(member.getId()).isNotNull();
-//        assertThat(member.getPassword()).isNotNull();
-//        assertThat(member.getName()).isNotNull();
-//        assertThat(member.getRole()).isNotNull();
+
     }
 }
