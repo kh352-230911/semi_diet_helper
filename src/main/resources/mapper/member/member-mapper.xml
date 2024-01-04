@@ -10,31 +10,29 @@
     -->
     <select id="findById" resultType="member">
         select
-        *
+            *
         from
-        member
+            member
         where
-        member_id = #{memberId}
+            member_id = #{memberId}
     </select>
     <!--
         resultType속성은 한행과 매칭되는 타입 작성
     -->
-<!--    <select id="findAll" resultType="member">-->
-<!--        select-->
-<!--        *-->
-<!--        from-->
-<!--        member-->
-<!--        order by-->
-<!--        reg_date desc-->
-<!--    </select>-->
-<!--    <select id="findByName" resultType="member">-->
-<!--        select-->
-<!--        *-->
-<!--        from-->
-<!--        member-->
-<!--        where-->
-<!--        name like '%' || #{name} || '%'-->
-<!--    </select>-->
+    <select id="findAll" resultType="member">
+        select
+        *
+        from
+        member
+    </select>
+    <select id="findByName" resultType="member">
+        select
+        *
+        from
+        member
+        where
+        name like '%' || #{name} || '%'
+    </select>
 <!--    <select id="findByGender" resultType="member">-->
 <!--        select-->
 <!--        *-->
@@ -43,14 +41,15 @@
 <!--        where-->
 <!--        gender = #{gender}-->
 <!--    </select>-->
-<!--    <insert id="insertMember">-->
-<!--        insert into-->
-<!--        member-->
-<!--        values (-->
-<!--        #{id}, #{password}, #{name}, #{role}, #{gender}, #{birthday}, #{email}, #{phone},-->
-<!--        #{hobby, typeHandler=listStringTypeHandler}, default, default-->
-<!--        )-->
-<!--    </insert>-->
+    <insert id="insertMember">
+        insert into
+            member
+        values (
+           'M' || seq_member_no.nextval, #{memberId}, #{password}, #{name}, #{nickName}, #{height}, #{role},
+            #{regDate}, #{birthDay}, #{weightLossGoal}, #{point}, #{localNo}, #{titleNo}, #{answer}
+
+        )
+    </insert>
 <!--    <update id="updateMember">-->
 <!--        update-->
 <!--        member-->
@@ -64,22 +63,22 @@
 <!--        where-->
 <!--        id = #{id}-->
 <!--    </update>-->
-<!--    <update id="updateMemberPassword">-->
-<!--        update-->
-<!--        member-->
-<!--        set-->
-<!--        password = #{password}-->
-<!--        where-->
-<!--        id = #{id}-->
-<!--    </update>-->
-<!--    <update id="updateMemberRole">-->
-<!--        update-->
-<!--        member-->
-<!--        set-->
-<!--        role = #{role}-->
-<!--        where-->
-<!--        id = #{id}-->
-<!--    </update>-->
+    <update id="updateMemberPassword">
+        update
+        member
+        set
+        password = #{password}
+        where
+        member_id = #{memberId}
+    </update>
+    <update id="updateMemberRole">
+        update
+        member
+        set
+        role = #{role}
+        where
+        member_id = #{memberId}
+    </update>
 <!--    <select id="findAllPage" resultType="member">-->
 <!--        select-->
 <!--        *-->
@@ -133,4 +132,30 @@
 <!--        where-->
 <!--        ${searchType} like '%' || #{searchKeyword} || '%'-->
 <!--    </select>-->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <select id="findAllPage" resultType="member">
+        select
+            *
+        from
+            member
+        order by
+            reg_date desc
+    </select>
 </mapper>

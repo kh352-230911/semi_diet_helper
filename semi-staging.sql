@@ -18,6 +18,15 @@ alter user semi_diet quota unlimited on users;
 --
 --select * from location_code;
 
+select 
+    q.*,
+    m.member_id
+from
+    question_board q 
+        left join member m
+            on q.member_no = m.member_no;
+
+    
 
 
 
@@ -100,18 +109,20 @@ insert into member
 values ('M' || seq_member_no.nextval, 'honggd', 'asd123@', '홍길동', '길동길',175,'M', default, '19910101', 10, default,'LC1', default);
 
 insert into member 
-values ('M' || 0, 'Admin', 'admin', '관리자','관리자', 200, 'A', default, '19910101', default, 100000,'LC1', default);
+values ('M' || 0, 'admin', 'admin', '관리자','관리자', 200, 'A', default, '19910101', default, 100000,'LC1', default,default);
 
 
-select * from member;
-delete from member where name = '홍길동';
+select * from member where member_id = 'admin';
+delete from member where name = '관리자';
+
+ 
 
 --질문게시판 Q
 create table question_board (
     qb_no varchar2(10) not null,
-    member_no varchar2(10) not null,
-    title varchar2(50) not null,
-    content varchar2(4000) not null, 
+--    member_no varchar2(10) not null,
+--    title varchar2(50) not null,
+--    content varchar2(4000) not null, 
     reg_date date default sysdate,
     admin_choice number default 0,
     constraints pk_qb_no primary key(qb_no),
@@ -121,7 +132,12 @@ create table question_board (
 create sequence seq_qb_no;
 insert into question_board 
 values ('Q' || seq_qb_no.nextval,'M4', '테스트 게시물', '테스트입니다 123', default, default );
-
+insert into question_board 
+values ('Q' || seq_qb_no.nextval,'M4', '테스트 게시물2', '2테스트입니다 123', default, default );
+insert into question_board 
+values ('Q' || seq_qb_no.nextval,'M4', '테스트 게시물3', '3테스트입니다 123', default, default );
+select * from question_board;insert into question_board 
+values ('Q' || seq_qb_no.nextval,'M4', '테스트 게시물4', '4테스트입니다 123', default, default );
 
 --답변 A
 create table answer_comment (
@@ -139,6 +155,9 @@ create table answer_comment (
     constraints fk_answer_qb_no foreign key (qb_no) references question_board(qb_no) on delete cascade
 );
 create sequence seq_ac_no;
+insert into answer_comment 
+values('A' || seq_ac_no.nextval, 'M4', 'Q1', '답변 테스트', '답변 테스트문 입니다', default,default,default );
+
 
 --일일기록 테이블 DR
 create table daily_recode (
@@ -153,7 +172,10 @@ create table daily_recode (
 );
 create sequence seq_daily_no;
 
+insert into daily_recode
+values ('DR'||seq_daily_no.nextval, 70, 'M4', default,default);
 
+select * from daily_recode;
 
 
 --운동데이터 E
@@ -171,6 +193,17 @@ create sequence seq_ex_no;
 -- 이두, 어깨, 삼두, 하체, 가슴, 등, 유산소 
 insert into exercies_data 
 values('E' || seq_ex_no.nextval, '달리기', 120, '유산소', 'https://youtu.be/Ggbm_coe5uM?si=0e7d2x6vkRQ3HHlE');
+
+insert into exercies_data 
+values('E' || seq_ex_no.nextval, '덤벨 드래그 컬', 84, '이두근', 'https://youtu.be/1iuzb9Br_pc?si=xBAvIojZ3xincJL6');
+
+insert into exercies_data 
+values('E' || seq_ex_no.nextval, '덤벨 킥백', 90, '삼두근', 'https://youtu.be/mQlJ15jx6Q8?si=YgY6A7IbbvAVwFwA');
+
+insert into exercies_data 
+values('E' || seq_ex_no.nextval, '스쿼트', 98, '하체', 'https://youtu.be/50f62PSGY7k?si=Hi29PdAQjfaVK0Bm');
+
+
 select * from exercies_data;
 
 --운동 스크랩 보관 테이블 SE
@@ -195,6 +228,8 @@ create table daily_ex(
     constraints fk_de_daily_no foreign key (daily_no) references daily_recode(daily_no) on delete cascade
 );
 create sequence seq_de_no;
+
+insert into daily_ex values('DE'||seq_de_no.nextval, 'E2', 'DR2', 4);
 
 
 --눈바디 첨부파일 저장 EA
@@ -221,8 +256,8 @@ create table food_data (
 create sequence seq_food_no;
 
 select * from food_data;
-insert into exercies_data 
-values('F' || food_data.nextval, '사과', 130, 35, 1.5, 0.5);
+insert into food_data 
+values('F' || seq_food_no.nextval, '사과', 130, 35, 1.5, 0.5);
 
 
 
@@ -310,6 +345,7 @@ create table group_board (
 );
 create sequence seq_group_board;
 
+
 -- 그룹 게시판 댓글 GC
 Create table group_comment (
     gc_no varchar2(10) not null,
@@ -325,3 +361,10 @@ Create table group_comment (
     constraints fk_gc_parent_comment_id foreign key (parent_comment_id) references group_comment on delete cascade -- 댓글 삭제시 자동삭제 
 );
 create sequence seq_group_comment;
+
+select
+            *
+        from
+            member
+        order by
+            reg_date desc;

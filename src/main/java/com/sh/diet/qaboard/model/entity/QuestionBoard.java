@@ -1,4 +1,4 @@
-package com.sh.diet.board.model.entity;
+package com.sh.diet.qaboard.model.entity;
 
 import java.time.LocalDateTime;
 
@@ -7,19 +7,20 @@ public class QuestionBoard {
     private String memberNo;
     private String title;
     private String content;
-    private int count;
     private LocalDateTime regDate;
+    private int adminChoice;
+
 
     public QuestionBoard() {
     }
 
-    public QuestionBoard(String qbNo, String memberNo, String title, String content, int count, LocalDateTime regDate) {
+    public QuestionBoard(String qbNo, String memberNo, String title, String content, LocalDateTime regDate, int adminChoice) {
         this.qbNo = qbNo;
         this.memberNo = memberNo;
         this.title = title;
         this.content = content;
-        this.count = count;
         this.regDate = regDate;
+        this.adminChoice = adminChoice;
     }
 
     public String getQbNo() {
@@ -54,20 +55,20 @@ public class QuestionBoard {
         this.content = content;
     }
 
-    public int getCount() {
-        return count;
-    }
-
-    public void setCount(int count) {
-        this.count = count;
-    }
-
     public LocalDateTime getRegDate() {
         return regDate;
     }
 
     public void setRegDate(LocalDateTime regDate) {
         this.regDate = regDate;
+    }
+
+    public int getAdminChoice() {
+        return adminChoice;
+    }
+
+    public void setAdminChoice(int adminChoice) {
+        this.adminChoice = adminChoice;
     }
 
     @Override
@@ -77,8 +78,8 @@ public class QuestionBoard {
                 ", memberNo='" + memberNo + '\'' +
                 ", title='" + title + '\'' +
                 ", content='" + content + '\'' +
-                ", count=" + count +
                 ", regDate=" + regDate +
+                ", adminChoice=" + adminChoice +
                 '}';
     }
 }
