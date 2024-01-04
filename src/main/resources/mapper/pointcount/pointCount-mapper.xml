@@ -3,7 +3,19 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="pointCount">
-
+    <insert id="insertRecodeSatisfiedPoint">
+        insert into
+            point_count
+        values
+            (
+            'P' || seq_pc_no,
+             #{memberNo},
+             #{dailyNo},
+             null,
+             default,
+             #{getPoint}
+            )
+    </insert>
 
 
 </mapper>

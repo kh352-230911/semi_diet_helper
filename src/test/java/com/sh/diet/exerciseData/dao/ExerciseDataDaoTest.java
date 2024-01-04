@@ -40,8 +40,6 @@ public class ExerciseDataDaoTest {
         });
     }
 
-//    @DisplayName("모든 ")
-
     @DisplayName("운동이름으로 ExerciseData를 조회할 수 있습니다.")
     @Test
     public void test3(){

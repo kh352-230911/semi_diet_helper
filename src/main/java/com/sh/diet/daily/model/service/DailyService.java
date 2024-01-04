@@ -1,6 +1,7 @@
 package com.sh.diet.daily.model.service;
 
 import com.sh.diet.daily.model.dao.DailyDao;
+import com.sh.diet.daily.model.entity.DailyEx;
 import com.sh.diet.daily.model.entity.DailyFood;
 import com.sh.diet.daily.model.entity.DailyRecode;
 import com.sh.diet.daily.model.entity.EyebodyAttachment;
@@ -86,10 +87,28 @@ public class DailyService {
         return todayDailyRecode;
     }
 
-    public DailyRecode findDailyRecodeByMemberNo(String memberNo) {
+    public DailyRecode findTodayDailyRecodeByMemberNo(String memberNo) {
         SqlSession session = getSqlSession();
-        DailyRecode dailyRecode = dailyDao.findDailyRecodeByMemberNo(session, memberNo);
+        DailyRecode dailyRecode = dailyDao.findTodayDailyRecodeByMemberNo(session, memberNo);
         return dailyRecode;
     }
 
+    public List<DailyEx> findTodayDailyExByDailyNo(String dailyNo) {
+        SqlSession session = getSqlSession();
+        List<DailyEx> dailyExes = dailyDao.findTodayDailyExByDailyNo(session, dailyNo);
+        return dailyExes;
+    }
+
+
+    public List<DailyFood> findTodayDailyFoodByDailyNo(String dailyNo) {
+        SqlSession session = getSqlSession();
+        List<DailyFood> dailyFoods = dailyDao.findTodayDailyFoodByDailyNo(session, dailyNo);
+        return dailyFoods;
+    }
+
+    public EyebodyAttachment findTodayEyebodyAttachmentByDailyNo(String dailyNo) {
+        SqlSession session = getSqlSession();
+        EyebodyAttachment eyebodyAttachment = dailyDao.findTodayEyebodyAttachmentByDailyNo(session, dailyNo);
+        return eyebodyAttachment;
+    }
 }

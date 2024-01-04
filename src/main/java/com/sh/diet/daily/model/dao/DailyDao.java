@@ -38,7 +38,19 @@ public class DailyDao {
         return session.selectList("daily.findByTodayDailyRecode", today);
     }
 
-    public DailyRecode findDailyRecodeByMemberNo(SqlSession session, String memberNo) {
+    public DailyRecode findTodayDailyRecodeByMemberNo(SqlSession session, String memberNo) {
         return session.selectOne("daily.findDailyRecodeByMemberNo", memberNo);
+    }
+
+    public List<DailyEx> findTodayDailyExByDailyNo(SqlSession session, String dailyNo) {
+        return session.selectList("daily.findTodayDailyExByDailyNo", dailyNo);
+    }
+
+    public List<DailyFood> findTodayDailyFoodByDailyNo(SqlSession session, String dailyNo) {
+        return session.selectList("daily.findTodayDailyFoodByDailyNo", dailyNo);
+    }
+
+    public EyebodyAttachment findTodayEyebodyAttachmentByDailyNo(SqlSession session, String dailyNo) {
+        return session.selectOne("daily.findTodayDailyFoodByDailyNo", dailyNo);
     }
 }
