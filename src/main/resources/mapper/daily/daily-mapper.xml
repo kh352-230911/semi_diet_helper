@@ -35,5 +35,58 @@
         )
     </insert>
 
+    <select id="findByDailyNo" resultType="dailyRecode">
+        select
+            *
+        from
+            daily_recode
+        where
+            daily_no  = #{dailyNo}
+    </select>
+
+    <insert id="insertDailyRecode">
+        insert into
+            daily_recode
+        values(
+            'DR' || seq_daily_no.nextval,
+            #{dailyWeight},
+            #{memberNo},
+            #{recodeDate},
+            #{pointCheck}
+        )
+    </insert>
+
+    <insert id="insertDailyEx">
+        insert into
+            daily_ex
+        values(
+            'DE' || seq_de_no.nextval,
+            #{exId},
+            #{dailyNo},
+            #{exSets}
+        )
+    </insert>
+
+    <select id="findByTodayDailyRecode" resultType="dailyRecode">
+        select
+            *
+        from
+            daily_recode
+        where
+            recode_date = #{recodeDate}
+    </select>
+
+    <select id="findDailyRecodeByMemberNo" resultType="dailyRecode">
+        select
+        *
+        from
+        daily_recode
+        where
+        member_no = #{memberNo}
+        and
+        to_char(recode_date) = '24/01/02'
+
+    </select>
+
 
 </mapper>
