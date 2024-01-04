@@ -1,34 +1,38 @@
-package com.sh.diet.exercise.service;
+package com.sh.diet.exerciseData.service;
 
 
-import com.sh.diet.exBoard.model.entity.ExerciseData;
-import com.sh.diet.exBoard.model.service.ExerciseService;
+import com.sh.diet.exercise.model.entity.ExerciseData;
+import com.sh.diet.exercise.model.service.ExerciseDataService;
+import org.apache.ibatis.session.SqlSession;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
+import static com.sh.diet.common.SqlSessionTemplate.getSqlSession;
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class ExerciseServiceTest {
-    ExerciseService exerciseService;
+public class ExerciseDataServiceTest {
+
+    ExerciseDataService exerciseDataService;
 
     @BeforeEach
     public void beforeEach() {
-        this.exerciseService = new ExerciseService();
+        this.exerciseDataService = new ExerciseDataService();
     }
 
     @DisplayName("exerciseService 객체는 null이 아니다.")
     @Test
     void test1() {
-        assertThat(exerciseService).isNotNull();
+        assertThat(exerciseDataService).isNotNull();
     }
 
     @DisplayName("운동 전체 조회")
     @Test
     void test2() {
-        List<ExerciseData> exerciseDatas = exerciseService.findAll();
+        List<ExerciseData> exerciseDatas = exerciseDataService.findAll();
         System.out.println(exerciseDatas);
         assertThat(exerciseDatas)
                 .isNotNull()

@@ -1,5 +1,4 @@
-package com.sh.diet.exBoard.model.entity;
-
+package com.sh.diet.exercise.model.entity;
 public class ExerciseData {
     private String exNo;
     private String exName;
