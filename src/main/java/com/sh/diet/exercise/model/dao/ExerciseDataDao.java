@@ -7,12 +7,12 @@ import org.apache.ibatis.session.SqlSession;
 import java.util.List;
 
 public class ExerciseDataDao {
-    public List<ExerciseData> findByAll(SqlSession session) {
-        return session.selectList("exerciseData.findByAll");
-    }
     public List<ExerciseData> findByName(SqlSession session, String name){
         return session.selectList("exerciseData.findByName", name);
 
+    }
+    public List<ExerciseData> findAll(SqlSession session) {
+        return session.selectList("exerciseData.findAll");
     }
 
     public int insertDailyExercise(SqlSession session, DailyEx dailyEx) {
@@ -21,5 +21,17 @@ public class ExerciseDataDao {
 
     public List<DailyEx> findDailyExerciseByDailyNo(SqlSession session, String dailyNo) {
         return session.selectList("exerciseData.findDailyExerciseByDailyNo", dailyNo);
+    }
+
+    public ExerciseData findByExNo(SqlSession session, String exNo) {
+        return session.selectOne("exerciseData.findByExNo",exNo);
+    }
+
+    public int insertExerciseData(SqlSession session, ExerciseData exData) {
+        return session.insert("exerciseData.insertExerciseData",exData);
+    }
+
+    public List<ExerciseData> findByBodyPart(SqlSession session, String bodyPart) {
+        return session.selectList("exerciseData.findByBodyPart", bodyPart);
     }
 }

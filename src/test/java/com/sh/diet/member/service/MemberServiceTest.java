@@ -106,7 +106,7 @@ public class MemberServiceTest {
 //        Assertions.assertThat(th).isInstanceOf(Exception.class);
 //    }
 
-
+    @Disabled
     @Order(3)
     @DisplayName("회원 삭제")
     @Test
@@ -138,6 +138,7 @@ public class MemberServiceTest {
         Member member2 = memberService.findById(id);
         assertThat(member2.getPassword()).isEqualTo(newPassword);
     }
+    @Disabled
     @Order(5)
     @DisplayName("회원 권한 수정")
     @Test

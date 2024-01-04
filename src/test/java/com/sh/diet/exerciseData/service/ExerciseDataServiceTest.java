@@ -1,6 +1,7 @@
 package com.sh.diet.exerciseData.service;
 
-import com.sh.diet.daily.model.entity.DailyEx;
+
+import com.sh.diet.exercise.model.entity.ExerciseData;
 import com.sh.diet.exercise.model.service.ExerciseDataService;
 import org.apache.ibatis.session.SqlSession;
 import org.junit.jupiter.api.AfterEach;
@@ -18,28 +19,29 @@ public class ExerciseDataServiceTest {
     ExerciseDataService exerciseDataService;
 
     @BeforeEach
-    public void beforeEach(){
-        exerciseDataService = new ExerciseDataService();
-//        session = getSqlSession();
+    public void beforeEach() {
+        this.exerciseDataService = new ExerciseDataService();
     }
 
-    @AfterEach
-    public void afterEach(){
-//        session.close();
+    @DisplayName("exerciseService 객체는 null이 아니다.")
+    @Test
+    void test1() {
+        assertThat(exerciseDataService).isNotNull();
     }
 
-//    @DisplayName("일일기록 테이블의 고유 번호로 일일 운동 기록 테이블을 조회 할 수 있습니다.")
-//    @Test
-//    public void test1(){
-//        List<DailyEx> dailyExes = exerciseDataService.findDailyExerciseByDailyNo("DR2");
-//        assertThat(dailyExes)
-//                .isNotEmpty()
-//                .isNotNull()
-//                .allSatisfy((dailyEx) -> {
-//                    assertThat(dailyEx)
-//                            .isNotNull();
-//                    assertThat(dailyEx.getDailyNo())
-//                            .isEqualTo("DR2");
-//                });
-//    }
+    @DisplayName("운동 전체 조회")
+    @Test
+    void test2() {
+        List<ExerciseData> exerciseDatas = exerciseDataService.findAll();
+        System.out.println(exerciseDatas);
+        assertThat(exerciseDatas)
+                .isNotNull()
+                .allSatisfy((exerciseData -> {
+                    assertThat(exerciseData.getExNo()).isNotNull();
+                    assertThat(exerciseData.getExName()).isNotNull();
+                    assertThat(exerciseData.getKcal()).isNotZero();
+                    assertThat(exerciseData.getBodyPart()).isNotNull();
+                    assertThat(exerciseData.getExUrl()).isNotNull();
+                }));
+    }
 }

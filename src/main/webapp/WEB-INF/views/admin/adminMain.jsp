@@ -11,8 +11,6 @@
             -webkit-font-smoothing: antialiased;
             -moz-osx-font-smoothing: grayscale;">
 <div class="w-[1152px] h-[700px] relative overflow-hidden bg-white">
-
-
     <div class="w-[161px] h-11 absolute left-[259px] top-[276px] bg-[#d9d9d9]"></div>
     <p class="w-[141px] h-5 absolute left-[270px] top-[289px] text-xl text-center text-black">
         <span class="w-[141px] h-5 text-xl text-center text-black">신고 게시물 관리</span><br />

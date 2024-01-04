@@ -36,7 +36,7 @@ public class MemberLoginServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         // 1. 사용자입력값 인코딩처리
-        req.setCharacterEncoding("utf-8");
+        // req.setCharacterEncoding("utf-8");
 
         // 2. 사용자입력값 가져오기
         String memberId = req.getParameter("memberId");
@@ -49,22 +49,18 @@ public class MemberLoginServlet extends HttpServlet {
         // 로그인 실패 (존재하지 않는 id | password가 틀린 경우)
         Member member = memberService.findById(memberId);
         System.out.println(member);
-
         // 세션생성/가져오기
         // getSession(), getSession(true) : 세션이 존재하지 않으면 생성, 혹은 존재하는 세션을 반환
         HttpSession session = req.getSession();
-
-
-
         if(member != null && password.equals(member.getPassword())) {
             // 로그인 성공
             // pageContext, request, session, application 컨텍스트객체중에 login처리에 적합한 것은 session
             // session객체는 사용자가 서버첫접속부터 세션해제시까지 유효
             session.setAttribute("loginMember", member);
             if(member.getRole() == Role.A){
-                req.getRequestDispatcher("/adminMain").forward(req, resp);
+                resp.sendRedirect(req.getContextPath() + "/adminMain");
             }else{
-                req.getRequestDispatcher("/").forward(req, resp);
+                resp.sendRedirect(req.getContextPath() + "/");
             }
         }
         else {
