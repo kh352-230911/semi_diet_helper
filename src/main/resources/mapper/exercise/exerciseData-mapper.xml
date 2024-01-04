@@ -20,17 +20,6 @@
             ex_name LIKE '%' || #{exName} || '%'
     </select>
 
-    <insert id="insertDailyExercise">
-        insert into
-            daily_ex
-        values
-            (
-            'DE' || seq_de_no.nextval,
-             #{exId},
-             #{dailyNo},
-             #{exSets}
-            )
-    </insert>
 
     <select id="findDailyExerciseByDailyNo" resultType="exerciseData">
         select
@@ -67,5 +56,14 @@
             dual
         </selectKey>
     </insert>
+
+    <select id="findByBodyPart" resultType="exerciseData">
+        select
+            *
+        from
+            exercise_data
+        where
+            body_part = #{bodyPart}
+    </select>
 
 </mapper>

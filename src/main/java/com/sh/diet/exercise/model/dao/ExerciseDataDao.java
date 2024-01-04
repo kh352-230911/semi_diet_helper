@@ -30,4 +30,8 @@ public class ExerciseDataDao {
     public int insertExerciseData(SqlSession session, ExerciseData exData) {
         return session.insert("exerciseData.insertExerciseData",exData);
     }
+
+    public List<ExerciseData> findByBodyPart(SqlSession session, String bodyPart) {
+        return session.selectList("exerciseData.findByBodyPart", bodyPart);
+    }
 }

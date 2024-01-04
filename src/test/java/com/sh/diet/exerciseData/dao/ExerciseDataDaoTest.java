@@ -98,13 +98,36 @@ public class ExerciseDataDaoTest {
         ExerciseData exData = new ExerciseData(null,"운동명",100, "운동부위","운동영상url");
         int result = exerciseDataDao.insertExerciseData(session, exData);
         System.out.println(exData);
-        
+
 
 
         // ExerciseData exDataInserted = exerciseDataDao.findByExNo(session, exNo);
 
         // assertThat(result).isGreaterThan(0);
     }
+
+    @DisplayName("특정 카테고리 운동들을 조회")
+    @Test
+    void test7() {
+        String bodyPart = "유산소";
+        List<ExerciseData> exerciseDatas = exerciseDataDao.findByBodyPart(session, bodyPart);
+
+        System.out.println(exerciseDatas);
+
+        assertThat(exerciseDatas)
+                .isNotNull()
+                .allSatisfy((exerciseData) ->{
+                    assertThat(exerciseData.getBodyPart()).isEqualTo(bodyPart);
+                    assertThat(exerciseData.getExNo()).isNotNull();
+                    assertThat(exerciseData.getKcal()).isNotZero();
+                    assertThat(exerciseData.getExUrl()).isNotNull();
+                });
+
+    }
+
+    @DisplayName("특정 운동들을 즐겨찾기에 추가하기")
+
+
 
 
     public static Stream<Arguments> exerciseNoProvider(){

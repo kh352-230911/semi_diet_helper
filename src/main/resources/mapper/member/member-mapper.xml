@@ -153,14 +153,4 @@
     <!--    where-->
     <!--        member_id = #{id}-->
     <!--</delete>-->
-
-
-    <select id="findAllPage" resultType="member">
-        select
-            *
-        from
-            member
-        order by
-            reg_date desc
-    </select>
 </mapper>
