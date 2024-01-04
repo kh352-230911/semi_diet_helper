@@ -76,7 +76,7 @@
             recode_date = #{recodeDate}
     </select>
 
-    <select id="findDailyRecodeByMemberNo" resultType="dailyRecode">
+    <select id="findTodayDailyRecodeByMemberNo" resultType="dailyRecode">
         select
         *
         from
@@ -85,8 +85,24 @@
         member_no = #{memberNo}
         and
         to_char(recode_date) = '24/01/02'
-
     </select>
 
+    <select id="findTodayDailyExByDailyNo" resultType="dailyEx">
+        select
+            *
+        from
+            daily_ex
+        where
+            daily_no = #{dailyNo}
+    </select>
+
+    <select id="findTodayDailyFoodByDailyNo" resultType="dailyEx">
+        select
+            *
+        from
+            daily_food
+        where
+            daily_no = #{dailyNo}
+    </select>
 
 </mapper>

@@ -56,5 +56,6 @@
         <mapper resource="mapper/daily/daily-mapper.xml"/>
         <mapper resource="mapper/exercise/exerciseData-mapper.xml"/>
         <mapper resource="mapper/food/foodData-mapper.xml"/>
+        <mapper resource="mapper/pointcount/pointCount-mapper.xml"/>
     </mappers>
 </configuration>

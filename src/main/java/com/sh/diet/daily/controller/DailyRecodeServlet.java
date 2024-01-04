@@ -51,7 +51,7 @@ public class DailyRecodeServlet extends HttpServlet {
         PointCountService pointCountService = new PointCountService();
         FoodDataService foodDataService = new FoodDataService();
 
-        DailyRecode dailyRecode = new DailyService().findDailyRecodeByMemberNo("M4");
+        DailyRecode dailyRecode = new DailyService().findTodayDailyRecodeByMemberNo("M4");
 
         // 일일기록 테이블 고유 번호 조회
         String dailyRecodeNo = dailyRecode.getDailyNo();
@@ -82,7 +82,6 @@ public class DailyRecodeServlet extends HttpServlet {
             String meal = fileItemMap.get("meal").get(0).getString("utf-8");
             String gainKcal = fileItemMap.get("gain-kcal").get(0).getString("utf-8");
 
-
             dailyFood.setFoodTime(mealTime);
             dailyFood.setFoodNo(meal);
 
@@ -110,8 +109,10 @@ public class DailyRecodeServlet extends HttpServlet {
                 int dotIndex = originalFilename.lastIndexOf(".");
                 // 확장자가 없는 경우를 처리
                 String ext = dotIndex > -1 ? originalFilename.substring(dotIndex) : "";
-                
+
+                // UUID 생성
                 UUID uuid = UUID.randomUUID();
+                // 새로운 파일 이름 = UUID + 확장자
                 String  renamedFilename = uuid + ext;
 
                 System.out.println("새 파일명 : " + renamedFilename);
@@ -124,7 +125,11 @@ public class DailyRecodeServlet extends HttpServlet {
 
             }
 
-
+            if(pointIncreaseCheck("M4")){
+                PointCount pointCount = new PointCount(null, "M4",
+                        dailyRecodeNo, null, null, 1);
+                new PointCountService().insertRecodeSatisfiedPoint(pointCount);
+            }
 
 
 
@@ -138,10 +143,46 @@ public class DailyRecodeServlet extends HttpServlet {
 
     public boolean pointIncreaseCheck(String memberNo){
 
-        DailyRecode dailyRecode = new DailyService().findDailyRecodeByMemberNo("M4");
-        String dailyNo = dailyRecode.getDailyNo();
-//        new E
+        // 포인트 증가 여부를 판단하는 변수 3이되면 포인트 증가 여부를 true로 설정
+        int increasePointCheck = 0;
 
+        // 특정 회원의 오늘 일일기록 테이블 가져오기
+        DailyRecode dailyRecode = new DailyService().findTodayDailyRecodeByMemberNo(memberNo);
+        // 특정 회원이 가지는 오늘 일일기록 테이블의 고유 번호
+        String dailyNo = dailyRecode.getDailyNo();
+
+        // 오늘 일일기록 테이블의 고유번호와 관련된 운동 일일기록 테이블들 조회(하루에 운동을 여러개 할 수 있으므로)
+        List<DailyEx> dailyExes = new DailyService().findTodayDailyExByDailyNo(dailyNo);
+        // 가져온 운동 일일기록 리스트에서 하나씩 요소를 순회
+        for(DailyEx dailyEx : dailyExes){
+            // 가져온 운동 일일기록 리스트에서 하나라도 0이 아니면 check
+            if(dailyEx.getExSets() != 0){
+                ++increasePointCheck;
+                break;
+            }
+        }
+
+        // 오늘 일일기록 테이블의 고유번호와 관련된 운동 일일기록 테이블들 조회(하루에 운동을 여러개 할 수 있으므로)
+        List<DailyFood> dailyFoods = new DailyService().findTodayDailyFoodByDailyNo(dailyNo);
+        // 가져온 운동 일일기록 리스트에서 하나씩 요소를 순회
+        for(DailyFood dailyFood : dailyFoods){
+            // 가져온 운동 일일기록 리스트에서 하나라도 0이 아니면 check
+            if(dailyFood.getFoodNo() != null){
+                ++increasePointCheck;
+                break;
+            }
+        }
+
+        EyebodyAttachment eyebodyAttachment = new DailyService().findTodayEyebodyAttachmentByDailyNo(dailyNo);
+        // 가져온 운동 일일기록 리스트에서 하나씩 요소를 순회
+        // 가져온 운동 일일기록 리스트에서 하나라도 0이 아니면 check
+        if(eyebodyAttachment.getOriginalFile() != null){
+            ++increasePointCheck;
+        }
+
+        // 3가지 일일 기록 테이블을 다 작성하면 true를 리턴
+        if(increasePointCheck == 3)
+            return true;
         return false;
     }
 

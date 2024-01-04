@@ -11,6 +11,18 @@
             exercise_data
     </select>
 
+    <insert id="insertDailyExercise">
+        insert into
+            daily_ex
+        values
+            (
+                'DE' || seq_de_no.nextval,
+                #{exId},
+                #{dailyNo},
+                #{exSets}
+            )
+    </insert>
+
     <select id="findByName" resultType="exerciseData">
         select
             *
