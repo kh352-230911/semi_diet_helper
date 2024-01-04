@@ -61,7 +61,7 @@
                     <nav class="md:ml-auto flex text-3xl flex-wrap items-center text-base justify-center">
                     <a href="${pageContext.request.contextPath}/member/memberDetail"
                        class="text-xl ml-auto text-gray-600 hover:underline">${loginMember.memberId}</a>님, 안녕하세요🥑
-                    <a class="text-xl  ml-5 hover:text-gray-900">로그아웃</a>
+                    <a href="${pageContext.request.contextPath}/member/memberLogout" class="text-xl  ml-5 hover:text-gray-900">로그아웃</a>
                     </nav>
                 </nav>
             </c:if>
