@@ -98,15 +98,15 @@ public class QuestionBoardServiceTest {
     @DisplayName("질답게시글 삭제")
     @Test
     void test6(){
-        String qbNo = "18";
-        QuestionBoard questionBoard = questionBoardService.findById(qbNo);
-        assertThat(questionBoard).isNotNull();
+        String qbNo = "Q37";
+        QuestionBoardVo questionBoardVo = questionBoardService.findById(qbNo);
+        assertThat(questionBoardVo).isNotNull();
 
         int result = questionBoardService.deleteQuestionBoard(qbNo);
         assertThat(result).isGreaterThan(0);
 
-        QuestionBoard questionBoard1 = questionBoardService.findById(qbNo);
-        assertThat(questionBoard1).isNull();
+        QuestionBoardVo questionBoardVo1 = questionBoardService.findById(qbNo);
+        assertThat(questionBoardVo1).isNull();
     }
     @DisplayName("전체 질답게시글수 조회")
     @Test

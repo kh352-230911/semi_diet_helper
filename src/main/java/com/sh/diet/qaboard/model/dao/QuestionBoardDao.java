@@ -2,6 +2,7 @@ package com.sh.diet.qaboard.model.dao;
 
 import com.sh.diet.qaboard.model.entity.AnswerBoard;
 import com.sh.diet.qaboard.model.entity.QuestionBoard;
+import com.sh.diet.qaboard.model.vo.AnswerBoardVo;
 import com.sh.diet.qaboard.model.vo.QuestionBoardVo;
 import org.apache.ibatis.session.RowBounds;
 import org.apache.ibatis.session.SqlSession;
@@ -42,8 +43,8 @@ public class QuestionBoardDao {
         return session.selectList("qaBoard.findAll", param, rowBounds);
     }
 
-    public AnswerBoard findByAnswerBoardacNo(SqlSession session, String acNo) {
-        return session.selectOne("qaBoard.findByAnswerBoardacNo", acNo);
+    public List<AnswerBoardVo> findByAnswerBoardqbNo(SqlSession session, String qbNo) {
+        return session.selectList("qaBoard.findByAnswerBoardqbNo", qbNo);
     }
 
     public int insertAnswerBoard(SqlSession session, AnswerBoard answerBoard) {
@@ -54,9 +55,9 @@ public class QuestionBoardDao {
         return session.update("qaBoard.updateAnswerBoard", answerBoard);
     }
 
-    public AnswerBoard findByIdAnswer(SqlSession session, String acNo) {
-        return session.selectOne("qaBoard.findByIdAnswer", acNo);
-    }
+//    public List<AnswerBoard> findByIdAnswer(SqlSession session, String qbNo) {
+//        return session.selectList("qaBoard.findByIdAnswer", qbNo);
+//    }
 
     public int deleteAnswerBoard(SqlSession session, String acNo) {
         return session.delete("qaBoard.deleteAnswerBoard", acNo);

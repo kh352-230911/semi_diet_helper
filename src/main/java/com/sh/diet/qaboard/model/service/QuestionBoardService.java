@@ -3,6 +3,7 @@ package com.sh.diet.qaboard.model.service;
 import com.sh.diet.qaboard.model.dao.QuestionBoardDao;
 import com.sh.diet.qaboard.model.entity.AnswerBoard;
 import com.sh.diet.qaboard.model.entity.QuestionBoard;
+import com.sh.diet.qaboard.model.vo.AnswerBoardVo;
 import com.sh.diet.qaboard.model.vo.QuestionBoardVo;
 import org.apache.ibatis.session.SqlSession;
 
@@ -19,18 +20,18 @@ public class QuestionBoardService {
         session.close();
         return questionBoards;
     }
-    public AnswerBoard findByAnswerBoardacNo(String acNo){
+    public List<AnswerBoardVo> findByAnswerBoardqbNo(String qbNo){
         SqlSession session = getSqlSession();
-        AnswerBoard answerBoard = questionBoardDao.findByAnswerBoardacNo(session, acNo);
+        List<AnswerBoardVo> answerBoardVo = questionBoardDao.findByAnswerBoardqbNo(session, qbNo);
         session.close();
-        return answerBoard;
+        return answerBoardVo;
     }
-    public AnswerBoard findByIdAnswer(String acNo){
-        SqlSession session = getSqlSession();
-        AnswerBoard answerBoard = questionBoardDao.findByIdAnswer(session, acNo);
-        session.close();
-        return answerBoard;
-    }
+//    public List<AnswerBoard> findByIdAnswer(String qbNo){
+//        SqlSession session = getSqlSession();
+//        List<AnswerBoard> answerBoard1 = questionBoardDao.findByIdAnswer(session, qbNo);
+//        session.close();
+//        return answerBoard1;
+//    }
     public QuestionBoardVo findById(String qbNo) {
         SqlSession session = getSqlSession();
         QuestionBoardVo questionBoardVo = questionBoardDao.findById(session, qbNo);

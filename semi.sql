@@ -54,11 +54,6 @@ COMMIT;
 
 select * from member;
 
-<<<<<<< HEAD
-
-=======
-<<<<<<< HEAD
-
 select * from member where member_id = 'user123';
 
 
@@ -75,12 +70,12 @@ constraint pk_semitest_qb_no primary key(qb_no)
 
 create sequence seq_qb_no;
 
-insert into semi.semitest(qb_no,member_no,title,content,count,reg_date) values(seq_qb_no.nextval,'12','ï¿½È³ï¿½ï¿½Ï¼ï¿½ï¿½ï¿½','ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ó¸®¾ï¿½ï¿½',default, default);
+insert into semi.semitest(qb_no,member_no,title,content,count,reg_date) values(seq_qb_no.nextval,'12','ï¿½È³ï¿½ï¿½Ï¼ï¿½ï¿½ï¿½','ï¿½ï¿½ï¿½ï¿½ï¿? ï¿½ï¿½ó¸?¾ï¿½ï¿?',default, default);
 insert into semi.semitest(qb_no,member_no,title,content,count,reg_date) values(seq_qb_no.nextval,'133','ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½','ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½',default, default);
 insert into semi.semitest(qb_no,member_no,title,content,count,reg_date) values(seq_qb_no.nextval,'14','ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½','ï¿½ï¿½ï¿½ï¿½',default, default);
-insert into semi.semitest(qb_no,member_no,title,content,count,reg_date) values(seq_qb_no.nextval,'22','Å©Å©Å©','ï¿½ï¿½Å¿ï¿½ï¿½ï¿½',default, default);
+insert into semi.semitest(qb_no,member_no,title,content,count,reg_date) values(seq_qb_no.nextval,'22','Å©Å©Å©','ï¿½ï¿½Å¿ï¿½ï¿½ï¿?',default, default);
 insert into semi.semitest(qb_no,member_no,title,content,count,reg_date) values(seq_qb_no.nextval,'77','È£È£È£','ï¿½Ý°ï¿½ï¿½ï¿½ï¿½ï¿½È£È£',default, default);
-insert into semi.semitest(qb_no,member_no,title,content,count,reg_date) values(seq_qb_no.nextval,'33','ï¿½ï¿½ï¿½ï¿½ï¿½','ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½',default, default);
+insert into semi.semitest(qb_no,member_no,title,content,count,reg_date) values(seq_qb_no.nextval,'33','ï¿½ï¿½ï¿½ï¿½ï¿?','ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½',default, default);
 insert into semi.semitest(qb_no,member_no,title,content,count,reg_date) values(seq_qb_no.nextval,'1','ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½','ï¿½È³ï¿½ï¿½Ï¼ï¿½',default, default);
 select * from semitest;
 
@@ -89,8 +84,6 @@ select * from semitest;
 -- drop table semitest;
 
 
-=======
->>>>>>> 290b65c05af58b06abd7d3aca6aee78af964b878
 --Áú¹®°Ô½ÃÆÇ Q
 create table question_board (
                                 qb_no varchar2(10) not null,
@@ -156,8 +149,6 @@ select
         answer_comment;
 --    where
 --        ac_no = 19;
-<<<<<<< HEAD
-
 select * from member where member_id = 'user123';
 
 select
@@ -166,6 +157,4 @@ from
 question_board q
 left join member m
 on q.member_no = m.member_no;
-=======
->>>>>>> 9520fe8b21422af30a3dbbb597b33571e749ea34
->>>>>>> 290b65c05af58b06abd7d3aca6aee78af964b878
+

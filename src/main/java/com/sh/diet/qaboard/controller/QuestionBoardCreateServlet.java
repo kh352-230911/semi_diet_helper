@@ -21,7 +21,7 @@ public class QuestionBoardCreateServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        req.setCharacterEncoding("utf-8");
+//        req.setCharacterEncoding("utf-8");
         String memberNo = req.getParameter("memberNo");
         String title = req.getParameter("title");
         String content = req.getParameter("content");

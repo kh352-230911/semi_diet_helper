@@ -28,7 +28,6 @@ public class QuestionBoardUpdateServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        req.setCharacterEncoding("utf-8");
         String qbNo = req.getParameter("qbNo");
         String memberNo = req.getParameter("memberNo");
         String title = req.getParameter("title");
@@ -40,10 +39,11 @@ public class QuestionBoardUpdateServlet extends HttpServlet {
         questionBoardVo.setTitle(title);
         questionBoardVo.setContent(content);
 
-//        System.out.println(memberNo);
-//        System.out.println(title);
-//        System.out.println(content);
-//        System.out.println(questionBoardVo);
+        System.out.println(qbNo);
+        System.out.println(memberNo);
+        System.out.println(title);
+        System.out.println(content);
+        System.out.println(questionBoardVo);
 
         int result = questionBoardService.updateQuestionBoard(questionBoardVo);
         req.getSession().setAttribute("msg", "게시글을 정상적으로 수정되었습니다. 🥰");
