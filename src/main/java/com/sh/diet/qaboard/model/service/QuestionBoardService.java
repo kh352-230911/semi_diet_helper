@@ -1,7 +1,10 @@
 package com.sh.diet.qaboard.model.service;
 
 import com.sh.diet.qaboard.model.dao.QuestionBoardDao;
+import com.sh.diet.qaboard.model.entity.AnswerBoard;
 import com.sh.diet.qaboard.model.entity.QuestionBoard;
+import com.sh.diet.qaboard.model.vo.AnswerBoardVo;
+import com.sh.diet.qaboard.model.vo.QuestionBoardVo;
 import org.apache.ibatis.session.SqlSession;
 
 import java.util.List;
@@ -17,14 +20,38 @@ public class QuestionBoardService {
         session.close();
         return questionBoards;
     }
-
-    public QuestionBoard findById(String qbNo) {
+    public List<AnswerBoardVo> findByAnswerBoardqbNo(String qbNo){
         SqlSession session = getSqlSession();
-        QuestionBoard questionBoard = questionBoardDao.findById(session, qbNo);
+        List<AnswerBoardVo> answerBoardVo = questionBoardDao.findByAnswerBoardqbNo(session, qbNo);
         session.close();
-        return questionBoard;
+        return answerBoardVo;
     }
-
+//    public List<AnswerBoard> findByIdAnswer(String qbNo){
+//        SqlSession session = getSqlSession();
+//        List<AnswerBoard> answerBoard1 = questionBoardDao.findByIdAnswer(session, qbNo);
+//        session.close();
+//        return answerBoard1;
+//    }
+    public QuestionBoardVo findById(String qbNo) {
+        SqlSession session = getSqlSession();
+        QuestionBoardVo questionBoardVo = questionBoardDao.findById(session, qbNo);
+        session.close();
+        return questionBoardVo;
+    }
+    public int insertAnswerBoard(AnswerBoard answerBoard){
+        int result = 0;
+        SqlSession session = getSqlSession();
+        try {
+            result = questionBoardDao.insertAnswerBoard(session, answerBoard);
+            session.commit();
+        } catch (Exception e) {
+            session.rollback();
+            throw e;
+        } finally {
+            session.close();
+        }
+        return result;
+    }
     public int insertQuestionBoard(QuestionBoard questionBoard) {
         int result = 0;
         SqlSession session = getSqlSession();
@@ -40,12 +67,25 @@ public class QuestionBoardService {
         return result;
     }
 
-
-    public int updateQuestionBoard(QuestionBoard questionBoard) {
+    public int updateAnswerBoard(AnswerBoard answerBoard){
         int result = 0;
         SqlSession session =getSqlSession();
         try{
-            result = questionBoardDao.updateQuestionBoard(session, questionBoard);
+            result = questionBoardDao.updateAnswerBoard(session, answerBoard);
+            session.commit();
+        } catch (Exception e){
+            session.rollback();
+            throw e;
+        } finally {
+            session.close();
+        }
+        return result;
+    }
+    public int updateQuestionBoard(QuestionBoardVo questionBoardVo) {
+        int result = 0;
+        SqlSession session =getSqlSession();
+        try{
+            result = questionBoardDao.updateQuestionBoard(session, questionBoardVo);
             session.commit();
         } catch (Exception e){
             session.rollback();
@@ -56,6 +96,20 @@ public class QuestionBoardService {
         return result;
     }
 
+    public int deleteAnswerBoard(String acNo){
+        int result = 0;
+        SqlSession session = getSqlSession();
+        try {
+            result = questionBoardDao.deleteAnswerBoard(session,acNo);
+            session.commit();
+        } catch (Exception e) {
+            session.rollback();
+            throw e;
+        } finally {
+            session.close();
+        }
+        return result;
+    }
     public int deleteQuestionBoard(String qbNo) {
         int result = 0;
         SqlSession session = getSqlSession();
@@ -78,11 +132,11 @@ public class QuestionBoardService {
         return totalCount;
     }
 
-    public List<QuestionBoard> findAll(Map<String, Object> param) {
+    public List<QuestionBoardVo> findAll(Map<String, Object> param) {
         SqlSession session = getSqlSession();
-        List<QuestionBoard> questionBoards = questionBoardDao.findAll(session, param);
+        List<QuestionBoardVo> questionBoardvos = questionBoardDao.findAll(session, param);
         session.close();
-        return questionBoards;
+        return questionBoardvos;
     }
 }
 

@@ -1,9 +1,9 @@
 package com.sh.diet.qaboard.model.vo;
 
 import com.sh.diet.member.model.entity.Member;
-import com.sh.diet.qaboard.model.entity.QuestionBoard;
+import com.sh.diet.qaboard.model.entity.AnswerBoard;
 
-public class QuestionBoardVo extends QuestionBoard {
+public class AnswerBoardVo extends AnswerBoard {
     private Member member;
 
     public Member getMember() {
@@ -16,7 +16,7 @@ public class QuestionBoardVo extends QuestionBoard {
 
     @Override
     public String toString() {
-        return "QuestionBoardVo{" +
+        return "AnswerBoardVo{" +
                 "member=" + member +
                 "} " + super.toString();
     }
