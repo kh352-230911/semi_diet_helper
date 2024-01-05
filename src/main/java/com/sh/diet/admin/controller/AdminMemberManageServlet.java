@@ -3,7 +3,6 @@ package com.sh.diet.admin.controller;
 import com.sh.diet.member.model.entity.Member;
 import com.sh.diet.member.model.service.MemberService;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -16,7 +15,7 @@ import java.util.List;
 import java.util.Map;
 
 @WebServlet("/adminMemberManage")
-public class AdminMemberManage extends HttpServlet {
+public class AdminMemberManageServlet extends HttpServlet {
     MemberService memberService = new MemberService();
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {

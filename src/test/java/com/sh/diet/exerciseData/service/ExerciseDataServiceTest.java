@@ -44,4 +44,11 @@ public class ExerciseDataServiceTest {
                     assertThat(exerciseData.getExUrl()).isNotNull();
                 }));
     }
+
+    @DisplayName("전체 게시글 수 조회")
+    @Test
+    void test3(){
+        int totalCount = exerciseDataService.getTotalCount();
+        assertThat(totalCount).isNotNegative();
+    }
 }

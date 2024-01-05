@@ -36,7 +36,7 @@
                      class="w-10 h-10 text-white p-2 bg-indigo-500 rounded-full" viewBox="0 0 24 24">
                     <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"></path>
                 </svg>
-                <span class="ml-3 text-3xl text-5xl">다우미</span>
+                <a href="${pageContext.request.contextPath}/" class="ml-3 text-3xl text-5xl">다우미</a>
             </a>
             <c:if test="${loginMember == null}">
                 <nav class="md:ml-auto  flex flex-wrap items-center text-base justify-center">
