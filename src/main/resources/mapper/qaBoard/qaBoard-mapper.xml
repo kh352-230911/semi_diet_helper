@@ -4,7 +4,6 @@
         "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="qaBoard">
     <resultMap id="questionBoardVoMap" type="questionBoardVo">
-
         <id column="qb_no" property="qbNo"/>
         <result column="member_no" property="memberNo"/>
         <result column="title" property="title"/>
@@ -17,27 +16,30 @@
             <result column="name" property="name"/>
         </association>
     </resultMap>
-    <select id="findAll" resultType="questionBoard">
+    <select id="findAll" resultMap="questionBoardVoMap">
         select
-        *
+            q.*, m.member_id, m.name
         from
-        question_board
+            question_board q left join member m
+                on q.member_no = m.member_no
         order by
-        reg_date desc
+        q.reg_date desc
     </select>
-    <select id="findById" resultType="questionBoard">
+    <select id="findById" resultMap="questionBoardVoMap">
         select
-        *
+        q.*, m.member_id, m.name
         from
-        question_board
+        question_board q left join member m
+        on q.member_no = m.member_no
         where
         qb_no = #{qbNo}
+
     </select>
     <insert id="insertQuestionBoard">
     insert into
         question_board
         values(
-            seq_qb_no.nextval,
+        'Q' || seq_qb_no.nextval,
             #{memberNo},
             #{title},
             #{content},
@@ -66,34 +68,50 @@
         from
         question_board
     </select>
-
-    <select id="findByAnswerBoardacNo" resultType="answerBoard">
-    select
-        *
-    from
-        answer_comment
-    where
-        ac_no = #{acNo}
+    <resultMap id="answerBoardVoMap" type="answerBoardVo">
+        <id column="ac_no" property="acNo"/>
+        <result column="member_no" property="memberNo"/>
+        <result column="qb_no" property="qbNo"/>
+        <result column="title" property="title"/>
+        <result column="content" property="content"/>
+        <result column="choice" property="choice"/>
+        <result column="like_count" property="likeCount"/>
+        <result column="reg_date" property="regDate"/>
+        <association property="member" javaType="member">
+            <id column="member_no" property="memberNo"/>
+            <result column="member_id" property="memberId"/>
+            <result column="name" property="name"/>
+        </association>
+    </resultMap>
+    <select id="findByAnswerBoardqbNo" resultMap="answerBoardVoMap">
+        select
+        a.*, m.member_id, m.name
+        from
+        answer_comment a left join member m
+        on a.member_no = m.member_no
+        where
+        qb_no = #{qbNo}
     </select>
     <insert id="insertAnswerBoard">
         insert into
         answer_comment
         values(
-        seq_ac_no.nextval,
+        'A' || seq_ac_no.nextval,
         #{memberNo},
         #{qbNo},
         #{title},
         #{content},
         default, default, default)
     </insert>
-    <select id="findByIdAnswer" resultType="answerBoard">
-        select
-        *
-        from
-        answer_comment
-        where
-        ac_no = #{acNo}
-    </select>
+<!--    <select id="findByIdAnswer" resultType="answerBoard">-->
+<!--        select-->
+<!--        *-->
+<!--        from-->
+<!--        answer_comment-->
+<!--        where-->
+<!--        qb_no = #{qbNo}-->
+
+<!--    </select>-->
     <update id="updateAnswerBoard">
         update
         answer_comment
@@ -102,7 +120,8 @@
         title = #{title},
         content = #{content}
         where
-        ac_no = #{acNo}
+        qb_no = #{qbNo} and ac_no = #{acNo}
+<!--        ac_no = #{acNo}-->
     </update>
 
     <delete id="deleteAnswerBoard">

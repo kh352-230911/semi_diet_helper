@@ -2,6 +2,7 @@ package com.sh.diet.qaboard.controller;
 
 import com.sh.diet.qaboard.model.entity.QuestionBoard;
 import com.sh.diet.qaboard.model.service.QuestionBoardService;
+import com.sh.diet.qaboard.model.vo.QuestionBoardVo;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -26,9 +27,9 @@ public class QuestionBoardListServlet extends HttpServlet {
         Map<String,Object> param = Map.of("page", page, "limit", limit);
 
         // 2 업무 로직
-        List<QuestionBoard> questionBoards = questionBoardService.findAll(param);
-        req.setAttribute("questionBoards",questionBoards);
-        System.out.println(questionBoards);
+        List<QuestionBoardVo> questionBoardvos = questionBoardService.findAll(param);
+        req.setAttribute("questionBoardvos",questionBoardvos);
+        System.out.println(questionBoardvos);
         req.getRequestDispatcher("/WEB-INF/views/qaboard/questionBoardList.jsp").forward(req, resp);
     }
 
