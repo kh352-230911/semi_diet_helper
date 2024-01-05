@@ -3,6 +3,7 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <jsp:include page="/WEB-INF/views/common/header.jsp"/>
+<br><br><br>
     <body style="display: flex;
                 flex-direction: column;
                 flex: 1;
@@ -10,41 +11,19 @@
                 height: 100%;
                 -webkit-font-smoothing: antialiased;
                 -moz-osx-font-smoothing: grayscale;">
-    <div class="w-[1152px] h-[700px] relative overflow-hidden bg-white">
-        <div class="w-[161px] h-11 absolute left-[259px] top-[276px] bg-[#d9d9d9]"></div>
-            <p class="w-[141px] h-5 absolute left-[270px] top-[289px] text-xl text-center text-black">
-                <span class="w-[141px] h-5 text-xl text-center text-black">스크랩 게시물</span><br />
-            </p>
-        <div class="w-[161px] h-11 absolute left-[492px] top-[276px] bg-[#d9d9d9]"></div>
-        <a href="${pageContext.request.contextPath}/adminMemberManage" class="w-[141px] h-5 absolute left-[503px] top-[289px] text-xl text-center text-black">
-            이두
-        </a>
-        <div class="w-[161px] h-11 absolute left-[725px] top-[276px] bg-[#d9d9d9]"></div>
-        <p class="w-[141px] h-5 absolute left-[736px] top-[289px] text-xl text-center text-black">
-            어깨
-        </p>
-        <div class="w-[161px] h-11 absolute left-[251px] top-[477px] bg-[#d9d9d9]"></div>
-        <p class="w-[141px] h-5 absolute left-[262px] top-[490px] text-xl text-center text-black">
-            삼두
-        </p>
-        <div class="w-[161px] h-11 absolute left-[494px] top-[477px] bg-[#d9d9d9]"></div>
-        <p class="w-[141px] h-5 absolute left-[505px] top-[490px] text-xl text-center text-black">
-            하체
-        </p>
-        <div class="w-[161px] h-11 absolute left-[733px] top-[477px] bg-[#d9d9d9]"></div>
-        <p class="w-[141px] h-5 absolute left-[744px] top-[490px] text-xl text-center text-black">
-            가슴
-        </p>
-    </div>
-    <div class="w-[161px] h-11 absolute left-[733px] top-[477px] bg-[#d9d9d9]"></div>
-        <p class="w-[141px] h-5 absolute left-[744px] top-[490px] text-xl text-center text-black">
-            등
-        </p>
-    </div>
-    <div class="w-[161px] h-11 absolute left-[733px] top-[477px] bg-[#d9d9d9]"></div>
-        <p class="w-[141px] h-5 absolute left-[744px] top-[490px] text-xl text-center text-black">
-            유산소
-        </p>
+    <div class="grid grid-cols-2 gap-4">
+        <div class="bg-[#d9d9d9] p-4 text-center text-xl text-black">
+            <a href="${pageContext.request.contextPath}/exercise/bodyPartList">
+                스크랩
+            </a>
+        </div>
+        <c:forEach items="${bodyParts}" var="bodypart" varStatus="vs">
+            <div class="bg-[#d9d9d9] p-4 text-center text-xl text-black">
+                <a href="${pageContext.request.contextPath}/exercise/bodyPartDetail?id=${bodypart}">
+                    ${bodypart}
+                </a>
+            </div>
+        </c:forEach>
     </div>
     </body>
 </html>
