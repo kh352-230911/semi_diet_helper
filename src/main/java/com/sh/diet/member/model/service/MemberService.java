@@ -100,11 +100,7 @@ public class MemberService {
         Member _member = memberDao.findPassword(session, member);
         session.close();
         return _member;
-<<<<<<< HEAD
-    }
 
-}
-=======
     }
 
 
@@ -122,4 +118,4 @@ public class MemberService {
         return member;
     }
 }
->>>>>>> 23e5ce70942108cf45db282c5425ccb506b69379
+
