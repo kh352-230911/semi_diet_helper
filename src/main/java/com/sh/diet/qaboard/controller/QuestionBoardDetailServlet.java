@@ -22,27 +22,22 @@ public class QuestionBoardDetailServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         try {
-//            String referer = req.getHeader("Referer");
-//            System.out.println("referer = " + referer);
 
-//            if(!referer.contains("/qaboard/questionBoardDetail"))
-//                req.getSession().setAttribute("next",referer);
-
-//            RequestDispatcher requestDispatcher = req.getRequestDispatcher("/WEB-INF/views/qaboard/questionBoardDetail.jsp");
-//            requestDispatcher.forward(req, resp);
             String qbNo = req.getParameter("qbNo");
-            System.out.println(qbNo + ": qbNo");
+//            String acNo = req.getParameter("acNo");
+//            System.out.println(qbNo + ": qbNo");
 
             QuestionBoardVo questionBoardVo = questionBoardService.findById(qbNo);
             List<AnswerBoardVo> answerBoardVo = questionBoardService.findByAnswerBoardqbNo(qbNo);
-//            List<AnswerBoard> answerBoard1 = questionBoardService.findByIdAnswer(qbNo);
+//            List<AnswerBoardVo> answerBoardVos = questionBoardService.findByAnswerBoardacNo(acNo);
             System.out.println(answerBoardVo);
             System.out.println(questionBoardVo);
 //            System.out.println(answerBoards);
             req.setAttribute("answerBoardvo",answerBoardVo);
             req.setAttribute("questionBoardvo",questionBoardVo);
+//            req.setAttribute("answerBoardvo",answerBoardVos);
             req.getSession().setAttribute("qbNo", qbNo);
-//            req.setAttribute("answerBoard",answerBoard1);
+//            req.getSession().setAttribute("acNo", acNo);
 
             req.getRequestDispatcher("/WEB-INF/views/qaboard/questionBoardDetail.jsp").forward(req, resp);
         } catch (Exception e) {

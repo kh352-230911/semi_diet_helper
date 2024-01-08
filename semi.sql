@@ -111,7 +111,7 @@ insert into semi.question_board(qb_no,member_no,title,content,reg_date,admin_cho
 --insert into semi.question_board(qb_no,member_no,title,content,reg_date,admin_choice) values(seq_qb_no.nextval,'43','그대를만나고~','매니악매니악매니악~',default, default);
 --insert into semi.question_board(qb_no,member_no,title,content,reg_date,admin_choice) values(seq_qb_no.nextval,'10','우우우','만남은쉽고~이별은어려워 ㅠ~',default, default);
 
-select * from question_board;
+select * from question_board; 
 
 
 -- DROP SEQUENCE seq_qb_no;
@@ -146,9 +146,9 @@ select * from answer_comment;
 select
         *
     from
-        answer_comment;
---    where
---        ac_no = 19;
+        answer_comment
+    where
+        qb_no = 'Q7';
 select * from member where member_id = 'user123';
 
 select
