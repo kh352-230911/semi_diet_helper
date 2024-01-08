@@ -99,17 +99,7 @@ public class MemberService {
         Member _member = memberDao.findPassword(session, member);
         session.close();
         return _member;
-
-
-
-
-
-
-
-
-
-
-
+    }
 
 
     public List<Member> findAll(Map<String, Object> param) {
