@@ -32,6 +32,6 @@ public class DeleteScrapExerciseServlet extends HttpServlet {
             req.getSession().setAttribute("msg", "스크랩을 해제하였습니다");
         }
 
-        resp.sendRedirect(req.getContextPath() + "/");
+        resp.sendRedirect(req.getContextPath() + "/exercise/myScrapPage");
     }
 }

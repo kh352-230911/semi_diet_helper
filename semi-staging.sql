@@ -205,7 +205,7 @@ insert into exercise_data
 values('E' || seq_ex_no.nextval, '달리기', 120, '유산소', 'https://youtu.be/Ggbm_coe5uM?si=0e7d2x6vkRQ3HHlE');
 
 insert into exercise_data 
-values('E' || seq_ex_no.nextval, '자유형', 86, '유산소', 'https://youtu.be/cT08mlPQo5E?si=nFhHaxDfhdnOpNnW');
+values('E' || seq_ex_no.nextval, '자유형', 86, '유산소', 'https://youtu.be/cT08mlPQo5E');
 
 
 insert into exercise_data 

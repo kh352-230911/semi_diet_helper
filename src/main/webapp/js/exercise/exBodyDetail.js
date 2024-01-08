@@ -8,7 +8,6 @@ const defaultText = () => {
     button.innerHTML = '스크랩 중'
 };
 
-const submitCheckbox = () => {
-    const form = document.getElementById("checkboxFrm");
-    form.submit();
-};
+function submitForm(){
+    document.getElementById("exerciseDeleteFrm").submit();
+}

@@ -29,6 +29,6 @@ public class AddScrapExerciseServlet extends HttpServlet {
         if(result > 0){
             req.getSession().setAttribute("msg", "스크랩을 완료하였습니다");
         }
-        resp.sendRedirect(req.getContextPath() + "/");
+        resp.sendRedirect(req.getContextPath() + "/exercise/myScrapPage");
     }
 }
