@@ -12,8 +12,8 @@
 .idea/**/dictionaries
 .idea/**/shelf
 
-datasource-local.properties
-datasource-staging.properties
+.datasource-local.properties
+.datasource-staging.properties
 
 
 # AWS User-specific

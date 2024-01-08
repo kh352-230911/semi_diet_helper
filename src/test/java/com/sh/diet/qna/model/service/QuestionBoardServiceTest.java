@@ -2,6 +2,7 @@ package com.sh.diet.qna.model.service;
 
 import com.sh.diet.qaboard.model.entity.QuestionBoard;
 import com.sh.diet.qaboard.model.service.QuestionBoardService;
+import com.sh.diet.qaboard.model.vo.QuestionBoardVo;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
@@ -26,25 +27,25 @@ public class QuestionBoardServiceTest {
         List<QuestionBoard> questionBoards = questionBoardService.findAll();
         assertThat(questionBoards)
                 .isNotNull()
-                .allSatisfy((questionBoard -> {
-                    assertThat(questionBoard.getMemberNo()).isNotNull();
-                    assertThat(questionBoard.getTitle()).isNotNull();
-                    assertThat(questionBoard.getContent()).isNotNull();
-                    assertThat(questionBoard.getRegDate()).isNotNull();
+                .allSatisfy((questionBoardVo -> {
+                    assertThat(questionBoardVo.getMemberNo()).isNotNull();
+                    assertThat(questionBoardVo.getTitle()).isNotNull();
+                    assertThat(questionBoardVo.getContent()).isNotNull();
+                    assertThat(questionBoardVo.getRegDate()).isNotNull();
                 }));
          System.out.println(questionBoards);
     }
     @DisplayName("존재하는 질답게시글 한 건 조회")
     @Test
     void test2(){
-        String qbNo = "3";
-        QuestionBoard questionBoard = questionBoardService.findById(qbNo);
-        assertThat(questionBoard).isNotNull();
-        assertThat(questionBoard.getMemberNo()).isNotNull();
-        assertThat(questionBoard.getTitle()).isNotNull();
-        assertThat(questionBoard.getContent()).isNotNull();
-        assertThat(questionBoard.getRegDate()).isNotNull();
-        System.out.println(questionBoard);
+        String qbNo = "Q7";
+        QuestionBoardVo questionBoardvo = questionBoardService.findById(qbNo);
+        assertThat(questionBoardvo).isNotNull();
+        assertThat(questionBoardvo.getMemberNo()).isNotNull();
+        assertThat(questionBoardvo.getTitle()).isNotNull();
+        assertThat(questionBoardvo.getContent()).isNotNull();
+        assertThat(questionBoardvo.getRegDate()).isNotNull();
+        System.out.println(questionBoardvo);
     }
     @DisplayName("존재하지 않는 질답게시글 한 건 조회")
     @Test
@@ -52,10 +53,10 @@ public class QuestionBoardServiceTest {
     QuestionBoard questionBoard = questionBoardService.findById("77");
     assertThat(questionBoard).isNull();
     }
-    @Disabled
+//    @Disabled
     @DisplayName("질답게시글 등록")
     @ParameterizedTest
-    @CsvSource({"2,예시,개발자할수있을까...?"})
+    @CsvSource({"M4,예시,개발자할수있을까...?"})
     void test4(String memberNo,String title, String content){
         assertThat(memberNo).isNotNull();
         assertThat(title).isNotNull();
@@ -73,39 +74,39 @@ public class QuestionBoardServiceTest {
     @Disabled
     @DisplayName("질답게시글 수정")
     @ParameterizedTest
-    @CsvSource({"2,수정했음22,내일 2024년!!!"})
+    @CsvSource({"M4,수정했음나나나,제발,,,,"})
     void test5(String memberNo,String title, String content){
-        String qbNo = "3";
-        QuestionBoard questionBoard = questionBoardService.findById(qbNo);
-        assertThat(questionBoard).isNotNull();
+        String qbNo = "Q36";
+        QuestionBoardVo questionBoardVo = questionBoardService.findById(qbNo);
+        assertThat(questionBoardVo).isNotNull();
 
-        questionBoard.setMemberNo(memberNo);
-        questionBoard.setTitle(title);
-        questionBoard.setContent(content);
+        questionBoardVo.setMemberNo(memberNo);
+        questionBoardVo.setTitle(title);
+        questionBoardVo.setContent(content);
 
-        int result = questionBoardService.updateQuestionBoard(questionBoard);
+        int result = questionBoardService.updateQuestionBoard(questionBoardVo);
         assertThat(result).isGreaterThan(0);
 
-        QuestionBoard questionBoard1 = questionBoardService.findById(questionBoard.getQbNo());
-        assertThat(questionBoard1).isNotNull();
-        assertThat(questionBoard1.getQbNo()).isEqualTo(qbNo);
-        assertThat(questionBoard1.getMemberNo()).isEqualTo(memberNo);
-        assertThat(questionBoard1.getTitle()).isEqualTo(title);
-        assertThat(questionBoard1.getContent()).isEqualTo(content);
+        QuestionBoardVo questionBoardVo1 = questionBoardService.findById(questionBoardVo.getQbNo());
+        assertThat(questionBoardVo1).isNotNull();
+        assertThat(questionBoardVo1.getQbNo()).isEqualTo(qbNo);
+        assertThat(questionBoardVo1.getMemberNo()).isEqualTo(memberNo);
+        assertThat(questionBoardVo1.getTitle()).isEqualTo(title);
+        assertThat(questionBoardVo1.getContent()).isEqualTo(content);
     }
     @Disabled
     @DisplayName("질답게시글 삭제")
     @Test
     void test6(){
-        String qbNo = "18";
-        QuestionBoard questionBoard = questionBoardService.findById(qbNo);
-        assertThat(questionBoard).isNotNull();
+        String qbNo = "Q37";
+        QuestionBoardVo questionBoardVo = questionBoardService.findById(qbNo);
+        assertThat(questionBoardVo).isNotNull();
 
         int result = questionBoardService.deleteQuestionBoard(qbNo);
         assertThat(result).isGreaterThan(0);
 
-        QuestionBoard questionBoard1 = questionBoardService.findById(qbNo);
-        assertThat(questionBoard1).isNull();
+        QuestionBoardVo questionBoardVo1 = questionBoardService.findById(qbNo);
+        assertThat(questionBoardVo1).isNull();
     }
     @DisplayName("전체 질답게시글수 조회")
     @Test
