@@ -3,8 +3,8 @@ package com.sh.diet.qaboard.model.vo;
 import com.sh.diet.member.model.entity.Member;
 import com.sh.diet.qaboard.model.entity.QuestionBoard;
 
-public class QuestionBoardVo extends QuestionBoard{
-private Member member;
+public class QuestionBoardVo extends QuestionBoard {
+    private Member member;
 
     public Member getMember() {
         return member;

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="foodData">
+
+    <select id="findFoodDataByName" resultType="foodData">
+        select
+            *
+        from
+            food_data
+        where
+            name LIKE '%' || #{foodName} || '%'
+    </select>
+
+</mapper>

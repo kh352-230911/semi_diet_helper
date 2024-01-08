@@ -141,4 +141,25 @@
             birthday = #{birthDay} and
             answer = #{answer}
     </select>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <!--<delete id="deleteMember">-->
+    <!--    delete from-->
+    <!--        member-->
+    <!--    where-->
+    <!--        member_id = #{id}-->
+    <!--</delete>-->
 </mapper>

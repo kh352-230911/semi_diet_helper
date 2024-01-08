@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="exerciseData">
+    
+    <select id="findAll" resultType="exerciseData">
+        select
+            *
+        from
+            exercise_data
+    </select>
+
+    <insert id="insertDailyExercise">
+        insert into
+            daily_ex
+        values
+            (
+                'DE' || seq_de_no.nextval,
+                #{exId},
+                #{dailyNo},
+                #{exSets}
+            )
+    </insert>
+
+    <select id="findByName" resultType="exerciseData">
+        select
+            *
+        from
+            exercise_data
+        where
+            ex_name LIKE '%' || #{exName} || '%'
+    </select>
+
+
+    <select id="findDailyExerciseByDailyNo" resultType="exerciseData">
+        select
+            *
+        from
+            exercise_data
+        where
+            de_no = #{dailyNo}
+    </select>
+
+    <select id="findByExNo" resultType="exerciseData">
+        select
+            *
+        from
+            exercise_data
+        where
+            ex_no = #{exNo}
+    </select>
+
+    <insert id="insertExerciseData">
+        insert into
+        exercise_data
+        values(
+        'E'||seq_ex_no.nextval,
+        #{exName},
+        #{kcal},
+        #{bodyPart},
+        #{exUrl}
+        )
+        <selectKey order="AFTER" resultType="String" keyProperty="exNo">
+            select
+            'E'||seq_ex_no.currval
+            from
+            dual
+        </selectKey>
+    </insert>
+
+    <select id="findByBodyPart" resultType="exerciseData">
+        select
+            *
+        from
+            exercise_data
+        where
+            body_part = #{bodyPart}
+        order by
+            ex_no desc
+    </select>
+
+    <select id="findBodyParts" resultType="String">
+        select distinct
+            body_part
+        from
+            exercise_data
+        order by
+            body_part
+    </select>
+
+    <select id="getTotalCount" resultType="_int">
+        select
+            count(*)
+        from
+            exercise_data
+    </select>
+
+
+</mapper>

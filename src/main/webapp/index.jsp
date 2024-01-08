@@ -22,6 +22,10 @@
         <p>다이어트에 성공한 이들의 경험과 스토리를 공유합니다.</p>
     </section>
 </main>
+
+
+<a href="${pageContext.request.contextPath}/daily/dailyRecode">일일 기록폼 페이지 이동</a>
+
 </body>
 </html>
 <jsp:include page="/WEB-INF/views/common/footer.jsp"/>

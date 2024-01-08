@@ -111,9 +111,10 @@ create table answer_comment (
     constraints ck_choice check (choice in (1,0)),
     constraints fk_ansewer_member_no foreign key (member_no) references member(member_no) on delete set null,
     constraints fk_answer_qb_no foreign key (qb_no) references question_board(qb_no) on delete cascade
-);sp
+);
 create sequence seq_ac_no;
 
+select * from daily_recode;
 --일일기록 테이블 DR
 create table daily_recode (
     daily_no varchar2(10) not null,
