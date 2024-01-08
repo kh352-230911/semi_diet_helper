@@ -19,6 +19,7 @@ public class MemberService {
         return member;
 
     }
+
     public List<Member> findAll() {
         SqlSession session = getSqlSession();
         List<Member> members = memberDao.findAll(session);
@@ -39,7 +40,7 @@ public class MemberService {
         try {
             result = memberDao.insertMember(session, member);
             session.commit();
-        } catch (Exception e){
+        } catch (Exception e) {
             session.rollback();
             throw e;
         } finally {
@@ -99,23 +100,6 @@ public class MemberService {
         Member _member = memberDao.findPassword(session, member);
         session.close();
         return _member;
-
-
-
-
-
-
-
-
-
-
-
-
-
-    public List<Member> findAll(Map<String, Object> param) {
-        SqlSession session = getSqlSession();
-        List<Member> members = memberDao.findAll(session, param);
-        session.close();
-        return members;
     }
+
 }
