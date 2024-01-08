@@ -112,4 +112,11 @@ public class MemberService {
         session.close();
         return members;
     }
+
+    public Member findByMemberNo(String memberNo) {
+        SqlSession session = getSqlSession();
+        Member member = memberDao.findByMemberNo(session, memberNo);
+        session.close();
+        return member;
+    }
 }

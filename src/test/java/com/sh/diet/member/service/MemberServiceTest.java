@@ -157,6 +157,15 @@ public class MemberServiceTest {
         assertThat(member2.getRole().name()).isEqualTo(newRole.name());
     }
 
+    @DisplayName("memberNo로 멤버 조회")
+    @Test
+    public void test11() {
+        String memberNo = "M0";
+        Member member = memberService.findByMemberNo(memberNo);
+        assertThat(member)
+                .isNotNull();
+        assertThat(member.getMemberNo()).isEqualTo(memberNo);
 
 
+    }
 }

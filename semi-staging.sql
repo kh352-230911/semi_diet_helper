@@ -241,13 +241,30 @@ from
             on ed.ex_no = se.ex_no;
 
 select
-    *
+    se.*
 from
     exercise_data ed
         left join  scrap_exercise se
              on ed.ex_no = se.ex_no
 where
-    ed.ex_no = 'E44';
+    ed.ex_no = 'E44'
+    and
+    se.member_no = 'M4';
+
+select * from scrap_exercise where ex_no = 'E2';
+select * from scrap_exercise where member_no = 'M0';
+
+ select
+            ed.*,
+            se.member_no
+        from
+            exercise_data ed
+                left join  scrap_exercise se
+                           on ed.ex_no = se.ex_no
+        where
+            ed.ex_no= 'E2'
+          and
+            se.member_no = 'M4';
         
 
 
