@@ -15,5 +15,6 @@ public class MemberDetailServlet extends HttpServlet {
 
         req.getRequestDispatcher("/WEB-INF/views/member/memberDetail.jsp")
                 .forward(req, resp);
+
     }
 }

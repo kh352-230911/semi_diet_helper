@@ -52,4 +52,8 @@ public class MemberDao {
     public Member findPassword(SqlSession session, Member member) {
         return session.selectOne("member.findPassword", member);
     }
+
+    public int updateIncreaseOnePointToMember(SqlSession session, String memberNo) {
+        return session.update("member.updateIncreaseOnePointToMember", memberNo);
+    }
 }

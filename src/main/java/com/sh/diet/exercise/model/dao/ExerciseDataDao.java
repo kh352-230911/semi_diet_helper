@@ -17,6 +17,7 @@ public class ExerciseDataDao {
     }
 
     public int insertDailyExercise(SqlSession session, DailyEx dailyEx) {
+        System.out.println("exerciseData의 Dao" );
         return session.insert("exerciseData.insertDailyExercise", dailyEx);
     }
 
