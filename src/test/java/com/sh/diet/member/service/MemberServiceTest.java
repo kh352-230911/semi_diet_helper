@@ -26,6 +26,7 @@ public class MemberServiceTest {
     public void test2() {
         String memberId = "honggd";
         Member member = memberService.findById(memberId);
+        System.out.println(member);
         // 객체
         assertThat(member).isNotNull();
         // 필드
@@ -157,6 +158,15 @@ public class MemberServiceTest {
         assertThat(member2.getRole().name()).isEqualTo(newRole.name());
     }
 
+    @DisplayName("memberNo로 멤버 조회")
+    @Test
+    public void test11() {
+        String memberNo = "M0";
+        Member member = memberService.findByMemberNo(memberNo);
+        assertThat(member)
+                .isNotNull();
+        assertThat(member.getMemberNo()).isEqualTo(memberNo);
 
 
+    }
 }

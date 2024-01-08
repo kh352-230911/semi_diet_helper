@@ -9,11 +9,14 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.ValueSource;
 
+import java.sql.Array;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Stream;
 
 import static com.sh.diet.common.SqlSessionTemplate.getSqlSession;
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.shouldHaveThrown;
 
 
 public class ExerciseDataDaoTest {
@@ -125,8 +128,13 @@ public class ExerciseDataDaoTest {
 
     }
 
-    @DisplayName("특정 운동들을 즐겨찾기에 추가하기")
-
+    @DisplayName("운동 카테고리를 중복 없이 모아보기")
+    @Test
+    void test8() {
+        List<String> bodyparts;
+        bodyparts = exerciseDataDao.findBodyParts(session);
+        System.out.println(bodyparts);
+    }
 
 
 

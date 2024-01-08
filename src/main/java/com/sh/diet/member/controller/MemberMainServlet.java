@@ -62,10 +62,6 @@ public class MemberMainServlet extends HttpServlet {
             // 오늘 하루의 총 섭취 칼로리
 //            totalGainKcal = dailyFoods.get(i).getExSets() * Integer.parseInt(consumes.get(i));
         }
-        
-        
-
-
 
         System.out.println("MemberMainServlet의 doGet 실행");
         
@@ -73,13 +69,12 @@ public class MemberMainServlet extends HttpServlet {
         List<HandMadeCalendar> handMadeCalendarList = new ArrayList<HandMadeCalendar>();
 
         String changeMonth = req.getParameter("changeMonth");
-        System.out.println("changeMonth: " + changeMonth);
 
         int wantMonth = 0;
 
-            wantMonth = LocalDate.now().getMonth().getValue();
-            System.out.println("null일 떄,wantMonth:" + wantMonth);
-            System.out.println("changeMonth:" + changeMonth);
+        wantMonth = LocalDate.now().getMonth().getValue();
+        System.out.println("null일 떄,wantMonth:" + wantMonth);
+        System.out.println("changeMonth:" + changeMonth);
 
         System.out.println("changeMonth: " + changeMonth);
         // 원하는 달을 나타내는 변수
@@ -160,8 +155,14 @@ public class MemberMainServlet extends HttpServlet {
         }
 
         System.out.println(handMadeCalendarList);
+
         req.setAttribute("handMadeCalendarList", handMadeCalendarList);
         req.setAttribute("currentDayOfMonthInJspTitle", HandMadeCalendar.currentDayOfMonthInJspTitle);
+        req.setAttribute("totalConsumeKcal", totalConsumeKcal);
+        req.setAttribute("totalGainKcal", totalGainKcal);
+
+//        new DailyService().findAllDailyRecode();
+
         System.out.println("forward수행 전 !");
         req.getRequestDispatcher("/WEB-INF/views/member/memberMain.jsp").forward(req, resp);
 

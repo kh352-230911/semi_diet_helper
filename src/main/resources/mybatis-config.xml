@@ -51,11 +51,14 @@
     </environments>
 
     <mappers>
+
         <mapper resource="mapper/member/member-mapper.xml"/>
-        <mapper resource="mapper/qnaBoard/qaBoard-mapper.xml"/>
+        <mapper resource="mapper/qaBoard/qaBoard-mapper.xml"/>
+        <mapper resource="mapper/member/member-mapper.xml"/>
         <mapper resource="mapper/daily/daily-mapper.xml"/>
         <mapper resource="mapper/exercise/exerciseData-mapper.xml"/>
         <mapper resource="mapper/food/foodData-mapper.xml"/>
         <mapper resource="mapper/pointcount/pointCount-mapper.xml"/>
+        <mapper resource="mapper/exercise/scrapExercise-mapper.xml"/>
     </mappers>
 </configuration>

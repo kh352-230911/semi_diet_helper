@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="qaBoard">
+    <resultMap id="questionBoardVoMap" type="questionBoardVo">
+        <id column="qb_no" property="qbNo"/>
+        <result column="member_no" property="memberNo"/>
+        <result column="title" property="title"/>
+        <result column="content" property="content"/>
+        <result column="reg_date" property="regDate"/>
+        <result column="admin_choice" property="adminChoice"/>
+        <association property="member" javaType="member">
+            <id column="member_no" property="memberNo"/>
+            <result column="member_id" property="memberId"/>
+            <result column="name" property="name"/>
+        </association>
+    </resultMap>
+    <select id="findAllpage" resultMap="questionBoardVoMap">
+        select
+            q.*, m.member_id, m.name
+        from
+            question_board q left join member m
+                on q.member_no = m.member_no
+        <if test="searchType != null and searchType != '' and searchKeyword != null and searchKeyword != ''">
+            where
+            ${searchType} like '%' || #{searchKeyword} || '%'
+        </if>
+        order by
+        q.reg_date desc
+    </select>
+
+    <select id="findById" resultMap="questionBoardVoMap">
+        select
+        q.*, m.*
+        from
+        question_board q left join member m
+        on q.member_no = m.member_no
+        where
+        qb_no = #{qbNo}
+    </select>
+    <insert id="insertQuestionBoard">
+    insert into
+        question_board
+        values(
+        'Q' || seq_qb_no.nextval,
+            #{memberNo},
+            #{title},
+            #{content},
+            default, default)
+    </insert>
+    <update id="updateQuestionBoard">
+        update
+        question_board
+        set
+        member_no = #{memberNo},
+        title = #{title},
+        content = #{content}
+        where
+        qb_no = #{qbNo}
+    </update>
+    <delete id="deleteQuestionBoard">
+        delete
+        from
+        question_board
+        where
+        qb_no = #{qbNo}
+    </delete>
+    <select id="getTotalCount" resultType="_int">
+        select
+        count(*)
+        from
+        question_board
+        <where>
+            <if test="searchType != null and searchType != '' and searchKeyword != null and searchKeyword != ''">
+                ${searchType} like '%' || #{searchKeyword} || '%'
+            </if>
+        </where>
+    </select>
+    <resultMap id="answerBoardVoMap" type="answerBoardVo">
+        <id column="ac_no" property="acNo"/>
+        <result column="member_no" property="memberNo"/>
+        <result column="qb_no" property="qbNo"/>
+        <result column="title" property="title"/>
+        <result column="content" property="content"/>
+        <result column="choice" property="choice"/>
+        <result column="like_count" property="likeCount"/>
+        <result column="reg_date" property="regDate"/>
+        <association property="member" javaType="member">
+            <id column="member_no" property="memberNo"/>
+            <result column="member_id" property="memberId"/>
+            <result column="name" property="name"/>
+        </association>
+    </resultMap>
+    <select id="findByAnswerBoardqbNo" resultMap="answerBoardVoMap">
+        select
+        a.*, m.member_id, m.name
+        from
+        answer_comment a left join member m
+        on a.member_no = m.member_no
+        where
+        qb_no = #{qbNo}
+    </select>
+<!--    <select id="findByAnswerBoardacNo" resultMap="answerBoardVoMap">-->
+<!--        select-->
+<!--        a.*, m.member_id, m.name-->
+<!--        from-->
+<!--        answer_comment a left join member m-->
+<!--        on a.member_no = m.member_no-->
+<!--        where-->
+<!--        ac_no = #{acNo}-->
+<!--    </select>-->
+    <insert id="insertAnswerBoard">
+        insert into
+        answer_comment
+        values(
+        'A' || seq_ac_no.nextval,
+        #{memberNo},
+        #{qbNo},
+        #{title},
+        #{content},
+        default, default, default)
+    </insert>
+<!--    <select id="findByIdAnswer" resultType="answerBoard">-->
+<!--        select-->
+<!--        *-->
+<!--        from-->
+<!--        answer_comment-->
+<!--        where-->
+<!--        qb_no = #{qbNo}-->
+
+<!--    </select>-->
+    <update id="updateAnswerBoard">
+        update
+        answer_comment
+        set
+        member_no = #{memberNo},
+        title = #{title},
+        content = #{content}
+        where
+        qb_no = #{qbNo} and ac_no = #{acNo}
+<!--        ac_no = #{acNo}-->
+    </update>
+
+    <delete id="deleteAnswerBoard">
+        delete
+        from
+        answer_comment
+        where
+        ac_no = #{acNo}
+    </delete>
+<!--    <select id="searchList" resultType="qaBoard">-->
+<!--        select-->
+<!--        *-->
+<!--        from-->
+<!--        question_board-->
+<!--        where-->
+<!--        ${searchType} like '%' || #{searchKeyword} || '%'-->
+<!--    </select>-->
+
+</mapper>

@@ -43,7 +43,14 @@ public class MemberDao {
 
         int offset = (page - 1) * limit;
         RowBounds rowBounds = new RowBounds(offset, limit);
-        return session.selectList("member.findAllPage", param, rowBounds);
+        return session.selectList("member.findAll", param, rowBounds);
+    }
+
+    public Member findByMemberNo(SqlSession session, String memberNo) {
+        return session.selectOne("member.findByMemberNo", memberNo);
+    }
+    public Member findPassword(SqlSession session, Member member) {
+        return session.selectOne("member.findPassword", member);
     }
 
     public int updateIncreaseOnePointToMember(SqlSession session, String memberNo) {

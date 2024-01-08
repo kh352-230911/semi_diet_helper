@@ -34,6 +34,8 @@ public class UpdatePasswordServlet extends HttpServlet {
 	 * 비밀번호 변경처리
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		String findPassword = (String)request.getAttribute("findPassword");
+		System.out.println(findPassword + "findPassword");
 		HttpSession session = request.getSession();
 		Member loginMember = (Member) session.getAttribute("loginMember");
 		String memberId = loginMember.getMemberId();
