@@ -34,4 +34,12 @@ public class ExerciseDataDao {
     public List<ExerciseData> findByBodyPart(SqlSession session, String bodyPart) {
         return session.selectList("exerciseData.findByBodyPart", bodyPart);
     }
+
+    public List<String> findBodyParts(SqlSession session) {
+        return session.selectList("exerciseData.findBodyParts");
+    }
+
+    public int getTotalCount(SqlSession session) {
+        return session.selectOne("exerciseData.getTotalCount");
+    }
 }

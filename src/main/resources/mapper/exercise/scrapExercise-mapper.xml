@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="scrap">
+    <select id="findAll" resultType="scrapexercise">
+        select
+            *
+        from
+            scrap_exercise
+    </select>
+
+    <select id="findByExScrapNo" resultType="scrapexercise">
+        select
+            *
+        from
+            scrap_exercise
+        where
+            ex_scrap_no = #{exScrapNo}
+    </select>
+
+    <select id="findExScrapByMemberNo" resultType="scrapexercise">
+        select
+            *
+        from
+            scrap_exercise
+        where
+            member_no = #{memberNo}
+    </select>
+
+    <insert id="insertScrapExercise">
+        insert into
+            scrap_exercise
+        values (
+            'SE'||seq_scrap_ex_no.nextval,
+            #{memberNo},
+            #{exNo}
+        )
+        <selectKey order="AFTER" resultType="String" keyProperty="exScrapNo">
+            select
+                'SE'||seq_scrap_ex_no.currval
+            from
+                dual
+        </selectKey>
+    </insert>
+
+    <delete id="deleteScrapExercise">
+        delete from
+            scrap_exercise
+        where
+            ex_scrap_no = #{exScrapNo}
+    </delete>
+
+
+</mapper>
