@@ -85,4 +85,34 @@ public class ExerciseDataService{
         session.close();
         return exerciseData;
     }
+
+    public int deleteExerciseData(String exNo) {
+        int result=0;
+        SqlSession session = getSqlSession();
+        try {
+            result = exerciseDataDao.deleteExerciseData(session, exNo);
+            session.commit();
+        } catch (Exception e) {
+            session.rollback();
+            throw e;
+        } finally {
+            session.close();
+        }
+        return result;
+    }
+
+    public int insertExerciseData(ExerciseData exerciseData) {
+        int result = 0;
+        SqlSession session = getSqlSession();
+        try {
+            result = exerciseDataDao.insertExerciseData(session,exerciseData);
+            session.commit();
+        } catch (Exception e) {
+            session.rollback();
+            throw e;
+        } finally {
+            session.close();
+        }
+        return result;
+    }
 }

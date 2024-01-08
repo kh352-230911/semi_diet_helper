@@ -47,4 +47,8 @@ public class ExerciseDataDao {
     public ExerciseDataVo checkScrapExbyMemberNo(SqlSession session, ExerciseDataVo exDataVo) {
         return session.selectOne("exerciseData.checkScrapExbyMemberNo",exDataVo);
     }
+
+    public int deleteExerciseData(SqlSession session, String exNo) {
+        return session.delete("exerciseData.deleteExerciseData", exNo);
+    }
 }
