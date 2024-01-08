@@ -45,4 +45,9 @@ public class MemberDao {
         RowBounds rowBounds = new RowBounds(offset, limit);
         return session.selectList("member.findAll", param, rowBounds);
     }
+
+
+    public Member findPassword(SqlSession session, Member member) {
+        return session.selectOne("member.findPassword", member);
+    }
 }
