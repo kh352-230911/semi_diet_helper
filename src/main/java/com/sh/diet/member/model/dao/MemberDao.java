@@ -46,9 +46,9 @@ public class MemberDao {
         return session.selectList("member.findAll", param, rowBounds);
     }
 
-    
-
-
+    public Member findByMemberNo(SqlSession session, String memberNo) {
+        return session.selectOne("member.findByMemberNo", memberNo);
+    }
     public Member findPassword(SqlSession session, Member member) {
         return session.selectOne("member.findPassword", member);
     }
