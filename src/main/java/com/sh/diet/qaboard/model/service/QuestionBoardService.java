@@ -20,18 +20,20 @@ public class QuestionBoardService {
         session.close();
         return questionBoards;
     }
+
     public List<AnswerBoardVo> findByAnswerBoardqbNo(String qbNo){
         SqlSession session = getSqlSession();
         List<AnswerBoardVo> answerBoardVo = questionBoardDao.findByAnswerBoardqbNo(session, qbNo);
         session.close();
         return answerBoardVo;
     }
-//    public List<AnswerBoard> findByIdAnswer(String qbNo){
+//    public List<AnswerBoardVo> findByAnswerBoardacNo(String acNo){
 //        SqlSession session = getSqlSession();
-//        List<AnswerBoard> answerBoard1 = questionBoardDao.findByIdAnswer(session, qbNo);
+//        List<AnswerBoardVo> answerBoardVo = questionBoardDao.findByAnswerBoardacNo(session, acNo);
 //        session.close();
-//        return answerBoard1;
+//        return answerBoardVo;
 //    }
+
     public QuestionBoardVo findById(String qbNo) {
         SqlSession session = getSqlSession();
         QuestionBoardVo questionBoardVo = questionBoardDao.findById(session, qbNo);
@@ -124,13 +126,13 @@ public class QuestionBoardService {
         }
         return result;
     }
-
-    public int getTotalCount() {
-        SqlSession session = getSqlSession();
-        int totalCount = questionBoardDao.getTotalCount(session);
-        session.close();
-        return totalCount;
-    }
+//
+    public int getTotalCount(Map<String, Object> param) {
+    SqlSession session = getSqlSession();
+    int totalCount = questionBoardDao.getTotalCount(session, param);
+    session.close();
+    return totalCount;
+}
 
     public List<QuestionBoardVo> findAll(Map<String, Object> param) {
         SqlSession session = getSqlSession();
@@ -138,5 +140,14 @@ public class QuestionBoardService {
         session.close();
         return questionBoardvos;
     }
+
+//    public List<QuestionBoardVo> searchList(Map<String, Object> param) {
+//        SqlSession session = getSqlSession();
+//        List<QuestionBoardVo> questionBoardVos = questionBoardDao.searchList(session, param);
+//        session.close();
+//        return questionBoardVos;
+//
+//    }
 }
+
 

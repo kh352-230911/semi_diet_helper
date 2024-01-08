@@ -25,7 +25,6 @@
 
 
 <a href="${pageContext.request.contextPath}/daily/dailyRecode">일일 기록폼 페이지 이동</a>
-
 </body>
 </html>
 <jsp:include page="/WEB-INF/views/common/footer.jsp"/>
