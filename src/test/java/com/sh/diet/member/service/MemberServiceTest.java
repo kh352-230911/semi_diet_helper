@@ -26,6 +26,7 @@ public class MemberServiceTest {
     public void test2() {
         String memberId = "honggd";
         Member member = memberService.findById(memberId);
+        System.out.println(member);
         // 객체
         assertThat(member).isNotNull();
         // 필드

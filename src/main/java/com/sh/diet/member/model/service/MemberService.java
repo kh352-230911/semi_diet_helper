@@ -94,6 +94,12 @@ public class MemberService {
     }
 
 
+    public Member findPassword(Member member) {
+        SqlSession session = getSqlSession();
+        Member _member = memberDao.findPassword(session, member);
+        session.close();
+        return _member;
+
 
 
 
