@@ -105,4 +105,28 @@ public class MemberService {
         session.close();
         return members;
     }
+
+
+    public int updateIncreaseOnePointToMember(String memberNo) {
+        SqlSession session = getSqlSession();
+        int result = 0;
+        try {
+            result = memberDao.updateIncreaseOnePointToMember(session, memberNo);
+            session.commit();
+        } catch (Exception e) {
+            session.rollback();
+            throw e;
+        } finally {
+            session.close();
+        }
+        return result;
+    }
+
+    public Member findByMemberNo(String memberNo) {
+        SqlSession session = getSqlSession();
+        Member member = memberDao.findByMemberNo(session, memberNo);
+        session.close();
+        return member;
+
+    }
 }

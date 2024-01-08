@@ -162,4 +162,14 @@
     <!--    where-->
     <!--        member_id = #{id}-->
     <!--</delete>-->
+
+    <update id="updateIncreaseOnePointToMember">
+        update
+        member
+        set
+        point = point + 1
+        where
+        member_no = #{memberNo}
+    </update>
+
 </mapper>
