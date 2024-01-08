@@ -96,6 +96,13 @@
             exercise_data
     </select>
 
+    <delete id="deleteExerciseData">
+        delete from
+            exercise_data
+        where
+            ex_no = #{exNo}
+    </delete>
+
     <select id="checkScrapExbyMemberNo" resultMap="exerciseDataVoMap">
         select
             ed.*,
