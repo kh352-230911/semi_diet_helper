@@ -100,19 +100,4 @@ public class ScrapExerciseServiceTest {
         assertThat(scrapExercises).isNotNull();
         System.out.println(scrapExercises);
     }
-
-    @DisplayName("스크랩 체크하기 ")
-    @Test
-    void test6(){
-        String memberNo = "M0";
-        String exNo = "E44";
-
-        ScrapExercise scrapExercise = new ScrapExercise();
-        ScrapExercise _scrapExercise = new ScrapExercise();
-
-        scrapExercise.setMemberNo(memberNo);
-        scrapExercise.setExNo(exNo);
-        _scrapExercise = scrapExerciseService.findByScrapChecker(scrapExercise);
-        System.out.println(_scrapExercise);
-    }
 }

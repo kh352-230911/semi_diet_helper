@@ -40,7 +40,7 @@ public class AnswerBoardDaoTest {
     @Test
     void test2() {
         String qbNo = "Q7";
-        List<AnswerBoardVo> answerBoardVo = questionBoardDao.findByAnswerBoardqbNo(session, qbNo);
+       List<AnswerBoardVo> answerBoardVo = questionBoardDao.findByAnswerBoardqbNo(session, qbNo);
         System.out.println(answerBoardVo);
 //        assertThat(answerBoard).isNotNull();
 //            assertThat(answerBoard.getMemberNo()).isNotNull();
@@ -106,18 +106,17 @@ public class AnswerBoardDaoTest {
 //    @DisplayName("답글 삭제")
 //    @Test
 //    void test5(){
-//        String qbNo = "Q5";
-//        String acNo = "A5";
-//        List<AnswerBoardVo> answerBoardVo = questionBoardDao.findByAnswerBoardacNo(session, acNo);
-//        assertThat(answerBoardVo).isNotNull();
+//        String acNo = "Q8";
+//        List<AnswerBoard> answerBoard1 = questionBoardDao.findByIdAnswer(session, qbNo);
+//        assertThat(answerBoard).isNotNull();
 //
-//        int result = questionBoardDao.deleteAnswerBoard(session,qbNo);
+//        int result = questionBoardDao.deleteAnswerBoard(session,acNo);
 //        assertThat(result).isGreaterThan(0);
 //
-//        List<AnswerBoardVo> answerBoardVo1 = questionBoardDao.findByAnswerBoardacNo(session,acNo);
-//        assertThat(answerBoardVo1).isNull();
+//        AnswerBoard answerBoard1 = questionBoardDao.findByIdAnswer(session,acNo);
+//        assertThat(answerBoard1).isNull();
 //
-//        System.out.println(answerBoardVo1);
+//        System.out.println(answerBoard);
 //    }
 //}
 

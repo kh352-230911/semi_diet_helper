@@ -96,39 +96,5 @@
             exercise_data
     </select>
 
-    <delete id="deleteExerciseData">
-        delete from
-            exercise_data
-        where
-            ex_no = #{exNo}
-    </delete>
-
-    <select id="checkScrapExbyMemberNo" resultMap="exerciseDataVoMap">
-        select
-            ed.*,
-            se.member_no
-        from
-            exercise_data ed
-                left join  scrap_exercise se
-                           on ed.ex_no = se.ex_no
-        where
-            ed.ex_no = #{exNo}
-          and
-            se.member_no = #{member.memberNo}
-    </select>
-
-    <resultMap id="exerciseDataVoMap" type="exerciseDataVo">
-        <id column="ex_no" property="exNo"/>
-            <result column="ex_name" property="exName"/>
-            <result column="kcal" property="kcal"/>
-            <result column="body_part" property="bodyPart"/>
-            <result column="ex_url" property="exUrl"/>
-        <collection property="scrapExercise" javaType="scrapexercise">
-            <id column="ex_scrap_no" property="exScrapNo"/>
-            <result column="member_no" property="memberNo"/>
-            <result column="ex_no" property="exNo"/>
-        </collection>
-    </resultMap>
-
 
 </mapper>

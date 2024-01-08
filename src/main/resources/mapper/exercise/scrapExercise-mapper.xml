@@ -51,16 +51,5 @@
             ex_scrap_no = #{exScrapNo}
     </delete>
 
-    <select id="findByScrapChecker" resultType="scrapexercise">
-        select
-            *
-        from
-            scrap_exercise
-        where
-            ex_no = #{exNo}
-        and
-            member_no = #{memberNo}
-    </select>
-
 
 </mapper>

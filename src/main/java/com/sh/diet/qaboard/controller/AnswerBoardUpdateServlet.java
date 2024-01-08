@@ -28,7 +28,7 @@ AnswerBoardUpdateServlet extends HttpServlet {
         System.out.println(qbNo + " : 가져온 qbNo ANSWERBOARDUPDATESERVLET");
 
         //
-        req.setAttribute("qbNo", qbNo);
+        req.setAttribute("qbNo", qbNo); //*****************
         req.getRequestDispatcher("/WEB-INF/views/qaboard/answerBoardUpdate.jsp").forward (req, resp);
     }
 

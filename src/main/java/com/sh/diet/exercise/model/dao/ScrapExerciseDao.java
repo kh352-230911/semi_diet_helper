@@ -25,8 +25,4 @@ public class ScrapExerciseDao {
     public List<ScrapExercise> findExScrapByMemberNo(SqlSession session, String memberNo) {
         return session.selectList("scrap.findExScrapByMemberNo", memberNo);
     }
-
-    public ScrapExercise findByScrapChecker(SqlSession session, ScrapExercise scrapExercise) {
-        return session.selectOne("scrap.findByScrapChecker", scrapExercise);
-    }
 }

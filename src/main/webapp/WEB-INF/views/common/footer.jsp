@@ -3,6 +3,8 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 
+<body style="background-color: white" class="body1">
+
 <div class="main"></div>
 <div class="footer">
     <div class="bubbles">
@@ -135,15 +137,25 @@
         <div class="bubble" style="--size:5.093995545172379rem; --distance:8.610927502340367rem; --position:19.12400464290711%; --time:3.2372703565175205s; --delay:-2.740882389884694s;"></div>
         <div class="bubble" style="--size:5.902098762222744rem; --distance:9.538315424909072rem; --position:58.25146780737456%; --time:2.092128152541419s; --delay:-2.4936117304612084s;"></div>
     </div>
-    <div class="content" style="width: 4000px">
+    <div class="content">
         <div>
-            <div><b>한준희</b><a href="#">역할예시</a></div>
-            <div><b>김명준</b><a href="#">역할예시</a></div>
-            <div><b>한승훈</b><a href="#">역할예시</a></div>
-            <div><b>한보경</b><a href="#">역할예시</a></div>
+            <div><b>한준희</b><a href="#">코딩</a></div>
+            <div><b>김명준</b><a href="#">코딩</a></div>
+            <div><b>한승훈</b><a href="#">코딩</a></div>
+            <div><b>한보경</b><a href="#">코딩</a></div>
         </div>
+
     </div>
 </div>
-
-
+<svg style="position:fixed; top:100vh">
+    <defs>
+        <filter id="blob">
+            <feGaussianBlur in="SourceGraphic" stdDeviation="10" result="blur"></feGaussianBlur>
+            <feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 19 -9" result="blob"></feColorMatrix>
+            <!--feComposite(in="SourceGraphic" in2="blob" operator="atop") //After reviewing this after years I can't remember why I added this but it isn't necessary for the blob effect-->
+        </filter>
+    </defs>
+</svg>
+</body>
+</html>
 

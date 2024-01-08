@@ -64,12 +64,4 @@ public class ScrapExerciseService {
         session.close();
         return scrapExercises;
     }
-
-    public ScrapExercise findByScrapChecker(ScrapExercise scrapExercise) {
-        SqlSession session = getSqlSession();
-        ScrapExercise _scrapExercise = scrapExerciseDao.findByScrapChecker(session, scrapExercise);
-        session.close();
-        return _scrapExercise;
-
-    }
 }

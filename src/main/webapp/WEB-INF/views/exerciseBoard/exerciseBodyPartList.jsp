@@ -13,7 +13,7 @@
                 -moz-osx-font-smoothing: grayscale;">
     <div class="grid grid-cols-2 gap-4">
         <div class="bg-[#d9d9d9] p-4 text-center text-xl text-black">
-            <a href="${pageContext.request.contextPath}/exercise/myScrapPage">
+            <a href="${pageContext.request.contextPath}/exercise/bodyPartList">
                 스크랩
             </a>
         </div>

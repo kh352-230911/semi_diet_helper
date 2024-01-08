@@ -145,14 +145,7 @@
 
 
 
-    <select id="findByMemberNo" resultType="member">
-        select
-            *
-        from
-            member
-        where
-            member_no = #{memberNo}
-    </select>
+
 
 
 

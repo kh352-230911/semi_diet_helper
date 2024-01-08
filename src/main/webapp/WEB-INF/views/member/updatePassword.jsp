@@ -6,33 +6,65 @@
       <h1 class="mb-6 text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl">
         비밀번호 변경
       </h1>
-      <form name="memberPasswordUpdateFrm" class="space-y-6" method="POST">
-        <div>
-          <label for="oldPassword" class="block text-sm font-medium leading-6 text-gray-900">현재 비밀번호</label>
-          <div class="mt-2">
-            <input id="oldPassword" name="oldPassword" type="password"  required class="px-4 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
-          </div>
+      <form
+              class="max-w-md mx-auto"
+              name="memberPasswordUpdateFrm"
+              class="space-y-6"
+              method="POST"
+      >
+        <div class="relative z-0 w-full mb-8 group">
+          <input
+                  type="password"
+                  name="oldPassword"
+                  id="oldPassword"
+                  class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-black dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+                  placeholder=" "
+                  required
+          />
+          <label
+                  for="oldPassword"
+                  class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
+          >패스워드</label
+          >
         </div>
-        <div>
-          <div class="flex items-center justify-between">
-            <label for="newPassword" class="block text-sm font-medium leading-6 text-gray-900">비밀번호</label>
-          </div>
-          <div class="mt-2">
-            <input id="newPassword" name="newPassword" type="password" value="" required class="px-4 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
-          </div>
+        <div class="relative z-0 w-full mb-8 group">
+          <input
+                  type="password"
+                  name="newPassword"
+                  id="newPassword"
+                  class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-black dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+                  placeholder=" "
+                  required
+          />
+          <label
+                  for="newPassword"
+                  class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
+          >비밀번호</label
+          >
         </div>
-        <div>
-          <div class="flex items-center justify-between">
-            <label for="newPasswordConfirmation" class="block text-sm font-medium leading-6 text-gray-900">비밀번호 확인</label>
-          </div>
-          <div class="mt-2">
-            <input id="newPasswordConfirmation" type="password" value="" required class="px-4 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
-          </div>
+
+        <div class="relative z-0 w-full mb-8 group">
+          <input
+                  type="password"
+                  name="newPasswordConfirmation"
+                  id="newPasswordConfirmation"
+                  class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-black dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+                  placeholder=" "
+                  required
+          />
+          <label
+                  for="newPasswordConfirmation"
+                  class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
+          >비밀번호 확인</label
+          >
         </div>
-        <div>
-          <button
-            type="submit" class="flex w-full justify-center rounded-md bg-rose-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-rose-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-rose-600">저장</button>
-        </div>
+
+        <button
+                type="submit"
+                class="mt-8 text-white w-full bg-pink-300 hover:bg-pink-400 focus:ring-4 focus:outline-none focus:ring-pink-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center"
+        >
+          저장
+        </button>
       </form>
     </div>
   </div>

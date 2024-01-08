@@ -30,7 +30,8 @@ public class QuestionBoardDao {
     public int deleteQuestionBoard(SqlSession session, String qbNo) {
         return session.delete("qaBoard.deleteQuestionBoard",qbNo);
     }
-    public int getTotalCount(SqlSession session, Map<String, Object> param) {
+
+    public int getTotalCount(SqlSession session) {
         return session.selectOne("qaBoard.getTotalCount");
     }
 
@@ -39,16 +40,12 @@ public class QuestionBoardDao {
         int limit = (int) param.get("limit");
         int offset = (page - 1) * limit;
         RowBounds rowBounds = new RowBounds(offset, limit);
-        return session.selectList("qaBoard.findAllpage", param, rowBounds);
+        return session.selectList("qaBoard.findAll", param, rowBounds);
     }
 
     public List<AnswerBoardVo> findByAnswerBoardqbNo(SqlSession session, String qbNo) {
         return session.selectList("qaBoard.findByAnswerBoardqbNo", qbNo);
     }
-
-//    public List<AnswerBoardVo> findByAnswerBoardacNo(SqlSession session, String acNo) {
-//        return session.selectList("qaBoard.findByAnswerBoardacNo",acNo);
-//    }
 
     public int insertAnswerBoard(SqlSession session, AnswerBoard answerBoard) {
         return session.insert("qaBoard.insertAnswerBoard", answerBoard);
@@ -58,8 +55,11 @@ public class QuestionBoardDao {
         return session.update("qaBoard.updateAnswerBoard", answerBoard);
     }
 
+//    public List<AnswerBoard> findByIdAnswer(SqlSession session, String qbNo) {
+//        return session.selectList("qaBoard.findByIdAnswer", qbNo);
+//    }
+
     public int deleteAnswerBoard(SqlSession session, String acNo) {
         return session.delete("qaBoard.deleteAnswerBoard", acNo);
     }
-
 }
