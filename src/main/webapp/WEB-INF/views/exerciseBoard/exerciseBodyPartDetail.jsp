@@ -17,7 +17,7 @@
     <div class=" flex items-center justify-between pb-6">
         <div>
             <h2 class="text-gray-600 font-semibold">운동영상 조회</h2>
-            <span class="text-xs">All products item</span>
+            <%--<span class="text-xs">All products item</span>--%>
         </div>
         <div class="flex items-center justify-between">
             <div class="flex bg-gray-50 items-center p-2 rounded-md">
@@ -27,15 +27,18 @@
                           d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z"
                           clip-rule="evenodd"/>
                 </svg>
-                <input class="bg-gray-50 outline-none ml-1 block " type="text" name="" id="" placeholder="search...">
             </div>
             <c:if test="${loginMember.role eq Role.A}">
                 <div class="lg:ml-40 ml-10 space-x-8">
                     <button class="bg-indigo-600 px-4 py-2 rounded-md text-white font-semibold tracking-wide cursor-pointer"
+                            id ="submitCheckbox"
+                            onclick="submitCheckbox()"
                     >
                         체크한 운동 삭제
                     </button>
                     <button class="bg-indigo-600 px-4 py-2 rounded-md text-white font-semibold tracking-wide cursor-pointer"
+
+
                     >운동 추가
                     </button>
                 </div>
@@ -48,10 +51,11 @@
                 <table class="min-w-full leading-normal">
                     <thead>
                     <tr>
+                        <c:if test="${loginMember.role eq Role.A}">
                         <th
                                 class="px-3 py-3 border-b-2 border-gray-200 bg-gray-100  text-xs font-semibold text-gray-600 uppercase tracking-wider">
-
                         </th>
+                        </c:if>
                         <th
                                 class="px-3 py-3 border-b-2 border-gray-200 bg-gray-100  text-xs font-semibold text-gray-600 uppercase tracking-wider">
                             운동영상 링크
@@ -78,11 +82,15 @@
                     <tbody>
                     <c:forEach items="${exerciseDatas}" var="exerciseData" varStatus="vs">
                         <tr>
+                            <c:if test="${loginMember.role eq Role.A}">
+                            <form id="checkboxFrm" action="${pageContext.request.contextPath}/exercise/deleteExerciseData" method="post">
                             <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
                                 <input type="checkbox"
                                        name="exNo"
                                        value="${exerciseData.exNo}">
                             </td>
+                            </form>
+                            </c:if>
                             <td class="px-3 text-left border-b border-gray-200 bg-white text-sm ">
                                 <div class="flex justify-center">
                                     <div class="flex-shrink-0 w-30 h-15">
