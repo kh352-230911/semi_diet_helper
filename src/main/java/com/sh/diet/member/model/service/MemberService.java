@@ -100,6 +100,26 @@ public class MemberService {
         Member _member = memberDao.findPassword(session, member);
         session.close();
         return _member;
+<<<<<<< HEAD
     }
 
 }
+=======
+    }
+
+
+    public List<Member> findAll(Map<String, Object> param) {
+        SqlSession session = getSqlSession();
+        List<Member> members = memberDao.findAll(session, param);
+        session.close();
+        return members;
+    }
+
+    public Member findByMemberNo(String memberNo) {
+        SqlSession session = getSqlSession();
+        Member member = memberDao.findByMemberNo(session, memberNo);
+        session.close();
+        return member;
+    }
+}
+>>>>>>> 23e5ce70942108cf45db282c5425ccb506b69379

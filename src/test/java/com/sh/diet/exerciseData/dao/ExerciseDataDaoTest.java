@@ -138,9 +138,6 @@ public class ExerciseDataDaoTest {
 
 
 
-
-
-
     public static Stream<Arguments> exerciseNoProvider(){
         ExerciseDataDao exerciseDataDao = new ExerciseDataDao();
         List<ExerciseData> exerciseDatas = exerciseDataDao.findAll(getSqlSession());
