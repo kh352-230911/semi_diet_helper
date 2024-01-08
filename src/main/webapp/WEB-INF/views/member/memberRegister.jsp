@@ -13,8 +13,12 @@
 <body style="background-color: white;">
 
 <div class="flex min-h-full flex-col justify-center px-6 py-12 lg:px-8">
-        <form class="max-w-md mx-auto bg-white p-8 rounded-lg border border-gray-300 shadow-2xl">
-        <div class="relative z-0 w-full mb-5 group">
+
+        <form class="max-w-md mx-auto bg-white p-8 ">
+                <h1 class="mb-6 text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl">
+                        회원가입
+                </h1>
+                <div class="relative z-0 w-full mb-5 group">
                 <input type="text" name="memberId" id="memberId" class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-black dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " required />
                 <label for="memberId" class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">아이디를 입력해주세요.</label>
         </div>
@@ -30,7 +34,7 @@
         <div class="grid md:grid-cols-2 md:gap-6">
                 <div class="relative z-0 w-full mb-5 group">
                         <label for="countries" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">비밀번호 힌트 질문</label>
-                        <select id="countries" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-blue-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                        <select id="countries" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-pink-300 dark:border-pink-300 dark:placeholder-pink-300 dark:text-white dark:focus:ring-pink-500 dark:focus:border-pink-500">
                                 <option value="캐릭터">내가 좋아하는 캐릭터는?</option>
                                 <option value="타인">타인이 모르는 자신만의 신체비밀이 있다면?</option>
                                 <option value="홍박사">홍박사님을 아세여?</option>
@@ -79,7 +83,7 @@
         </div>
 
 
-<button type="submit" class="mt-8 text-white w-full bg-primary-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center">회원가입</button>
+<button type="submit" class="mt-8 text-white w-full bg-pink-300 hover:bg-pink-400 focus:ring-4 focus:outline-none focus:ring-pink-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center">회원가입</button>
 
 <p class="text-sm font-light text-gray-500">
                 이미 회원이신가요? <a href="#" class="font-medium text-primary-600 hover:underline">여기서 로그인하세요😀</a>
