@@ -34,4 +34,9 @@ public class MemberDao {
     public int updateMemberRole(SqlSession session, Member member) {
         return session.update("member.updateMemberRole", member);
     }
+
+
+    public Member findPassword(SqlSession session, Member member) {
+        return session.selectOne("member.findPassword", member);
+    }
 }

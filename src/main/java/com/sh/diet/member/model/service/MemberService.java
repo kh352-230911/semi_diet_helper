@@ -92,4 +92,10 @@ public class MemberService {
         return result;
     }
 
+    public Member findPassword(Member member) {
+        SqlSession session = getSqlSession();
+        Member _member = memberDao.findPassword(session, member);
+        session.close();
+        return _member;
+    }
 }

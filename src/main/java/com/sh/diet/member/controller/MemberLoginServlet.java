@@ -64,7 +64,7 @@ public class MemberLoginServlet extends HttpServlet {
             if(member.getRole() == Role.A){
                 req.getRequestDispatcher("/adminMain").forward(req, resp);
             }else{
-                req.getRequestDispatcher("/").forward(req, resp);
+                resp.sendRedirect(req.getContextPath() + "/");
             }
         }
         else {
