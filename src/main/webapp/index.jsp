@@ -22,12 +22,9 @@
 
 </main>
 
-<<<<<<< HEAD
-=======
 
-<a href="${pageContext.request.contextPath}/daily/dailyRecode">일일 기록폼 페이지 이동</a>
+<%--<a href="${pageContext.request.contextPath}/daily/dailyRecode">일일 기록폼 페이지 이동</a>--%>
 
 </body>
 </html>
->>>>>>> 93da74c8fe8fd312b5b41603eb8687d4ae8fa17c
 <jsp:include page="/WEB-INF/views/common/footer.jsp"/>
