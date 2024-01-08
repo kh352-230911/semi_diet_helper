@@ -10,7 +10,19 @@
             질답게시판
         </h1>
     </div>
-
+    <form name="boardSearchFrm">
+        <div class="p-4 bg-white flex">
+            <select id="search-type" name="search-type" required class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 p-1.5">
+                <option value="" disabled selected>검색</option>
+                <option value="member_id" ${param['search-type'] eq 'member_id' ? 'selected' : ''}>회원아이디</option>
+                <option value="member_no" ${param['search-type'] eq 'member_no' ? 'selected' : ''}>회원고유번호</option>
+                <option value="qb_no" ${param['search-type'] eq 'qb_no' ? 'selected' : ''}>질문고유번호</option>
+            </select>
+            <div class="ml-1">
+                <input type="search" id="search-keyword" name="search-keyword" placeholder="검색어를 입력하세요..." value="${param['search-keyword']}" required class="block p-2 text-sm text-gray-900 border border-gray-300 rounded-lg w-80 bg-gray-50 focus:ring-blue-500 focus:border-blue-500" >
+            </div>
+        </div>
+    </form>
     <c:if test="${loginMember != null}">
         <div class="flex justify-end">
             <button
@@ -61,12 +73,12 @@
         </table>
     </div>
 </div>
-<%--<div class="flex justify-center mt-6">--%>
-<%--    <nav aria-label="Page navigation example">--%>
-<%--        <ul class="my-8 flex items-center -space-x-px h-8 text-sm">--%>
-<%--            &lt;%&ndash; 생성한 pagebar &ndash;%&gt;--%>
-<%--            ${pagebar}--%>
-<%--        </ul>--%>
-<%--    </nav>--%>
-<%--</div>--%>
+<div class="flex justify-center mt-6">
+    <nav aria-label="Page navigation example">
+        <ul class="my-8 flex items-center -space-x-px h-8 text-sm">
+            <%-- 생성한 pagebar --%>
+            ${pagebar}
+        </ul>
+    </nav>
+</div>
 
