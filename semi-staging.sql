@@ -26,8 +26,14 @@ from
         left join member m
             on q.member_no = m.member_no;
 
-    
 
+select distinct
+    body_part
+from
+    exercise_data
+order by
+    body_part
+;
 
 
 
@@ -199,6 +205,10 @@ insert into exercise_data
 values('E' || seq_ex_no.nextval, '달리기', 120, '유산소', 'https://youtu.be/Ggbm_coe5uM?si=0e7d2x6vkRQ3HHlE');
 
 insert into exercise_data 
+values('E' || seq_ex_no.nextval, '자유형', 86, '유산소', 'https://youtu.be/cT08mlPQo5E?si=nFhHaxDfhdnOpNnW');
+
+
+insert into exercise_data 
 values('E' || seq_ex_no.nextval, '덤벨 드래그 컬', 84, '이두근', 'https://youtu.be/1iuzb9Br_pc?si=xBAvIojZ3xincJL6');
 
 insert into exercise_data 
@@ -209,7 +219,20 @@ values('E' || seq_ex_no.nextval, '스쿼트', 98, '하체', 'https://youtu.be/50
 
 
 select * from exercise_data;
+select * from exercise_data where body_part = '유산소';
 select 'E'||seq_ex_no.currval from dual;
+
+
+
+insert into
+        exercise_data
+        values(
+        'E'||seq_ex_no.nextval,
+        #{exName},
+        #{kcal},
+        #{bodyPart},
+        #{exUrl}
+        );
 
 
 --운동 스크랩 보관 테이블 SE

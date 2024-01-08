@@ -76,6 +76,25 @@
             exercise_data
         where
             body_part = #{bodyPart}
+        order by
+            ex_no desc
     </select>
+
+    <select id="findBodyParts" resultType="String">
+        select distinct
+            body_part
+        from
+            exercise_data
+        order by
+            body_part
+    </select>
+
+    <select id="getTotalCount" resultType="_int">
+        select
+            count(*)
+        from
+            exercise_data
+    </select>
+
 
 </mapper>
