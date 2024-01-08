@@ -99,17 +99,7 @@ public class MemberService {
         Member _member = memberDao.findPassword(session, member);
         session.close();
         return _member;
-
-
-
-
-
-
-
-
-
-
-
+    }
 
 
     public List<Member> findAll(Map<String, Object> param) {
@@ -117,5 +107,12 @@ public class MemberService {
         List<Member> members = memberDao.findAll(session, param);
         session.close();
         return members;
+    }
+
+    public Member findByMemberNo(String memberNo) {
+        SqlSession session = getSqlSession();
+        Member member = memberDao.findByMemberNo(session, memberNo);
+        session.close();
+        return member;
     }
 }

@@ -233,6 +233,39 @@ insert into
         #{bodyPart},
         #{exUrl}
         );
+select
+    *
+from
+    scrap_exercise se
+        left join  exercise_data ed
+            on ed.ex_no = se.ex_no;
+
+select
+    se.*
+from
+    exercise_data ed
+        left join  scrap_exercise se
+             on ed.ex_no = se.ex_no
+where
+    ed.ex_no = 'E44'
+    and
+    se.member_no = 'M4';
+
+select * from scrap_exercise where ex_no = 'E2';
+select * from scrap_exercise where member_no = 'M0';
+
+ select
+            ed.*,
+            se.member_no
+        from
+            exercise_data ed
+                left join  scrap_exercise se
+                           on ed.ex_no = se.ex_no
+        where
+            ed.ex_no= 'E2'
+          and
+            se.member_no = 'M4';
+        
 
 
 --운동 스크랩 보관 테이블 SE
@@ -245,6 +278,13 @@ create table scrap_exercise (
     constraints fk_se_ex_no foreign key (ex_no) references exercise_data(ex_no) on delete cascade
 );
 create sequence seq_scrap_ex_no; 
+
+select * from scrap_exercise;
+
+insert into scrap_exercise
+values('SE'||seq_scrap_ex_no.nextval,'M0','E22' );
+
+select * from scrap_exercise where member_no = 'M0' and ex_no = 'E2';
 
 --운동 일일기록 테이블 DE
 create table daily_ex(
