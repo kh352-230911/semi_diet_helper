@@ -29,7 +29,17 @@ public class ExerciseDataService{
     public int insertDailyExercise(DailyEx dailyEx) {
         int result = 0;
         SqlSession session = getSqlSession();
-        return exerciseDataDao.insertDailyExercise(session, dailyEx);
+        try{
+            result = exerciseDataDao.insertDailyExercise(session, dailyEx);
+            session.commit();
+        }
+        catch (Exception e){
+            session.rollback();
+        }
+        finally {
+            session.close();
+        }
+        return result;
     }
 
     public List<DailyEx> findDailyExerciseByDailyNo(String dailyNo) {

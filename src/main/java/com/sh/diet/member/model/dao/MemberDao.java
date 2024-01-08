@@ -45,4 +45,8 @@ public class MemberDao {
         RowBounds rowBounds = new RowBounds(offset, limit);
         return session.selectList("member.findAllPage", param, rowBounds);
     }
+
+    public int updateIncreaseOnePointToMember(SqlSession session, String memberNo) {
+        return session.update("member.updateIncreaseOnePointToMember", memberNo);
+    }
 }

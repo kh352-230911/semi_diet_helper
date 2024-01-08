@@ -12,9 +12,23 @@ public class PointCountService {
     public int insertRecodeSatisfiedPoint(PointCount pointCount) {
         int result = 0;
         SqlSession session = getSqlSession();
-        result = pointCountDao.insertRecodeSatisfiedPoint(session, pointCount);
+        try {
+            result = pointCountDao.insertRecodeSatisfiedPoint(session, pointCount);
+            session.commit();
+        }
+        catch (Exception e){
+            session.rollback();
+        }
+        finally {
+            session.close();
+        }
         return result;
     }
 
-//    public
+    public PointCount findTodayPointCountByMemberNo(String memberNo) {
+        SqlSession session = getSqlSession();
+        PointCount pointCount = pointCountDao.findTodayPointCountByMemberNo(session, memberNo);
+        session.close();
+        return pointCount;
+    }
 }

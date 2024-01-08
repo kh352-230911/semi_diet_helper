@@ -6,7 +6,7 @@
 
     <select id="findByEaNo" resultType="eyebodyAttachment">
         select
-         *
+            *
         from
             eyebody_attachment
         where
@@ -51,7 +51,7 @@
             'DR' || seq_daily_no.nextval,
             #{dailyWeight},
             #{memberNo},
-            #{recodeDate},
+            default,
             #{pointCheck}
         )
     </insert>
@@ -76,7 +76,7 @@
             recode_date = #{recodeDate}
     </select>
 
-    <select id="findTodayDailyRecodeByMemberNo" resultType="dailyRecode">
+    <select id="findDailyRecodeByMemberNo" resultType="dailyRecode">
         select
         *
         from
@@ -84,7 +84,7 @@
         where
         member_no = #{memberNo}
         and
-        to_char(recode_date) = '24/01/02'
+        to_char(recode_date) = to_char(sysdate, 'YY/MM/DD')
     </select>
 
     <select id="findTodayDailyExByDailyNo" resultType="dailyEx">
@@ -96,11 +96,20 @@
             daily_no = #{dailyNo}
     </select>
 
-    <select id="findTodayDailyFoodByDailyNo" resultType="dailyEx">
+    <select id="findTodayDailyFoodByDailyNo" resultType="dailyFood">
         select
             *
         from
             daily_food
+        where
+            daily_no = #{dailyNo}
+    </select>
+
+    <select id="findTodayEyebodyAttachmentByDailyNo" resultType="eyebodyAttachment">
+        select
+            *
+        from
+            eyebody_attachment
         where
             daily_no = #{dailyNo}
     </select>

@@ -13,6 +13,6 @@
 </div>
 
 <a href="${pageContext.request.contextPath}/daily/dailyRecode">일일 기록폼 페이지 이동</a>
-
+<a href="${pageContext.request.contextPath}/member/memberMain">캘린더 페이지 이동</a>
 </body>
 </html>
