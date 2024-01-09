@@ -18,7 +18,8 @@
     </resultMap>
     <select id="findAllpage" resultMap="questionBoardVoMap">
         select
-            q.*, m.*
+            q.*,
+            m.*
         from
             question_board q left join member m
                 on q.member_no = m.member_no
