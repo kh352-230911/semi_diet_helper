@@ -18,6 +18,8 @@ public class FoodSearchServlet extends HttpServlet {
     private FoodDataService foodDataService = new FoodDataService();
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+
+
         req.setCharacterEncoding("utf-8");
         // 1. 사용자입력값 처리
         String term = req.getParameter("term");
@@ -38,5 +40,7 @@ public class FoodSearchServlet extends HttpServlet {
                 out.println();
             }
         }
+
+
     }
 }

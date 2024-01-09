@@ -31,10 +31,9 @@ public class PointCountDaoTest {
     @Test
     public void test1(){
         int result = 0;
-        PointCount pointCount = new PointCount(null, "M4",
-                "RD2", null, null, 1);
+        PointCount pointCount = new PointCount(null, null, 1,
+                "M4", "DR2", null);
         result = new PointCountDao().insertRecodeSatisfiedPoint(session, pointCount);
-
         assertThat(result)
                 .isEqualTo(1);
 

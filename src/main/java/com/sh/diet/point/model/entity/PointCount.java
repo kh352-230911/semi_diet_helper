@@ -3,31 +3,48 @@ package com.sh.diet.point.model.entity;
 import java.time.LocalDate;
 
 public class PointCount {
-    String pkNo;
+    String pcNo;
+    LocalDate regDate;
+    int getPoint;
     String memberNo;
     String dailyNo;
     String acNo;
-    LocalDate regDate;
-    int getPoint;
 
     public PointCount() {
     }
 
-    public PointCount(String pkNo, String memberNo, String dailyNo, String acNo, LocalDate regDate, int getPoint) {
-        this.pkNo = pkNo;
+
+    public PointCount(String pcNo, LocalDate regDate, int getPoint, String memberNo, String dailyNo, String acNo) {
+        this.pcNo = pcNo;
+        this.regDate = regDate;
+        this.getPoint = getPoint;
         this.memberNo = memberNo;
         this.dailyNo = dailyNo;
         this.acNo = acNo;
+    }
+
+    public String getPcNo() {
+        return pcNo;
+    }
+
+    public void setPcNo(String pcNo) {
+        this.pcNo = pcNo;
+    }
+
+    public LocalDate getRegDate() {
+        return regDate;
+    }
+
+    public void setRegDate(LocalDate regDate) {
         this.regDate = regDate;
+    }
+
+    public int getGetPoint() {
+        return getPoint;
+    }
+
+    public void setGetPoint(int getPoint) {
         this.getPoint = getPoint;
-    }
-
-    public String getPkNo() {
-        return pkNo;
-    }
-
-    public void setPkNo(String pkNo) {
-        this.pkNo = pkNo;
     }
 
     public String getMemberNo() {
@@ -54,32 +71,15 @@ public class PointCount {
         this.acNo = acNo;
     }
 
-    public LocalDate getRegDate() {
-        return regDate;
-    }
-
-    public void setRegDate(LocalDate regDate) {
-        this.regDate = regDate;
-    }
-
-    public int getGetPoint() {
-        return getPoint;
-    }
-
-    public void setGetPoint(int getPoint) {
-        this.getPoint = getPoint;
-    }
-
     @Override
     public String toString() {
         return "PointCount{" +
-                "pkNo='" + pkNo + '\'' +
+                "pcNo='" + pcNo + '\'' +
+                ", regDate=" + regDate +
+                ", getPoint=" + getPoint +
                 ", memberNo='" + memberNo + '\'' +
                 ", dailyNo='" + dailyNo + '\'' +
                 ", acNo='" + acNo + '\'' +
-                ", regDate=" + regDate +
-                ", getPoint=" + getPoint +
                 '}';
     }
-
 }

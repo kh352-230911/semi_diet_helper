@@ -61,6 +61,7 @@ public class DailyService {
     public DailyRecode findByDailyNo(String dailyNo) {
         SqlSession session = getSqlSession();
         DailyRecode dailyRecode = dailyDao.findByDailyNo(session, dailyNo);
+        session.close();
         return dailyRecode;
     }
 
@@ -84,18 +85,21 @@ public class DailyService {
     public List<DailyRecode> findByTodayDailyRecode(LocalDate today) {
         SqlSession session = getSqlSession();
         List<DailyRecode> todayDailyRecode = dailyDao.findByTodayDailyRecode(session, today);
+        session.close();
         return todayDailyRecode;
     }
 
     public DailyRecode findTodayDailyRecodeByMemberNo(String memberNo) {
         SqlSession session = getSqlSession();
         DailyRecode dailyRecode = dailyDao.findTodayDailyRecodeByMemberNo(session, memberNo);
+        session.close();
         return dailyRecode;
     }
 
     public List<DailyEx> findTodayDailyExByDailyNo(String dailyNo) {
         SqlSession session = getSqlSession();
         List<DailyEx> dailyExes = dailyDao.findTodayDailyExByDailyNo(session, dailyNo);
+        session.close();
         return dailyExes;
     }
 
@@ -103,12 +107,14 @@ public class DailyService {
     public List<DailyFood> findTodayDailyFoodByDailyNo(String dailyNo) {
         SqlSession session = getSqlSession();
         List<DailyFood> dailyFoods = dailyDao.findTodayDailyFoodByDailyNo(session, dailyNo);
+        session.close();
         return dailyFoods;
     }
 
     public EyebodyAttachment findTodayEyebodyAttachmentByDailyNo(String dailyNo) {
         SqlSession session = getSqlSession();
         EyebodyAttachment eyebodyAttachment = dailyDao.findTodayEyebodyAttachmentByDailyNo(session, dailyNo);
+        session.close();
         return eyebodyAttachment;
     }
 }

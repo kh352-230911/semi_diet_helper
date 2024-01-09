@@ -38,5 +38,6 @@ public class DailyExerciseSearchServlet extends HttpServlet {
                 out.println();
             }
         }
+
     }
 }
