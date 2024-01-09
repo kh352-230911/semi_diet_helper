@@ -50,16 +50,19 @@
             </form>
             </c:if>
             <div style="display: flex; justify-content: flex-end;">
-         <c:if test="${loginMember != null && (loginMember.memberNo eq questionBoardvo.memberNo || loginMember.role eq Role.A)}">
+            <c:if test="${loginMember != null && (loginMember.memberId eq questionBoardvo.member.memberId || loginMember.role eq Role.A)}">
+<%--                <c:if test="${loginMember != null && (loginMember.memberId eq questionBoardvo.member.memberId) || (loginMember.role eq Role.A)}">--%>
                     <button
                             type="button"
                             onclick="location.href = '${pageContext.request.contextPath}/qaboard/questionBoardUpdate?qbNo=${questionBoardvo.qbNo}';"
-                            class="px-5 py-2.5 mt-4 mr-4 sm:mt-6 text-sm font-medium text-center text-base text-white bg-pink-500 rounded-lg focus:ring-4 focus:ring-primary-200">
+                            class="px-5 py-2.5 mt-4 mr-4 sm:mt-6 text-sm font-medium text-center text-white bg-pink-500 rounded-lg focus:ring-4 focus:ring-primary-200">
                         수정
                     </button>
+<%--                </c:if>--%>
+<%--                <c:if test="${loginMember != null && (loginMember.memberNo eq  questionBoardvo.memberNo) || (loginMember.role eq Role.A)}">--%>
                 <button type="button"
                         onclick="confirm('정말 삭제하시겠습니까? 😯') && document.querySelector('#boardDeleteFrm').submit()"
-                        class="px-5 py-2.5 mt-4 sm:mt-6 text-sm font-medium text-center text-base text-white bg-pink-500 rounded-lg focus:ring-4 focus:ring-primary-200">
+                        class="px-5 py-2.5 mt-4 sm:mt-6 text-sm font-medium text-center text-white bg-pink-500 rounded-lg focus:ring-4 focus:ring-primary-200">
                     삭제
                 </button>
                 </c:if>
@@ -118,24 +121,23 @@
                         <fmt:formatDate value="${regDate}" pattern="yy/MM/dd HH:mm"/>
                     </div>
                     <div style="display: flex; justify-content: flex-end;">
-                        <c:if test="${loginMember != null && (loginMember.memberNo eq answer.memberNo || loginMember.role eq Role.A)}">
+                        <c:if test="${loginMember != null && (loginMember.memberId eq answer.member.memberId || loginMember.role eq Role.A)}">
+<%--                        <c:if test="${loginMember != null && (loginMember.memberId eq answer.member.memberId) || (loginMember.role eq Role.A)}">--%>
                         <button type="button"
                                 onclick="location.href = '${pageContext.request.contextPath}/qaboard/answerBoardUpdate?acNo=${answer.acNo}';"
                                 class="px-5 py-2.5 mt-4 mr-4 sm:mt-6 text-sm font-medium text-center text-white bg-pink-500 rounded-lg focus:ring-4 focus:ring-primary-200">
                                 수정
                         </button>
-                        </c:if>
-                        <c:if test="${loginMember != null && (loginMember.memberNo eq answer.memberNo || loginMember.role eq Role.A)}">
+<%--                        </c:if>--%>
+<%--                        <c:if test="${loginMember != null && (answer.member.memberId eq answer.qbNo) || (loginMember.role eq Role.A)}">--%>
+<%--                        <c:if test="${loginMember != null && (loginMember.memberNo eq questionBoardvo.memberNo || loginMember.role eq Role.A)}">--%>
+<%--                        <c:if test="${loginMember != null && (loginMember.memberNo eq questionBoardvo.memberNo || loginMember.role eq Role.A)}">--%>
                             <form action="${pageContext.request.contextPath}/qaboard/answerBoardDelete"
                             method="post">
                         <button type="submit"
-                                onclick=" if (confirm('정말 삭제하시겠습니까? 😯')) {
-                              class="px-5 py-2.5 mt-4 sm:mt-6 text-sm font-medium text-center text-white bg-pink-500 rounded-lg focus:ring-4 focus:ring-primary-200">
+                                onclick="confirm('정말 삭제하시겠습니까? 😯') &&  document.querySelector('#answerboardDeleteFrm').submit()"
+                                class="px-5 py-2.5 mt-4 sm:mt-6 text-sm font-medium text-center text-white bg-pink-500 rounded-lg focus:ring-4 focus:ring-primary-200">
                                 삭제
-                                }
-                                "
-<%--                                onclick="confirm('정말 삭제하시겠습니까? 😯') &&  document.querySelector('#answerboardDeleteFrm').submit()"--%>
-
                             <input type="hidden" name="qbNo" value="${questionBoardvo.qbNo}">
                             <input type="hidden" value="${answer.acNo}" name ="acNo">
                         </button>
@@ -148,7 +150,6 @@
                     action="${pageContext.request.contextPath}/qaboard/answerBoardDelete"
                     method="post"
                     id="answerboardDeleteFrm">
-                    <%--            *** qb_No ac_No 해결 못함 null로 뜸***--%>
                 <input type="hidden" name="qbNo" value="${questionBoardvo.qbNo}">
                 <input type="hidden" name="acNo" value="${answer.acNo}">
             </form>
