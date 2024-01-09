@@ -4,6 +4,7 @@
 <%@taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <jsp:include page="/WEB-INF/views/common/header.jsp"/>
 <div style="display: flex; justify-content: flex-end;">
+
     <button onclick="history.back()"
             class="middle none center mr-4 rounded-lg bg-pink-500 py-3 px-5 font-sans text-base font-bold uppercase text-white shadow-md shadow-pink-500/20 transition-all hover:shadow-lg hover:shadow-pink-500/40 focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none">
         질답페이지로 돌아가기
@@ -23,6 +24,7 @@
         </svg>
     </div>
     <div class="w-full p-8 bg-white border border-gray-200 rounded-lg shadow">
+
         <h5 class="mb-2 text-2xl font-semibold tracking-tight text-gray-900 ">${fn:escapeXml(questionBoardvo.title)}</h5>
         <p class="mb-3 font-normal text-gray-500">${questionBoardvo.member.name} (${questionBoardvo.member.memberId})</p>
         <p class="mb-3 font-normal text-gray-700">${questionBoardvo.content}</p>
@@ -44,11 +46,14 @@
                 <button
                         type="button"
                     onclick="location.href = '${pageContext.request.contextPath}/qaboard/answerBoardCreate?qbNo=${questionBoardvo.qbNo}'"
+
                     class="px-5 py-2.5 mt-4 mr-4 sm:mt-6 text-sm font-medium text-center text-base text-white bg-pink-500 rounded-lg focus:ring-4 focus:ring-primary-200">
+
                 답글 등록
                 </button>
             </form>
             </c:if>
+
             <div style="display: flex; justify-content: flex-end;">
             <c:if test="${loginMember != null && (loginMember.memberId eq questionBoardvo.member.memberId || loginMember.role eq Role.A)}">
 <%--                <c:if test="${loginMember != null && (loginMember.memberId eq questionBoardvo.member.memberId) || (loginMember.role eq Role.A)}">--%>
@@ -63,12 +68,14 @@
                 <button type="button"
                         onclick="confirm('정말 삭제하시겠습니까? 😯') && document.querySelector('#boardDeleteFrm').submit()"
                         class="px-5 py-2.5 mt-4 sm:mt-6 text-sm font-medium text-center text-white bg-pink-500 rounded-lg focus:ring-4 focus:ring-primary-200">
+
                     삭제
                 </button>
                 </c:if>
             </div>
         </div>
     </div>
+
             <form
                     action="${pageContext.request.contextPath}/qaboard/questionBoardDelete"
                     method="post"
@@ -79,6 +86,7 @@
 
 <%-- 답변 --%>
 <%--<c:if test = "${answerBoards!=null}">--%>
+
         <c:forEach items="${answerBoardvo}" var="answer" varStatus="vs">
             <h1 style="font-size: 30px;">&nbsp;&nbsp;&nbsp;Answer🙆</h1>
             <div class="xl:container p-8">
@@ -122,6 +130,7 @@
                         <fmt:parseDate value="${answer.regDate}" pattern="yyyy-MM-dd'T'HH:mm" var="regDate"/>
                         <fmt:formatDate value="${regDate}" pattern="yy/MM/dd HH:mm"/>
                     </div>
+
                     <div style="display: flex; justify-content: flex-end;">
                         <c:if test="${loginMember != null && (loginMember.memberNo eq answer.memberNo|| loginMember.role eq Role.A)}">
 <%--                        <c:if test="${loginMember != null && (loginMember.memberId eq answer.member.memberId) || (loginMember.role eq Role.A)}">--%>
@@ -144,6 +153,7 @@
                             <input type="hidden" value="${answer.acNo}" name ="acNo">
                         </button>
                                 </form>
+
                         </c:if>
                     </div>
                 </div>
@@ -152,6 +162,7 @@
                     action="${pageContext.request.contextPath}/qaboard/answerBoardDelete"
                     method="post"
                     id="answerboardDeleteFrm">
+
                 <input type="hidden" name="qbNo" value="${questionBoardvo.qbNo}">
                 <input type="hidden" name="acNo" value="${answer.acNo}">
             </form>

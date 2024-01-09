@@ -40,7 +40,7 @@ public class MemberService {
         try {
             result = memberDao.insertMember(session, member);
             session.commit();
-        } catch (Exception e) {
+        } catch (Exception e){
             session.rollback();
             throw e;
         } finally {
@@ -100,7 +100,6 @@ public class MemberService {
         Member _member = memberDao.findPassword(session, member);
         session.close();
         return _member;
-
     }
 
 
@@ -135,4 +134,3 @@ public class MemberService {
 
     }
 }
-

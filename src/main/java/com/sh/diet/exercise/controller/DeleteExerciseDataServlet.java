@@ -20,6 +20,6 @@ public class DeleteExerciseDataServlet extends HttpServlet {
         int result = exerciseDataService.deleteExerciseData(exNo);
 
         req.getSession().setAttribute("msg", "운동 삭제에 성공하였습니다");
-        resp.sendRedirect(req.getContextPath() + "/bodyPartDetail?id=" + bodyPart);
+        resp.sendRedirect(req.getContextPath() + "/exercise/bodyPartDetail?id=" + bodyPart);
     }
 }

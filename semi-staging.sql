@@ -167,6 +167,12 @@ create sequence seq_ac_no;
 insert into answer_comment 
 values('A' || seq_ac_no.nextval, 'M4', 'Q1', '답변 테스트', '답변 테스트문 입니다', default,default,default );
 
+select * from answer_comment;
+
+--Q107
+
+select * from answer_comment where choice = 1 and qb_no = 'Q107';
+
 
 --일일기록 테이블 DR
 create table daily_recode (
@@ -185,8 +191,12 @@ insert into daily_recode
 values ('DR'||seq_daily_no.nextval, 70, 'M4', default,default);
 
 select * from daily_recode;
-
+등
 alter table exercies_data rename to exercise_data;
+
+select * from exercise_data ;
+
+delete from exercise_data where ex_name = '등운동 테스트';
 
 --운동데이터 E
 create table exercise_data(
