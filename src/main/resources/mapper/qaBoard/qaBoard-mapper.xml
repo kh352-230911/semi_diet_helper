@@ -16,24 +16,28 @@
             <result column="name" property="name"/>
         </association>
     </resultMap>
-    <select id="findAll" resultMap="questionBoardVoMap">
+    <select id="findAllpage" resultMap="questionBoardVoMap">
         select
             q.*, m.member_id, m.name
         from
             question_board q left join member m
                 on q.member_no = m.member_no
+        <if test="searchType != null and searchType != '' and searchKeyword != null and searchKeyword != ''">
+            where
+            ${searchType} like '%' || #{searchKeyword} || '%'
+        </if>
         order by
         q.reg_date desc
     </select>
+
     <select id="findById" resultMap="questionBoardVoMap">
         select
-        q.*, m.member_id, m.name
+        q.*, m.*
         from
         question_board q left join member m
         on q.member_no = m.member_no
         where
         qb_no = #{qbNo}
-
     </select>
     <insert id="insertQuestionBoard">
     insert into
@@ -67,6 +71,11 @@
         count(*)
         from
         question_board
+        <where>
+            <if test="searchType != null and searchType != '' and searchKeyword != null and searchKeyword != ''">
+                ${searchType} like '%' || #{searchKeyword} || '%'
+            </if>
+        </where>
     </select>
     <resultMap id="answerBoardVoMap" type="answerBoardVo">
         <id column="ac_no" property="acNo"/>
@@ -92,6 +101,15 @@
         where
         qb_no = #{qbNo}
     </select>
+<!--    <select id="findByAnswerBoardacNo" resultMap="answerBoardVoMap">-->
+<!--        select-->
+<!--        a.*, m.member_id, m.name-->
+<!--        from-->
+<!--        answer_comment a left join member m-->
+<!--        on a.member_no = m.member_no-->
+<!--        where-->
+<!--        ac_no = #{acNo}-->
+<!--    </select>-->
     <insert id="insertAnswerBoard">
         insert into
         answer_comment
@@ -131,4 +149,13 @@
         where
         ac_no = #{acNo}
     </delete>
+<!--    <select id="searchList" resultType="qaBoard">-->
+<!--        select-->
+<!--        *-->
+<!--        from-->
+<!--        question_board-->
+<!--        where-->
+<!--        ${searchType} like '%' || #{searchKeyword} || '%'-->
+<!--    </select>-->
+
 </mapper>

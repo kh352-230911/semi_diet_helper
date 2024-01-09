@@ -2,6 +2,7 @@ package com.sh.diet.exercise.model.dao;
 
 import com.sh.diet.daily.model.entity.DailyEx;
 import com.sh.diet.exercise.model.entity.ExerciseData;
+import com.sh.diet.exercise.model.vo.ExerciseDataVo;
 import org.apache.ibatis.session.SqlSession;
 
 import java.util.List;
@@ -42,5 +43,13 @@ public class ExerciseDataDao {
 
     public int getTotalCount(SqlSession session) {
         return session.selectOne("exerciseData.getTotalCount");
+    }
+
+    public ExerciseDataVo checkScrapExbyMemberNo(SqlSession session, ExerciseDataVo exDataVo) {
+        return session.selectOne("exerciseData.checkScrapExbyMemberNo",exDataVo);
+    }
+
+    public int deleteExerciseData(SqlSession session, String exNo) {
+        return session.delete("exerciseData.deleteExerciseData", exNo);
     }
 }
