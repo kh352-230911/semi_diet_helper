@@ -19,6 +19,7 @@ public class MemberService {
         return member;
 
     }
+
     public List<Member> findAll() {
         SqlSession session = getSqlSession();
         List<Member> members = memberDao.findAll(session);
@@ -40,6 +41,7 @@ public class MemberService {
             result = memberDao.insertMember(session, member);
             session.commit();
         } catch (Exception e){
+
             session.rollback();
             throw e;
         } finally {

@@ -27,7 +27,7 @@
         <div>
             <input type="hidden" name="qbNo" value="${qbNo}">
         </div>
-        <button type="submit" class="inline-flex items-center px-5 py-2.5 mt-4 sm:mt-6 text-sm font-medium text-center text-white bg-primary-700 rounded-lg focus:ring-4 focus:ring-primary-200">
+        <button type="submit" class="inline-flex items-center px-5 py-2.5 mt-4 sm:mt-6 text-sm font-medium text-center text-white bg-pink-500 rounded-lg focus:ring-4 focus:ring-primary-200">
             저장
         </button>
     </form>

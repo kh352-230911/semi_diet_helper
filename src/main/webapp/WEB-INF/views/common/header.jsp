@@ -3,7 +3,6 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
-
 <!DOCTYPE html>
 <html>
 
@@ -11,7 +10,6 @@
     <meta charset="UTF-8">
     <title>🐽다우미 :: 다이어트도우미</title>
     <link href="https://webfontworld.github.io/SaenggeoJincheon/SaenggeoJincheon.css" rel="stylesheet">
-
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="${pageContext.request.contextPath}/js/tailwind.config.js"></script>
     <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
@@ -24,6 +22,7 @@
         <c:remove var="msg" scope="session"/>
         </c:if>
     </script>
+
 
     <style>
         @font-face {
@@ -134,6 +133,9 @@
 </head>
 
 <nav class="bg-white border-gray-200 dark:bg-pink-300 mb-auto">
+
+<body>
+
     <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-2">
         <a href="${pageContext.request.contextPath}" class="flex items-center space-x-3 rtl:space-x-reverse">
             <img src="${pageContext.request.contextPath}/images/dawumi_white.svg" class="h-20" alt="dawumi_logo" fill="red" />
@@ -158,7 +160,8 @@
                 </li>
                 <li>
                 <c:if test="${loginMember.role == Role.A}">
-                    <a href="#" class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">관리페이지</a>
+
+                    <a href="${pageContext.request.contextPath}/adminMain" class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">관리페이지</a>
                     </li>
                 </c:if>
                 <li>

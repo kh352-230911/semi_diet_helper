@@ -3,7 +3,9 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 
+</body>
 <body style="background-color: white" class="body1">
+
 
 <div class="main"></div>
 <div class="footer">
@@ -144,7 +146,6 @@
             <div><b>한승훈</b><a href="#">코딩</a></div>
             <div><b>한보경</b><a href="#">코딩</a></div>
         </div>
-
     </div>
 </div>
 <svg style="position:fixed; top:100vh">
