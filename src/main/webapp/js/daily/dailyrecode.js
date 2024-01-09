@@ -1,9 +1,8 @@
-$("#exercise").autocomplete({
+$(".exerciseautocomplete").autocomplete({
     //request: 사용자가 입력한 검색어, callback: 검색 결과를 처리하고 화면에 표시하는 함수
     source(request, callback) {
         console.log(request);
         console.log(callback); // 콜백함수
-
 
         $.ajax({
             url : `${contextPath}/text/exerciseSearch`,
@@ -45,13 +44,11 @@ $("#exercise").autocomplete({
     }
 });
 
-
-$("#meal").autocomplete({
+$(".mealautocomplete").autocomplete({
     //request: 사용자가 입력한 검색어, callback: 검색 결과를 처리하고 화면에 표시하는 함수
     source(request, callback) {
         console.log(request);
         console.log(callback); // 콜백함수
-
 
         $.ajax({
             url : `${contextPath}/text/foodSearch`,
@@ -89,7 +86,7 @@ $("#meal").autocomplete({
         // selected객체의 item 속성에 해당하는 값(객체)을 추출하고,
         // 그 안에서 value 속성에 해당하는 값을 value 변수에 할당하는 것을 의미
         const {item : {value}} = selected;
-        // location.href = `${contextPath}/exercise/exerciseDetail?id=${value}`;
+        location.href = `${contextPath}/exercise/exerciseDetail?id=${value}`;
     }
 });
 

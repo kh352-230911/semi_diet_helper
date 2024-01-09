@@ -31,8 +31,6 @@ public class AdminMemberManageServlet extends HttpServlet {
         param.put("page", page);
         param.put("limit", limit);
 
-        List<Member>  members = memberService.findAll(param);
-        req.setAttribute("members", members);
         // System.out.println(members);
 
         req.getRequestDispatcher("/WEB-INF/views/admin/adminMemberManage.jsp").forward(req,resp);;

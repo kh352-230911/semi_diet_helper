@@ -19,6 +19,7 @@ public class MemberService {
         return member;
 
     }
+
     public List<Member> findAll() {
         SqlSession session = getSqlSession();
         List<Member> members = memberDao.findAll(session);
@@ -39,7 +40,7 @@ public class MemberService {
         try {
             result = memberDao.insertMember(session, member);
             session.commit();
-        } catch (Exception e){
+        } catch (Exception e) {
             session.rollback();
             throw e;
         } finally {
@@ -99,6 +100,7 @@ public class MemberService {
         Member _member = memberDao.findPassword(session, member);
         session.close();
         return _member;
+
     }
 
 
@@ -109,10 +111,28 @@ public class MemberService {
         return members;
     }
 
+
+    public int updateIncreaseOnePointToMember(String memberNo) {
+        SqlSession session = getSqlSession();
+        int result = 0;
+        try {
+            result = memberDao.updateIncreaseOnePointToMember(session, memberNo);
+            session.commit();
+        } catch (Exception e) {
+            session.rollback();
+            throw e;
+        } finally {
+            session.close();
+        }
+        return result;
+    }
+
     public Member findByMemberNo(String memberNo) {
         SqlSession session = getSqlSession();
         Member member = memberDao.findByMemberNo(session, memberNo);
         session.close();
         return member;
+
     }
 }
+

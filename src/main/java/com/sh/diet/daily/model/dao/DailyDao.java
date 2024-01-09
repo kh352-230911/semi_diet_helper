@@ -51,6 +51,6 @@ public class DailyDao {
     }
 
     public EyebodyAttachment findTodayEyebodyAttachmentByDailyNo(SqlSession session, String dailyNo) {
-        return session.selectOne("daily.findTodayDailyFoodByDailyNo", dailyNo);
+        return session.selectOne("daily.findTodayEyebodyAttachmentByDailyNo", dailyNo);
     }
 }

@@ -18,7 +18,7 @@
     </resultMap>
     <select id="findAllpage" resultMap="questionBoardVoMap">
         select
-            q.*, m.member_id, m.name
+            q.*, m.*
         from
             question_board q left join member m
                 on q.member_no = m.member_no
@@ -100,16 +100,9 @@
         on a.member_no = m.member_no
         where
         qb_no = #{qbNo}
+        order by
+        a.reg_date ,a.choice desc
     </select>
-<!--    <select id="findByAnswerBoardacNo" resultMap="answerBoardVoMap">-->
-<!--        select-->
-<!--        a.*, m.member_id, m.name-->
-<!--        from-->
-<!--        answer_comment a left join member m-->
-<!--        on a.member_no = m.member_no-->
-<!--        where-->
-<!--        ac_no = #{acNo}-->
-<!--    </select>-->
     <insert id="insertAnswerBoard">
         insert into
         answer_comment

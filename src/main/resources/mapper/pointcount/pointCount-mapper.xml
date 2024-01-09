@@ -3,19 +3,31 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="pointCount">
+
     <insert id="insertRecodeSatisfiedPoint">
         insert into
-            point_count
+            point_count (pc_no, reg_date, get_point, member_no, daily_no, ac_no)
         values
             (
-            'P' || seq_pc_no,
-             #{memberNo},
-             #{dailyNo},
-             null,
+            'P' || seq_pc_no.NEXTVAL,
              default,
-             #{getPoint}
+            #{getPoint},
+            #{memberNo},
+            #{dailyNo},
+            null
             )
     </insert>
+
+    <select id="findTodayPointCountByMemberNo" resultType="pointCount">
+        select
+            *
+        from
+            point_count
+        where
+            member_no = #{memberNo}
+        and
+            to_char(reg_data) = to_char(sysdate, 'YY/MM/DD')
+    </select>
 
 
 </mapper>
