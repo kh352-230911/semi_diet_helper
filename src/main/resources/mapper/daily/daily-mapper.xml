@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="daily">
+
+    <select id="findByEaNo" resultType="eyebodyAttachment">
+        select
+            *
+        from
+            eyebody_attachment
+        where
+            ea_no = #{eaNo}
+    </select>
+
+    <insert id="insertEyebodyAttachment">
+        insert into
+        eyebody_attachment (ea_no, daily_no, original_file, renamed_file)
+        values (
+        'EA' || seq_ea_no.nextval,
+        #{dailyNo},
+        #{originalFile},
+        #{renamedFile}
+        )
+    </insert>
+
+    <insert id="insertDailyFood">
+        insert into
+            daily_food (df_no, food_time, food_no, daily_no)
+        values (
+            'DF' || seq_df_no.nextval,
+            #{foodTime},
+            #{foodNo},
+            #{dailyNo}
+        )
+    </insert>
+
+    <select id="findByDailyNo" resultType="dailyRecode">
+        select
+            *
+        from
+            daily_recode
+        where
+            daily_no  = #{dailyNo}
+    </select>
+
+    <insert id="insertDailyRecode">
+        insert into
+            daily_recode
+        values(
+            'DR' || seq_daily_no.nextval,
+            #{dailyWeight},
+            #{memberNo},
+            default,
+            #{pointCheck}
+        )
+    </insert>
+
+    <insert id="insertDailyEx">
+        insert into
+            daily_ex
+        values(
+            'DE' || seq_de_no.nextval,
+            #{exId},
+            #{dailyNo},
+            #{exSets}
+        )
+    </insert>
+
+    <select id="findByTodayDailyRecode" resultType="dailyRecode">
+        select
+            *
+        from
+            daily_recode
+        where
+            recode_date = #{recodeDate}
+    </select>
+
+    <select id="findDailyRecodeByMemberNo" resultType="dailyRecode">
+        select
+        *
+        from
+        daily_recode
+        where
+        member_no = #{memberNo}
+        and
+        to_char(recode_date) = to_char(sysdate, 'YY/MM/DD')
+    </select>
+
+    <select id="findTodayDailyExByDailyNo" resultType="dailyEx">
+        select
+            *
+        from
+            daily_ex
+        where
+            daily_no = #{dailyNo}
+    </select>
+
+    <select id="findTodayDailyFoodByDailyNo" resultType="dailyFood">
+        select
+            *
+        from
+            daily_food
+        where
+            daily_no = #{dailyNo}
+    </select>
+
+    <select id="findTodayEyebodyAttachmentByDailyNo" resultType="eyebodyAttachment">
+        select
+            *
+        from
+            eyebody_attachment
+        where
+            daily_no = #{dailyNo}
+    </select>
+
+</mapper>
