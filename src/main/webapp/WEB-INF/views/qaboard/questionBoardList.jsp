@@ -30,15 +30,10 @@
                     onclick="location.href = '${pageContext.request.contextPath}/qaboard/questionBoardCreate';"
 
                     class="middle none center mr-4 rounded-lg bg-pink-500 py-3 px-5 font-sans text-base font-bold uppercase text-white shadow-md shadow-pink-500/20 transition-all hover:shadow-lg hover:shadow-pink-500/40 focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none">
-<<<<<<< HEAD
-                    글쓰기
-            </button>
-=======
-                    글쓰기</button>
 
->>>>>>> 88f21e040459839c1d547df2fe03cabf346f981f
+                    글쓰기</button>
         </div>
-    </c:if>
+    </c:if><br>
     <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
         <table class="w-full text-sm text-left rtl:text-right text-gray-500">
 
@@ -75,11 +70,11 @@
                         <a href="${pageContext.request.contextPath}/qaboard/questionBoardDetail?qbNo=${qaboardvo.qbNo}" class="hover:underline">${fn:escapeXml(qaboardvo.title)}</a>
                     </td>
 
-                    <td class="px-6 py-4">${qaboardvo.regDate}</td>
-<%--                    <td class="px-6 py-4">--%>
-<%--                        <fmt:parseDate value="${qaboard.regDate}" pattern="yyyy-MM-dd'T'HH:mm" var="regDate"/>--%>
-<%--                        <fmt:formatDate value="${regDate}" pattern="yy/MM/dd"/>--%>
-<%--                    </td>--%>
+<%--                    <td class="px-6 py-4">${qaboardvo.regDate}</td>--%>
+                    <td class="px-6 py-4">
+                        <fmt:parseDate value="${qaboardvo.regDate}" pattern="yyyy-MM-dd'T'HH:mm" var="regDate"/>
+                        <fmt:formatDate value="${regDate}" pattern="yy/MM/dd"/>
+                    </td>
 
 
                     <td class="px-6 py-4">${qaboardvo.adminChoice}</td>
