@@ -17,6 +17,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.File;
 import java.io.IOException;
 import java.util.*;
@@ -27,19 +28,19 @@ public class DailyRecodeServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-        System.out.println("dailyRecode 이동 성공");
+        System.out.println("/daily/dailyRecode의 doGet실행");
         DailyService dailyService = new DailyService();
 
+        //회원 M4의 오늘 일일 기록 테이블 조회.(없으면 null)
         DailyRecode dailyRecode = dailyService.findTodayDailyRecodeByMemberNo("M4");
         System.out.println(dailyRecode + ": 입력 폼이동시 실행되는 doGet의 dailtRecode의 값");
         // 오늘 이미 생성한 dailyRecode가 있으면 생성하지 않고 넘어가기
         // 오늘 생성한 dailyRecode 객체가 없으면
         if(dailyRecode == null){
-
             // DailyRecode 생성 코드 작성
             dailyRecode = new DailyRecode();
             // 생성할 dailyRecode의 정보 설정
-            dailyRecode.setDailyWeight(50);
+            //dailyRecode.setDailyWeight(50);
             // dailyRecode의 memberNo를 로그인 멤버의 memberNo의 값으로 변경해야함. (하드코딩지점)
             dailyRecode.setMemberNo("M4");
             dailyRecode.setPointCheck(false);
@@ -47,18 +48,13 @@ public class DailyRecodeServlet extends HttpServlet {
             // 오늘 생성한 dailyRecode 객체가 없으면 새로 생성(insert)
             dailyService.insertDailyRecode(dailyRecode);
         }
-
-        System.out.println("doGet dailyRecode" + dailyRecode);
-
-        RequestDispatcher requestDispatcher = req.getRequestDispatcher("/WEB-INF/views/dailyrecode/dailyrecode.jsp");
-        requestDispatcher.forward(req, resp);
-
+        req.getRequestDispatcher("/WEB-INF/views/dailyrecode/dailyrecode.jsp").forward(req, resp);
     }
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-        System.out.println("dailyRecode doPost실행");
+        System.out.println("/daily/dailyRecode의 doPost실행");
         File repository = new File("C:\\dev\\workspaces\\semi_diet_helper\\src\\main\\webapp\\images");
         int sizeThreshold = 10 * 1024 * 1024;
         DiskFileItemFactory factory = new DiskFileItemFactory();
@@ -78,7 +74,6 @@ public class DailyRecodeServlet extends HttpServlet {
         // dailyRecode의 memberNo를 로그인 멤버의 memberNo의 값으로 변경해야함. (하드코딩지점)
         DailyRecode dailyRecode = new DailyService().findTodayDailyRecodeByMemberNo("M4");
 
-
         // 일일기록 테이블 고유 번호 조회
         String dailyRecodeNo = dailyRecode.getDailyNo();
 
@@ -89,11 +84,13 @@ public class DailyRecodeServlet extends HttpServlet {
             // 일반적으로 name과 value는 1:1 대응 되지만, 파일 업로드의 경우에 다수개가 올 수 있기 떄문에 value에 List가 되어야 한다.
             Map<String, List<FileItem>> fileItemMap = servletFileUpload.parseParameterMap(req);
 
-            // 음식 Set가 몇 개인지
+            // 음식 Set가 몇 개인지 세는 변수 foodSetCount
             int foodSetCount = Integer.parseInt(fileItemMap.get("countFoodSet").get(0).getString("utf-8"));
-
+            // 오늘의 몸무게를 의미하는 변수 todayWeight
             int todayWeight = Integer.parseInt(fileItemMap.get("today-weight").get(0).getString("utf-8"));
-            System.out.println(todayWeight + "todayWeight");
+            // 멤버 M4의 오늘의 몸무게를 설정
+            dailyRecode.setDailyWeight(todayWeight);
+            System.out.println("**입력 폼 입력이후 오늘의 몸무게: " + dailyRecode.getDailyWeight());
 
             //fileItemMap을 통해 key값이 담겨있는 keySet반환
             Set<String> keySet = fileItemMap.keySet();
@@ -196,9 +193,11 @@ public class DailyRecodeServlet extends HttpServlet {
                        //key값이 consume-kcal인 List<FileItem>을 생성
                        List<FileItem> fileItemListInForEach = fileItemMap.get(key);
                        //List<FileItem>의 크기  만큼 반복을 수행
+                       System.out.println(fileItemListInForEach + ": fileItemListInForEach");
                        for (int i = 0; i < fileItemListInForEach.size(); i++) {
                            //List<FileItem>의 i번째 요소를 가져와 변수 consume-kcal에 대입
                            consume = fileItemListInForEach.get(i).getString("utf-8");
+                           System.out.println(consume + "for문 consume");
                            //**** 소비 칼로리 계산 사용 로직 없음 ****
                            consumes.add(consume);
                        }
@@ -259,7 +258,7 @@ public class DailyRecodeServlet extends HttpServlet {
             }
             
             // "M4"를 로그인한 멤버의 memberNo로 변경 (하드코딩지점)
-            // 일일기록 3개 테이블이 모두 작성되었는지 확인한후 3개다 작성되었다면, 이하 if문을 실행
+            // 멤버 M4의 일일기록 3개 테이블이 모두 작성되었는지 확인한 후 3개다 작성되었다면, 이하 if문을 실행
             if(pointIncreaseCheck("M4")){
                 System.out.println("pointIncreaseCheck를 사용한 if문 실행");
                 // "M4"를 로그인한 멤버의 memberNo로 변경 (하드코딩지점)
@@ -279,9 +278,14 @@ public class DailyRecodeServlet extends HttpServlet {
                 }
             }
 
-            req.setAttribute("gainKcals", gainKcals);
-            req.setAttribute("consumes", consumes);
-            req.setAttribute("todayWeight", todayWeight);
+            HttpSession session = req.getSession();
+            System.out.println(gainKcals + "gainKcals");
+            System.out.println(consume + "consume");
+            System.out.println(todayWeight + "todayWeight");
+
+            session.setAttribute("gainKcals", gainKcals);
+            session.setAttribute("consumes", consumes);
+            session.setAttribute("todayWeight", todayWeight);
 
         }
         catch (Exception e){
@@ -292,6 +296,7 @@ public class DailyRecodeServlet extends HttpServlet {
         System.out.println("flag-final");
         // " "안에 이동할 주소 입력
         resp.sendRedirect(req.getContextPath() + "/member/memberMain");
+
     }
 
     public boolean pointIncreaseCheck(String memberNo){
@@ -334,10 +339,8 @@ public class DailyRecodeServlet extends HttpServlet {
         // 가져온 운동 일일기록 리스트에서 하나라도 0이 아니면 check
         if(eyebodyAttachment != null && eyebodyAttachment.getOriginalFile() != null){
             ++increasePointCheck;
-            System.out.println("flag-1");
         }
 
-        System.out.println("flag-2");
         System.out.println(increasePointCheck + "increasePointCheck");
         // 3가지 일일 기록 테이블을 다 작성하면 true를 리턴
         if(increasePointCheck == 3)

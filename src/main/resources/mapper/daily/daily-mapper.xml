@@ -114,4 +114,19 @@
             daily_no = #{dailyNo}
     </select>
 
+
+    <select id="findAllDailyRecode" resultType="dailyRecode">
+        select *
+        from
+            daily_recode
+    </select>
+
+    <select id="findKcalByFoodNo" resultType="foodData">
+        select
+            kcal
+        from
+            food_data
+        where
+            food_no = #{foodNo}
+    </select>
 </mapper>

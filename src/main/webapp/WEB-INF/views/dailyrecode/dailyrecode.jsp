@@ -10,7 +10,7 @@
     <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
 </head>
 <body>
-<form name="dailyRecodeFrm">
+<form name="dailyRecodeFrm" method="post">
     <fieldset>
         <legend>일일 기록폼</legend>
             <div>

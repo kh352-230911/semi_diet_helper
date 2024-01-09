@@ -1,5 +1,7 @@
 package com.sh.diet.calendar;
 
+import com.sh.diet.daily.model.entity.DailyRecode;
+
 public class HandMadeCalendar {
 
     private int calc_year;
@@ -7,6 +9,13 @@ public class HandMadeCalendar {
     private int calc_day;
     private char calc_dayOfWeek;
     public static int currentDayOfMonthInJspTitle;
+
+
+    // 일일포인트 부여 여부, 일일 몸무게를 조회하기 위한 dailyRecode
+    DailyRecode dailyRecode;
+
+
+
 
     public HandMadeCalendar() {
     }

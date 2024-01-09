@@ -40,7 +40,6 @@ $(".exerciseautocomplete").autocomplete({
         // selected객체의 item 속성에 해당하는 값(객체)을 추출하고,
         // 그 안에서 value 속성에 해당하는 값을 value 변수에 할당하는 것을 의미
         const {item : {value}} = selected;
-        // location.href = `${contextPath}/exercise/exerciseDetail?id=${value}`;
     }
 });
 
@@ -86,7 +85,6 @@ $(".mealautocomplete").autocomplete({
         // selected객체의 item 속성에 해당하는 값(객체)을 추출하고,
         // 그 안에서 value 속성에 해당하는 값을 value 변수에 할당하는 것을 의미
         const {item : {value}} = selected;
-        location.href = `${contextPath}/exercise/exerciseDetail?id=${value}`;
     }
 });
 
@@ -108,6 +106,7 @@ document.dailyRecodeFrm.addEventListener("submit", (e) => {
         },
         complete() {
             frm.reset();
+            location.href=`${contextPath}/member/memberMain`
         }
     })
 });

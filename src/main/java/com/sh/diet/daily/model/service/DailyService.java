@@ -1,10 +1,8 @@
 package com.sh.diet.daily.model.service;
 
 import com.sh.diet.daily.model.dao.DailyDao;
-import com.sh.diet.daily.model.entity.DailyEx;
-import com.sh.diet.daily.model.entity.DailyFood;
-import com.sh.diet.daily.model.entity.DailyRecode;
-import com.sh.diet.daily.model.entity.EyebodyAttachment;
+import com.sh.diet.daily.model.entity.*;
+import com.sh.diet.food.model.entity.FoodData;
 import org.apache.ibatis.session.SqlSession;
 
 import java.time.LocalDate;
@@ -116,5 +114,19 @@ public class DailyService {
         EyebodyAttachment eyebodyAttachment = dailyDao.findTodayEyebodyAttachmentByDailyNo(session, dailyNo);
         session.close();
         return eyebodyAttachment;
+    }
+
+    public List<DailyRecode> findAllDailyRecode() {
+        SqlSession session = getSqlSession();
+        List<DailyRecode> dailyRecodes = dailyDao.findAllDailyRecode(session);
+        session.close();
+        return dailyRecodes;
+    }
+
+    public FoodData findKcalByFoodNo(String foodNo) {
+        SqlSession session = getSqlSession();
+        FoodData foodData = dailyDao.findKcalByFoodNo(session, foodNo);
+        session.close();
+        return foodData;
     }
 }

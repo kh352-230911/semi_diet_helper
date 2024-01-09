@@ -115,4 +115,11 @@ public class ExerciseDataService{
         }
         return result;
     }
+
+    public ExerciseData findKcalByExId(String exId) {
+            SqlSession session = getSqlSession();
+        ExerciseData exerciseData = exerciseDataDao.findKcalByExId(session, exId);
+            session.close();
+            return exerciseData;
+    }
 }

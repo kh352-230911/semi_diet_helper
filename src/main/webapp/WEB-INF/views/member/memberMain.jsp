@@ -24,12 +24,23 @@
 </head>
 <body>
     <div>
-        <button id="pre_month" onclick="true">이전 달</button>
+        <button type="button" id="pre_month" onclick="document.preMonthFrm.submit()">이전 달</button>
             ${handMadeCalendarList[20].calc_year}년도 ${handMadeCalendarList[20].calc_month}월
-        <button id="next_month">다음 달</button>
-        <input id="currentViewMonth" value="${handMadeCalendarList[20].calc_month}" type="hidden">
-        <input id="handMadeCalendarList" value="${handMadeCalendarList}" type="hidden">
+        <button type="button" id="pre_month" onclick="document.nextMonthFrm.submit()">다음 달</button>
     </div>
+    <form name="preMonthFrm" method="post">
+<%--        <input id="preMonth" value="${handMadeCalendarList[20].calc_month-1}" name="preMonth" type="hidden">--%>
+        <input value="pre" name="pre" type="hidden">
+        <input value="${handMadeCalendarList[20].calc_month}" name="prepageMonth" type="hidden">
+        <input value="${handMadeCalendarList[20].calc_year}" name="prepageYear" type="hidden">
+    </form>
+    <form name="nextMonthFrm" method="post">
+<%--        <input id="currentViewMonth" value="${handMadeCalendarList[20].calc_month+1}" name="preMonth" type="hidden">--%>
+        <input value="next" name="next" type="hidden">
+        <input value="${handMadeCalendarList[20].calc_month}" name="prepageMonth" type="hidden">
+        <input value="${handMadeCalendarList[20].calc_year}" name="prepageYear" type="hidden">
+
+    </form>
     <table>
         <thead>
             <tr>
@@ -46,7 +57,7 @@
             <tr>
                 <c:forEach items="${handMadeCalendarList}" var="handMadeCalendar" varStatus="vs">
                     <c:if test="${vs.count lt currentDayOfMonthInJspTitle}">
-                        <td>
+                        <td id>
                         </td>
                     </c:if>
                     <c:if test="${vs.count ge currentDayOfMonthInJspTitle}">
