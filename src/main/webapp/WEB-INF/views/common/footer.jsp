@@ -3,7 +3,7 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 
-<body style="background-imge" class="body1" >
+<body style="background-color: white" class="body1" >
 
 <div class="main"></div>
 <div class="footer">
