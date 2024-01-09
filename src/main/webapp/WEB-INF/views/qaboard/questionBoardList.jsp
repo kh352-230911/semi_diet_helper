@@ -15,7 +15,7 @@
             <select id="search-type" name="search-type" required class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 p-1.5">
                 <option value="" disabled selected>검색</option>
                 <option value="member_id" ${param['search-type'] eq 'member_id' ? 'selected' : ''}>회원아이디</option>
-                <option value="member_no" ${param['search-type'] eq 'member_no' ? 'selected' : ''}>회원고유번호</option>
+                <option value="m.member_no" ${param['search-type'] eq 'member_no' ? 'selected' : ''}>회원고유번호</option>
                 <option value="qb_no" ${param['search-type'] eq 'qb_no' ? 'selected' : ''}>질문고유번호</option>
             </select>
             <div class="ml-1">

@@ -48,8 +48,13 @@ public class QuestionBoardDetailServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+
+        String acNo = req.getParameter("acNo");
+        System.out.println(acNo);
+        int result = questionBoardService.linkCountAnswerBoard(acNo);
+        req.getSession().setAttribute("msg","답변이 채택되었습니다 💕");
         String qbNo = (String)req.getSession().getAttribute("qbNo");
-        resp.sendRedirect(req.getContextPath() + "?qbNo=" + qbNo);
+        resp.sendRedirect(req.getContextPath() + "/qaboard/questionBoardDetail?qbNo=" + qbNo);
     }
 }
 

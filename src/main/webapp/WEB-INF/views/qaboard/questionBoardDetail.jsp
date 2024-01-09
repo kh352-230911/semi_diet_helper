@@ -95,10 +95,10 @@
             </div>
             <div class="w-full p-8 bg-white border border-gray-200 rounded-lg shadow mb-4">
                     <h5 class="mb-2 text-2xl font-semibold tracking-tight text-gray-900 ">${fn:escapeXml(answer.title)}
-<%--        집가서 하기^_^                --%>
-<%--                        <c:if test="${loginMember != null || questionBoardvo.acNo}">--%>
+                        <c:if test="${loginMember != null || loginMember.memberId eq questionBoardvo.memberNo}">
+                            <form method="post">
                             <button
-                                    type="button"
+                                    type="submit"
                                     onclick="
                                             if(confirm('위 답변을 채택하시겠습니까?')) {
                                             location.href = '${pageContext.request.contextPath}/qaboard/questionBoardDetail?qbNo=${answer.qbNo}';
@@ -106,8 +106,10 @@
                                             "
                                     class="px-5 py-2.5 mt-4 mr-4 sm:mt-6 text-sm font-medium text-center text-base text-white bg-pink-500 rounded-lg focus:ring-4 focus:ring-primary-200">
                                 채택
+                                <input type="hidden" value="${answer.acNo}" name ="acNo">
                             </button>
-<%--                        </c:if>--%>
+                            </form>
+                        </c:if>
                     </h5>
                     <p class="mb-3 font-normal text-gray-500">${answer.member.name} (${answer.member.memberId})</p>
                     <p class="mb-3 font-normal text-gray-700">${answer.content}</p>
@@ -121,7 +123,7 @@
                         <fmt:formatDate value="${regDate}" pattern="yy/MM/dd HH:mm"/>
                     </div>
                     <div style="display: flex; justify-content: flex-end;">
-                        <c:if test="${loginMember != null && (loginMember.memberId eq answer.member.memberId || loginMember.role eq Role.A)}">
+                        <c:if test="${loginMember != null && (loginMember.memberNo eq answer.memberNo|| loginMember.role eq Role.A)}">
 <%--                        <c:if test="${loginMember != null && (loginMember.memberId eq answer.member.memberId) || (loginMember.role eq Role.A)}">--%>
                         <button type="button"
                                 onclick="location.href = '${pageContext.request.contextPath}/qaboard/answerBoardUpdate?acNo=${answer.acNo}';"
@@ -162,4 +164,4 @@
         </form>
     </div>
 </div>
-<script src="${pageContext.request.contextPath}/js/qaboard/questionBoardDetail.js"></script>
+<%--<script src="${pageContext.request.contextPath}/js/qaboard/questionBoardDetail.js"></script>--%>
