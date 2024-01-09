@@ -19,6 +19,7 @@ public class MemberService {
         return member;
 
     }
+
     public List<Member> findAll() {
         SqlSession session = getSqlSession();
         List<Member> members = memberDao.findAll(session);

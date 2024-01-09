@@ -17,6 +17,7 @@ import java.util.Map;
 @WebServlet("/adminMemberManage")
 public class AdminMemberManageServlet extends HttpServlet {
     MemberService memberService = new MemberService();
+
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         int page = 1;
@@ -31,11 +32,12 @@ public class AdminMemberManageServlet extends HttpServlet {
         param.put("page", page);
         param.put("limit", limit);
 
-        List<Member>  members = memberService.findAll(param);
+        List<Member> members = memberService.findAll(param);
         req.setAttribute("members", members);
         // System.out.println(members);
 
-        req.getRequestDispatcher("/WEB-INF/views/admin/adminMemberManage.jsp").forward(req,resp);;
+        req.getRequestDispatcher("/WEB-INF/views/admin/adminMemberManage.jsp").forward(req, resp);
+        ;
     }
 
     @Override
@@ -51,6 +53,6 @@ public class AdminMemberManageServlet extends HttpServlet {
         System.out.println(result);
         session.setAttribute("msg", "회원 삭제가 완료되었습니다.");
 
-        resp.sendRedirect(req.getContextPath()+"/adminMemberManage");
+        resp.sendRedirect(req.getContextPath() + "/adminMemberManage");
     }
 }

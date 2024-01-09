@@ -15,7 +15,7 @@
             <select id="search-type" name="search-type" required class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 p-1.5">
                 <option value="" disabled selected>검색</option>
                 <option value="member_id" ${param['search-type'] eq 'member_id' ? 'selected' : ''}>회원아이디</option>
-                <option value="member_no" ${param['search-type'] eq 'member_no' ? 'selected' : ''}>회원고유번호</option>
+                <option value="m.member_no" ${param['search-type'] eq 'member_no' ? 'selected' : ''}>회원고유번호</option>
                 <option value="qb_no" ${param['search-type'] eq 'qb_no' ? 'selected' : ''}>질문고유번호</option>
             </select>
             <div class="ml-1">
@@ -28,12 +28,22 @@
             <button
                     type="button"
                     onclick="location.href = '${pageContext.request.contextPath}/qaboard/questionBoardCreate';"
-                    class="text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2">글쓰기</button>
+
+                    class="middle none center mr-4 rounded-lg bg-pink-500 py-3 px-5 font-sans text-base font-bold uppercase text-white shadow-md shadow-pink-500/20 transition-all hover:shadow-lg hover:shadow-pink-500/40 focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none">
+<<<<<<< HEAD
+                    글쓰기
+            </button>
+=======
+                    글쓰기</button>
+
+>>>>>>> 88f21e040459839c1d547df2fe03cabf346f981f
         </div>
     </c:if>
     <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
         <table class="w-full text-sm text-left rtl:text-right text-gray-500">
-            <thead class="text-xs text-gray-700 uppercase bg-gray-50">
+
+            <thead class="text-xs text-pink-700 uppercase bg-pink-50">
+
             <tr>
                 <th scope="col" class="px-6 py-3">질문고유번호</th>
                 <th scope="col" class="px-6 py-3">회원고유번호</th>
@@ -47,8 +57,11 @@
             </thead>
             <tbody>
             <c:forEach items="${questionBoardvos}" var="qaboardvo" varStatus="vs">
+
                 <tr class="odd:bg-white even:bg-gray-50 border-b ">
-                    <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">${qaboardvo.qbNo}</th>
+
+
+                    <th scope="row" class="px-6 py-4 font-medium text-pink-300 whitespace-nowrap">${qaboardvo.qbNo}</th>
                     <td class="px-6 py-4">${qaboardvo.memberNo}</td>
                     <td class="px-6 py-4">${qaboardvo.member.memberId}</td>
                             <%--  조회수인듯 몰겠음 일단 주석함  --%>
@@ -61,11 +74,14 @@
                     <td class="px-6 py-4">
                         <a href="${pageContext.request.contextPath}/qaboard/questionBoardDetail?qbNo=${qaboardvo.qbNo}" class="hover:underline">${fn:escapeXml(qaboardvo.title)}</a>
                     </td>
+
                     <td class="px-6 py-4">${qaboardvo.regDate}</td>
 <%--                    <td class="px-6 py-4">--%>
 <%--                        <fmt:parseDate value="${qaboard.regDate}" pattern="yyyy-MM-dd'T'HH:mm" var="regDate"/>--%>
 <%--                        <fmt:formatDate value="${regDate}" pattern="yy/MM/dd"/>--%>
 <%--                    </td>--%>
+
+
                     <td class="px-6 py-4">${qaboardvo.adminChoice}</td>
                 </tr>
             </c:forEach>
