@@ -1,9 +1,7 @@
 package com.sh.diet.daily.model.dao;
 
-import com.sh.diet.daily.model.entity.DailyEx;
-import com.sh.diet.daily.model.entity.DailyFood;
-import com.sh.diet.daily.model.entity.DailyRecode;
-import com.sh.diet.daily.model.entity.EyebodyAttachment;
+import com.sh.diet.daily.model.entity.*;
+import com.sh.diet.food.model.entity.FoodData;
 import org.apache.ibatis.session.SqlSession;
 
 import java.time.LocalDate;
@@ -50,7 +48,31 @@ public class DailyDao {
         return session.selectList("daily.findTodayDailyFoodByDailyNo", dailyNo);
     }
 
-    public EyebodyAttachment findTodayEyebodyAttachmentByDailyNo(SqlSession session, String dailyNo) {
-        return session.selectOne("daily.findTodayEyebodyAttachmentByDailyNo", dailyNo);
+    public List<EyebodyAttachment> findTodayEyebodyAttachmentByDailyNo(SqlSession session, String dailyNo) {
+        return session.selectList("daily.findTodayEyebodyAttachmentByDailyNo", dailyNo);
+    }
+
+    public List<DailyRecode> findAllDailyRecode(SqlSession session) {
+        return session.selectList("daily.findAllDailyRecode");
+    }
+
+    public FoodData findKcalByFoodNo(SqlSession session, String foodNo) {
+        return session.selectOne("daily.findKcalByFoodNo", foodNo);
+    }
+
+    public List<DailyRecode> findAllDailyRecodeByDate(SqlSession session, Daily daily) {
+        return session.selectList("daily.findAllDailyRecodeByDate", daily);
+    }
+
+    public int updateDailyRecode(SqlSession session, DailyRecode dailyRecode) {
+        return session.update("daily.updateDailyRecode", dailyRecode);
+    }
+
+    public int deletePreEyebodyAttachment(SqlSession session, EyebodyAttachment eyebodyAttachment) {
+        return session.delete("daily.deletePreEyebodyAttachment", eyebodyAttachment);
+    }
+
+    public int updateIncreaseOnePointToDailyRecode(SqlSession session, String dailyRecodeNo) {
+        return session.update("daily.updateIncreaseOnePointToDailyRecode", dailyRecodeNo);
     }
 }

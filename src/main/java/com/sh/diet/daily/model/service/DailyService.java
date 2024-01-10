@@ -1,10 +1,8 @@
 package com.sh.diet.daily.model.service;
 
 import com.sh.diet.daily.model.dao.DailyDao;
-import com.sh.diet.daily.model.entity.DailyEx;
-import com.sh.diet.daily.model.entity.DailyFood;
-import com.sh.diet.daily.model.entity.DailyRecode;
-import com.sh.diet.daily.model.entity.EyebodyAttachment;
+import com.sh.diet.daily.model.entity.*;
+import com.sh.diet.food.model.entity.FoodData;
 import org.apache.ibatis.session.SqlSession;
 
 import java.time.LocalDate;
@@ -111,10 +109,86 @@ public class DailyService {
         return dailyFoods;
     }
 
-    public EyebodyAttachment findTodayEyebodyAttachmentByDailyNo(String dailyNo) {
+    public List<EyebodyAttachment> findTodayEyebodyAttachmentByDailyNo(String dailyNo) {
         SqlSession session = getSqlSession();
-        EyebodyAttachment eyebodyAttachment = dailyDao.findTodayEyebodyAttachmentByDailyNo(session, dailyNo);
+        List<EyebodyAttachment> eyebodyAttachments = dailyDao.findTodayEyebodyAttachmentByDailyNo(session, dailyNo);
         session.close();
-        return eyebodyAttachment;
+        return eyebodyAttachments;
+    }
+
+    public List<DailyRecode> findAllDailyRecode() {
+        SqlSession session = getSqlSession();
+        List<DailyRecode> dailyRecodes = dailyDao.findAllDailyRecode(session);
+        session.close();
+
+        return dailyRecodes;
+    }
+
+    public FoodData findKcalByFoodNo(String foodNo) {
+        SqlSession session = getSqlSession();
+        FoodData foodData = dailyDao.findKcalByFoodNo(session, foodNo);
+        session.close();
+        return foodData;
+    }
+
+//    public List<DailyRecode> findAllDailyRecodeByDate(Daily daily) {
+//        SqlSession session = getSqlSession();
+//        List<DailyRecode> dailyRecodes = dailyDao.findAllDailyRecodeByDate(session, daily);
+//        session.close();
+//        return dailyRecodes;
+//    }
+
+    public List<DailyRecode> findAllDailyRecodeByDate(Daily daily) {
+        SqlSession session = getSqlSession();
+        List<DailyRecode> dailyRecodes = dailyDao.findAllDailyRecodeByDate(session, daily);
+        session.close();
+        return dailyRecodes;
+    }
+
+    public int updateDailyRecode(DailyRecode dailyRecode) {
+        int result = 0;
+        SqlSession session = getSqlSession();
+        try{
+            result = dailyDao.updateDailyRecode(session, dailyRecode);
+            session.commit();
+        }
+        catch (Exception e){
+            session.rollback();
+            throw e;
+        }
+        finally {
+            session.close();
+        }
+        return result;
+    }
+
+    public int deletePreEyebodyAttachment(EyebodyAttachment eyebodyAttachment) {
+        int result = 0;
+        SqlSession session = getSqlSession();
+        try{
+            result = dailyDao.deletePreEyebodyAttachment(session, eyebodyAttachment);
+            session.commit();
+        }
+        catch (Exception e){
+            session.rollback();
+            throw e;
+        }
+        session.close();
+        return result;
+    }
+
+    public int updateIncreaseOnePointToDailyRecode(String dailyRecodeNo) {
+        int result = 0;
+        SqlSession session = getSqlSession();
+        try{
+            result = dailyDao.updateIncreaseOnePointToDailyRecode(session, dailyRecodeNo);
+            session.commit();
+        }
+        catch (Exception e){
+            session.rollback();
+            throw e;
+        }
+        session.close();
+        return result;
     }
 }
