@@ -10,7 +10,7 @@
         질답페이지로 돌아가기
     </button>
 </div>
-<h1 style="font-size: 30px;">&nbsp;&nbsp;&nbsp;Question🙅</h1>
+<h1 style="font-size: 60px;">&nbsp;&nbsp;&nbsp;Question🙅</h1>
 <div class="xl:container p-8">
     <div class="flex">
         <svg class="w-8 h-8 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="20" height="30" fill="none" viewBox="0 0 14 20">
@@ -88,7 +88,12 @@
 <%--<c:if test = "${answerBoards!=null}">--%>
 
         <c:forEach items="${answerBoardvo}" var="answer" varStatus="vs">
-            <h1 style="font-size: 30px;">&nbsp;&nbsp;&nbsp;Answer🙆</h1>
+            <c:if test="${answer.choice eq 1}">
+            <h1 style="font-size: 60px;">&nbsp;&nbsp;&nbsp;채택🙆</h1>
+            </c:if>
+            <c:if test="${answer.choice eq 0}">
+            <h1 style="font-size: 60px;">&nbsp;&nbsp;&nbsp;Answer🙆</h1>
+            </c:if>
             <div class="xl:container p-8">
             <div class="flex">
                 <svg class="w-8 h-8text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="20" height="30" fill="none" viewBox="0 0 14 20">
@@ -103,7 +108,7 @@
             </div>
             <div class="w-full p-8 bg-white border border-gray-200 rounded-lg shadow mb-4">
                     <h5 class="mb-2 text-2xl font-semibold tracking-tight text-gray-900 ">${fn:escapeXml(answer.title)}
-                        <c:if test="${loginMember != null || loginMember.memberId eq questionBoardvo.memberNo}">
+                        <c:if test="${loginMember != null && loginMember.memberNo eq questionBoardvo.memberNo}">
                             <form method="post">
                             <button
                                     type="submit"
@@ -153,7 +158,6 @@
                             <input type="hidden" value="${answer.acNo}" name ="acNo">
                         </button>
                                 </form>
-
                         </c:if>
                     </div>
                 </div>
