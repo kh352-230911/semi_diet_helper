@@ -10,7 +10,9 @@
 <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <jsp:include page="/WEB-INF/views/common/header.jsp"/>
-<div class="flex min-h-full flex-col justify-center px-6 py-12 lg:px-8">
+<div class="flex min-h-full flex-col justify-center px-6 py-12 lg:px-8"
+    style="margin-top: -450px"
+    >
     <form action="${pageContext.request.contextPath}/exercise/addExercise"
           method="post"
           class="max-w-md mx-auto bg-white p-8 rounded-lg border border-gray-300 shadow-2xl">

@@ -18,4 +18,62 @@ public class FoodDataService {
         return foodDatas;
     }
 
+    public FoodData findByFoodNo(String foodNo) {
+        SqlSession session = getSqlSession();
+        FoodData foodData = foodDataDao.findByFoodNo(session, foodNo);
+        session.close();
+        return foodData;
+    }
+
+    public List<FoodData> findAll() {
+        SqlSession session = getSqlSession();
+        List<FoodData> foodData = foodDataDao.findAll(session);
+        session.close();
+        return foodData;
+    }
+
+    public int insertFoodData(FoodData foodData) {
+        int result = 0;
+        SqlSession session = getSqlSession();
+        try {
+            result = foodDataDao.insertFoodData(session, foodData);
+            session.commit();
+        } catch (Exception e) {
+            session.rollback();
+            throw e;
+        } finally {
+            session.close();
+        }
+        return result;
+    }
+
+    public int updateFoodData(FoodData foodData) {
+        int result = 0;
+        SqlSession session = getSqlSession();
+        try {
+            result = foodDataDao.updateFoodData(session, foodData);
+            session.commit();
+        } catch (Exception e) {
+            session.rollback();
+            throw e;
+        } finally {
+            session.close();
+        }
+        return result;
+    }
+
+    public int deleteFoodData(String foodNo) {
+        int result = 0;
+        SqlSession session = getSqlSession();
+        try {
+            result = foodDataDao.deleteFoodData(session, foodNo);
+            session.commit();
+        } catch (Exception e) {
+            session.rollback();
+            throw e;
+        } finally {
+            session.close();
+        }
+        return result;
+    }
 }

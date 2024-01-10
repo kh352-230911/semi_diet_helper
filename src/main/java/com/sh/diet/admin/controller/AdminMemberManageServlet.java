@@ -37,7 +37,7 @@ public class AdminMemberManageServlet extends HttpServlet {
         // System.out.println(members);
 
         req.getRequestDispatcher("/WEB-INF/views/admin/adminMemberManage.jsp").forward(req, resp);
-        ;
+
     }
 
     @Override
