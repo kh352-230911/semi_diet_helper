@@ -30,14 +30,24 @@ public class QuestionBoardDetailServlet extends HttpServlet {
             QuestionBoardVo questionBoardVo = questionBoardService.findById(qbNo);
             List<AnswerBoardVo> answerBoardVo = questionBoardService.findByAnswerBoardqbNo(qbNo);
 //            List<AnswerBoardVo> answerBoardVos = questionBoardService.findByAnswerBoardacNo(acNo);
-            System.out.println(answerBoardVo);
-            System.out.println(questionBoardVo);
-//            System.out.println(answerBoards);
+//             System.out.println(answerBoardVo);
+//             System.out.println(questionBoardVo);
+
+            int answerChecker = 0;
+
+            for (AnswerBoardVo boardVo : answerBoardVo) {
+                answerChecker += boardVo.getChoice();
+            }
+            System.out.println(answerChecker);
+//            System.out.println(answerBoa rds);
+            req.setAttribute("answerChecker", answerChecker);
             req.setAttribute("answerBoardvo",answerBoardVo);
             req.setAttribute("questionBoardvo",questionBoardVo);
 //            req.setAttribute("answerBoardvo",answerBoardVos);
             req.getSession().setAttribute("qbNo", qbNo);
 //            req.getSession().setAttribute("acNo", acNo);
+
+
 
             req.getRequestDispatcher("/WEB-INF/views/qaboard/questionBoardDetail.jsp").forward(req, resp);
         } catch (Exception e) {
@@ -48,8 +58,13 @@ public class QuestionBoardDetailServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+
+        String acNo = req.getParameter("acNo");
+        System.out.println(acNo);
+        int result = questionBoardService.linkCountAnswerBoard(acNo);
+        req.getSession().setAttribute("msg","답변이 채택되었습니다 💕");
         String qbNo = (String)req.getSession().getAttribute("qbNo");
-        resp.sendRedirect(req.getContextPath() + "?qbNo=" + qbNo);
+        resp.sendRedirect(req.getContextPath() + "/qaboard/questionBoardDetail?qbNo=" + qbNo);
     }
 }
 

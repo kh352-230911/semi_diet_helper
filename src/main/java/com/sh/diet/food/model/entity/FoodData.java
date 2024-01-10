@@ -16,7 +16,7 @@ public class FoodData {
         this.foodNo = foodNo;
         this.name = name;
         this.kcal = kcal;
-        this.carbo = caarbo;
+        this.carbo = carbo;
         this.prot = prot;
         this.fat = fat;
     }
@@ -45,12 +45,12 @@ public class FoodData {
         this.kcal = kcal;
     }
 
-    public float getCaarbo() {
+    public float getCarbo() {
         return carbo;
     }
 
-    public void setCaarbo(float caarbo) {
-        this.carbo = caarbo;
+    public void setCarbo(float carbo) {
+        this.carbo = carbo;
     }
 
     public float getProt() {

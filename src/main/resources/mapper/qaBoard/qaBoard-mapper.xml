@@ -102,7 +102,7 @@
         where
         qb_no = #{qbNo}
         order by
-        a.reg_date ,a.choice desc
+        a.reg_date desc ,a.choice desc
     </select>
 
 
@@ -156,13 +156,10 @@
         where
         ac_no = #{acNo}
     </delete>
-<!--    <select id="searchList" resultType="qaBoard">-->
-<!--        select-->
-<!--        *-->
-<!--        from-->
-<!--        question_board-->
-<!--        where-->
-<!--        ${searchType} like '%' || #{searchKeyword} || '%'-->
-<!--    </select>-->
-
+<update id="linkCountAnswerBoard">
+    update
+    answer_comment
+    set choice = 1
+    where ac_no = #{acNo}
+</update>
 </mapper>

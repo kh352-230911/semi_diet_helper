@@ -46,9 +46,6 @@ public class QuestionBoardDao {
         return session.selectList("qaBoard.findByAnswerBoardqbNo", qbNo);
     }
 
-//    public List<AnswerBoardVo> findByAnswerBoardacNo(SqlSession session, String acNo) {
-//        return session.selectList("qaBoard.findByAnswerBoardacNo",acNo);
-//    }
 
     public int insertAnswerBoard(SqlSession session, AnswerBoard answerBoard) {
         return session.insert("qaBoard.insertAnswerBoard", answerBoard);
@@ -62,4 +59,7 @@ public class QuestionBoardDao {
         return session.delete("qaBoard.deleteAnswerBoard", acNo);
     }
 
+    public int linkCountAnswerBoard(SqlSession session, String acNo) {
+        return session.update("qaBoard.linkCountAnswerBoard",acNo);
+    }
 }

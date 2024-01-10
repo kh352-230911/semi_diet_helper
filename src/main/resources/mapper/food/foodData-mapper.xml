@@ -13,4 +13,46 @@
             name LIKE '%' || #{foodName} || '%'
     </select>
 
+    <select id="findByFoodNo" resultType="foodData">
+        select
+            *
+        from
+            food_data
+        where
+            food_no = #{foodNo}
+    </select>
+
+    <select id="findAll" resultType="foodData">
+        select
+            *
+        from
+            food_data
+    </select>
+
+    <insert id="insertFoodData">
+        insert into
+            food_data
+        values ('F'||seq_food_no.nextval, #{name}, #{kcal},#{carbo},#{prot},#{fat})
+    </insert>
+
+    <update id="updateFoodData" >
+        update
+            food_data
+        set
+            name = #{name},
+            kcal = #{kcal},
+            carbo = #{carbo},
+            prot = #{prot},
+            fat = #{fat}
+        where
+            food_no = #{foodNo}
+    </update>
+
+    <delete id="deleteFoodData">
+        delete from
+            food_data
+        where
+            food_no = #{foodNo}
+    </delete>
+
 </mapper>

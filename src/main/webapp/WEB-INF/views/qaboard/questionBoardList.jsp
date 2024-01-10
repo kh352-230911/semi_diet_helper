@@ -30,11 +30,9 @@
                     onclick="location.href = '${pageContext.request.contextPath}/qaboard/questionBoardCreate';"
 
                     class="middle none center mr-4 rounded-lg bg-pink-500 py-3 px-5 font-sans text-base font-bold uppercase text-white shadow-md shadow-pink-500/20 transition-all hover:shadow-lg hover:shadow-pink-500/40 focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none">
-
-                    글쓰기
-            </button>
+                    글쓰기</button>
         </div>
-    </c:if>
+    </c:if><br>
     <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
         <table class="w-full text-sm text-left rtl:text-right text-gray-500">
 
@@ -48,7 +46,7 @@
                         <%--   본문을 굳이 목록에?? 일단 보류    --%>
 <%--                <th scope="col" class="px-6 py-3">본문</th>--%>
                 <th scope="col" class="px-6 py-3">작성일</th>
-                <th scope="col" class="px-6 py-3">추천 게시물 선정</th>
+                <%--<th scope="col" class="px-6 py-3">답변 선택 여부</th>--%>
             </tr>
             </thead>
             <tbody>
@@ -60,25 +58,16 @@
                     <th scope="row" class="px-6 py-4 font-medium text-pink-300 whitespace-nowrap">${qaboardvo.qbNo}</th>
                     <td class="px-6 py-4">${qaboardvo.memberNo}</td>
                     <td class="px-6 py-4">${qaboardvo.member.memberId}</td>
-                            <%--  조회수인듯 몰겠음 일단 주석함  --%>
-<%--                        <c:if test="${board.commentCount ge 10}">--%>
-<%--                            <span class="inline-flex items-center rounded-md bg-red-50 px-2 py-1 text-xs font-medium text-red-700 ring-1 ring-inset ring-red-600/10">${board.commentCount}</span>--%>
-<%--                        </c:if>--%>
-<%--                        <c:if test="${board.commentCount gt 0 && board.commentCount lt 10}">--%>
-<%--                            <span class="inline-flex items-center rounded-md bg-gray-50 px-2 py-1 text-xs font-medium text-gray-700 ring-1 ring-inset ring-gray-600/10">${board.commentCount}</span>--%>
-<%--                        </c:if>--%>
                     <td class="px-6 py-4">
                         <a href="${pageContext.request.contextPath}/qaboard/questionBoardDetail?qbNo=${qaboardvo.qbNo}" class="hover:underline">${fn:escapeXml(qaboardvo.title)}</a>
                     </td>
-
-                    <td class="px-6 py-4">${qaboardvo.regDate}</td>
-<%--                    <td class="px-6 py-4">--%>
-<%--                        <fmt:parseDate value="${qaboard.regDate}" pattern="yyyy-MM-dd'T'HH:mm" var="regDate"/>--%>
-<%--                        <fmt:formatDate value="${regDate}" pattern="yy/MM/dd"/>--%>
-<%--                    </td>--%>
+                    <td class="px-6 py-4">
+                        <fmt:parseDate value="${qaboardvo.regDate}" pattern="yyyy-MM-dd'T'HH:mm" var="regDate"/>
+                        <fmt:formatDate value="${regDate}" pattern="yy/MM/dd"/>
+                    </td>
 
 
-                    <td class="px-6 py-4">${qaboardvo.adminChoice}</td>
+                    <%--<td class="px-6 py-4">${qaboardvo.adminChoice}</td>--%>
                 </tr>
             </c:forEach>
             </tbody>

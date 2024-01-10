@@ -4,7 +4,7 @@
 <%@taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <jsp:include page="/WEB-INF/views/common/header.jsp"/>
 <div class="py-8 px-4 mx-auto max-w-2xl lg:py-16">
-    <h2 class="mb-4 text-xl font-bold text-gray-900">답글게시글 수정</h2>
+    <h2 class="mb-4 text-xl font-bold text-gray-900">답변게시글 수정</h2>
     <form name="answerboardCreateFrm" method="post">
         <div class="grid gap-4 sm:grid-cols-2 sm:gap-6">
             <div class="sm:col-span-2">

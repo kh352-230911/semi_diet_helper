@@ -27,12 +27,6 @@ public class QuestionBoardService {
         session.close();
         return answerBoardVo;
     }
-//    public List<AnswerBoardVo> findByAnswerBoardacNo(String acNo){
-//        SqlSession session = getSqlSession();
-//        List<AnswerBoardVo> answerBoardVo = questionBoardDao.findByAnswerBoardacNo(session, acNo);
-//        session.close();
-//        return answerBoardVo;
-//    }
 
     public QuestionBoardVo findById(String qbNo) {
         SqlSession session = getSqlSession();
@@ -126,7 +120,7 @@ public class QuestionBoardService {
         }
         return result;
     }
-//
+
     public int getTotalCount(Map<String, Object> param) {
     SqlSession session = getSqlSession();
     int totalCount = questionBoardDao.getTotalCount(session, param);
@@ -141,13 +135,21 @@ public class QuestionBoardService {
         return questionBoardvos;
     }
 
-//    public List<QuestionBoardVo> searchList(Map<String, Object> param) {
-//        SqlSession session = getSqlSession();
-//        List<QuestionBoardVo> questionBoardVos = questionBoardDao.searchList(session, param);
-//        session.close();
-//        return questionBoardVos;
-//
-//    }
+
+    public int linkCountAnswerBoard(String acNo) {
+        int result = 0;
+        SqlSession session = getSqlSession();
+        try {
+            result = questionBoardDao.linkCountAnswerBoard(session,acNo);
+            session.commit();
+        } catch (Exception e) {
+            session.rollback();
+            throw e;
+        } finally {
+            session.close();
+        }
+        return result;
+    }
 }
 
 

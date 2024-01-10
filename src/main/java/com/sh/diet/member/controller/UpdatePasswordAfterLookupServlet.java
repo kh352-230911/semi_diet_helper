@@ -56,7 +56,7 @@ public class UpdatePasswordAfterLookupServlet extends HttpServlet {
 //                msg = "비밀번호가 일치하지 않습니다.";
 //                location += "/member/updatePassword";
 //            }
-//        } else {
+//        } else {비
 //            msg = "로그인 정보를 찾을 수 없습니다.";
 //            location += "/"; // Redirect to home page or login page
 //        }
