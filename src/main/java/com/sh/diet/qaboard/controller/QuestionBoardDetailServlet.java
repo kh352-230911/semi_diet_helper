@@ -30,14 +30,24 @@ public class QuestionBoardDetailServlet extends HttpServlet {
             QuestionBoardVo questionBoardVo = questionBoardService.findById(qbNo);
             List<AnswerBoardVo> answerBoardVo = questionBoardService.findByAnswerBoardqbNo(qbNo);
 //            List<AnswerBoardVo> answerBoardVos = questionBoardService.findByAnswerBoardacNo(acNo);
-            System.out.println(answerBoardVo);
-            System.out.println(questionBoardVo);
-//            System.out.println(answerBoards);
+//             System.out.println(answerBoardVo);
+//             System.out.println(questionBoardVo);
+
+            int answerChecker = 0;
+
+            for (AnswerBoardVo boardVo : answerBoardVo) {
+                answerChecker += boardVo.getChoice();
+            }
+            System.out.println(answerChecker);
+//            System.out.println(answerBoa rds);
+            req.setAttribute("answerChecker", answerChecker);
             req.setAttribute("answerBoardvo",answerBoardVo);
             req.setAttribute("questionBoardvo",questionBoardVo);
 //            req.setAttribute("answerBoardvo",answerBoardVos);
             req.getSession().setAttribute("qbNo", qbNo);
 //            req.getSession().setAttribute("acNo", acNo);
+
+
 
             req.getRequestDispatcher("/WEB-INF/views/qaboard/questionBoardDetail.jsp").forward(req, resp);
         } catch (Exception e) {
