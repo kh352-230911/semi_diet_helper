@@ -10,11 +10,12 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <jsp:include page="/WEB-INF/views/common/header.jsp"/>
+
 <body style="background-color: white;">
 
 <div class="flex min-h-full flex-col justify-center px-6 py-12 lg:px-8">
 
-        <form class="max-w-md mx-auto bg-white p-8 " method="post">
+        <form  class="max-w-md mx-auto bg-white p-8 " method="post">
                 <h1 class="mb-6 text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl">
                         회원가입
                 </h1>
@@ -95,7 +96,8 @@
                         이미 회원이신가요? <a href="#" class="font-medium text-primary-600 hover:underline">여기서 로그인하세요😀</a>
                 </p>
         </form>
+
 </div>
 
-<%--<script src="${pageContext.request.contextPath}/js/member/memberRegister.js"></script>--%>
+<script src="${pageContext.request.contextPath}/js/member/memberRegister.js">
 
