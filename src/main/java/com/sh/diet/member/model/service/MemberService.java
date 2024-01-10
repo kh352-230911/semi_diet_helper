@@ -41,7 +41,6 @@ public class MemberService {
             result = memberDao.insertMember(session, member);
             session.commit();
         } catch (Exception e){
-
             session.rollback();
             throw e;
         } finally {

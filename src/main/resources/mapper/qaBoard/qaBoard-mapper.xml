@@ -18,8 +18,8 @@
     </resultMap>
     <select id="findAllpage" resultMap="questionBoardVoMap">
         select
-
-            q.*, m.*
+            q.*,
+            m.*
         from
             question_board q left join member m
                 on q.member_no = m.member_no
@@ -156,13 +156,10 @@
         where
         ac_no = #{acNo}
     </delete>
-<!--    <select id="searchList" resultType="qaBoard">-->
-<!--        select-->
-<!--        *-->
-<!--        from-->
-<!--        question_board-->
-<!--        where-->
-<!--        ${searchType} like '%' || #{searchKeyword} || '%'-->
-<!--    </select>-->
-
+<update id="linkCountAnswerBoard">
+    update
+    answer_comment
+    set choice = 1
+    where ac_no = #{acNo}
+</update>
 </mapper>
