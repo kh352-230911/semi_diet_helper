@@ -1,24 +1,17 @@
 package com.sh.diet.member.controller;
 
-import com.google.gson.Gson;
-import com.sh.diet.calendar.HandMadeCalendar;
-import com.sh.diet.daily.model.entity.DailyEx;
-import com.sh.diet.daily.model.entity.DailyFood;
-import com.sh.diet.daily.model.entity.DailyRecode;
-import com.sh.diet.daily.model.entity.EyebodyAttachment;
+import com.sh.diet.calendar.entity.HandMadeCalendar;
+import com.sh.diet.daily.model.entity.*;
 import com.sh.diet.daily.model.service.DailyService;
-import com.sh.diet.exercise.model.entity.ExerciseData;
 import com.sh.diet.exercise.model.service.ExerciseDataService;
 
 import javax.servlet.ServletException;
-import javax.servlet.ServletOutputStream;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -28,7 +21,6 @@ import java.util.List;
 public class MemberMainServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-//        LocalDate currentDate = LocalDate.now();
 
         HttpSession session = req.getSession();
 
@@ -52,7 +44,7 @@ public class MemberMainServlet extends HttpServlet {
         System.out.println(dailyExes);
         List<DailyFood> dailyFoods = dailyService.findTodayDailyFoodByDailyNo(loginMemberTodayDailyNo);
         System.out.println(dailyFoods);
-        EyebodyAttachment eyebodyAttachment = dailyService.findTodayEyebodyAttachmentByDailyNo(loginMemberTodayDailyNo);
+        EyebodyAttachment eyebodyAttachment = dailyService.findTodayEyebodyAttachmentByDailyNo(loginMemberTodayDailyNo).get(0);
         System.out.println(eyebodyAttachment);
 
         int totalConsumeKcal = 0;
@@ -61,24 +53,25 @@ public class MemberMainServlet extends HttpServlet {
         System.out.println(dailyExes.size());
         //일일 운동 기록 List를 순회하는 반복문
         for(int i = 0; i < dailyExes.size(); i++){
-            System.out.println("dailyExes.get(i).getExId():" + dailyExes.get(i).getExId());
-            System.out.println("dailyExes.get(i).getExSets():" + dailyExes.get(i).getExSets());
-            System.out.println(new ExerciseDataService().findKcalByExId(dailyExes.get(i).getExId() + ": new ExerciseDataService().findKcalByExId(dailyExes.get(i).getExId()"));
+//            System.out.println("dailyExes.get(i).getExId():" + dailyExes.get(i).getExId());
+//            System.out.println("dailyExes.get(i).getExSets():" + dailyExes.get(i).getExSets());
+//            System.out.println(new ExerciseDataService().findKcalByExId(dailyExes.get(i).getExId() + ": new ExerciseDataService().findKcalByExId(dailyExes.get(i).getExId()"));
 
             // 오늘 하루의 총 소비 칼로리
             totalConsumeKcal += dailyExes.get(i).getExSets() * new ExerciseDataService().findKcalByExId(dailyExes.get(i).getExId()).getKcal();
-            System.out.println("totalConsumeKcal: " + totalConsumeKcal);
+//            System.out.println("totalConsumeKcal: " + totalConsumeKcal);
         }
-        System.out.println("totalConsumeKcal for문 탈출 이후 값: " + totalConsumeKcal);
-        System.out.println(dailyFoods.size());
+//        System.out.println("totalConsumeKcal for문 탈출 이후 값: " + totalConsumeKcal);
+//        System.out.println(dailyFoods.size());
         //일일 음식 기록 List를 순회하는 반복문
         for(int i = 0; i < dailyFoods.size(); i++){
             // 오늘 하루의 총 섭취 칼로리
             totalGainKcal += dailyService.findKcalByFoodNo(dailyFoods.get(i).getFoodNo()).getKcal();
-            System.out.println("totalGainKcal for문 탈출 이후 값: " + totalGainKcal);
+//            System.out.println("totalGainKcal for문 탈출 이후 값: " + totalGainKcal);
         }
-        System.out.println("totalGainKcal: " + totalGainKcal);
+//        System.out.println("totalGainKcal: " + totalGainKcal);
         System.out.println("doGet 캘린더 로직 실행");
+
         // HandMadeCalendar를 요소로 하는 List 생성
         List<HandMadeCalendar> handMadeCalendarList = new ArrayList<HandMadeCalendar>();
 
@@ -124,6 +117,9 @@ public class MemberMainServlet extends HttpServlet {
         // wantMonth에 첫 날을 가리키는 monthStartDay변수
         LocalDate monthStartDay = LocalDate.of(currentDate.getYear(), wantMonth, currentDate.withDayOfMonth(1).getDayOfMonth());
 
+        int currentMonthYear = 0;
+        int currentDayMonth = 0;
+
         // 현재 달의 일 수 만큼 반복
         for(int i = 1; i <= lastDayOfMonth; i++){
 
@@ -137,10 +133,10 @@ public class MemberMainServlet extends HttpServlet {
             int _dayOfWeek = dayOfWeek.getValue(); // 월(1) ~ 일(7)
 
             // 현재의 년도
-            int currentMonthYear = calcCurrentDate.getYear();
+            currentMonthYear = calcCurrentDate.getYear();
 
             // 현재의 월
-            int currentDayMonth = calcCurrentDate.getMonth().getValue();
+            currentDayMonth = calcCurrentDate.getMonth().getValue();
 
             // 현재의 일(숫자)
             int currentDayOfMonth = calcCurrentDate.getDayOfMonth();
@@ -168,15 +164,174 @@ public class MemberMainServlet extends HttpServlet {
         List<DailyRecode> dailyRecodes = new DailyService().findAllDailyRecode();
         System.out.println(dailyRecodes);
 
+        List<DailyRecode> dailyRecodesForJSP = new ArrayList<>();
+
+        Daily daily = new Daily();
+        daily.setDailyYear(currentMonthYear);
+        daily.setDailyMonth(currentDayMonth);
+
+        try{
+            List<DailyRecode> dailyRecodesIntry = new DailyService().findAllDailyRecode();
+            for(DailyRecode dailyRecodeIntry : dailyRecodesIntry){
+                System.out.println(dailyRecodeIntry + "dailyRecodesIntry(List)의 값");
+            }
+            List<DailyRecode> resultDailyRecodesIntry = null;
+
+            resultDailyRecodesIntry = new DailyService().findAllDailyRecodeByDate(daily);
+
+            // 더미 날짜 데이터, 한 달의 시작 일을 설정하도록 도움
+            for(int i = 0; i < (currentDayOfMonthInJspTitle - 1) + lastDayOfMonth; i++){
+                dailyRecodesForJSP.add(new DailyRecode());
+            }
+
+            int recodeDay = 0;
+
+            for(int i = 0; i < resultDailyRecodesIntry.size(); i++){
+                recodeDay = resultDailyRecodesIntry.get(i).getRecodeDate().getDayOfMonth();
+                dailyRecodesForJSP.get(recodeDay + (currentDayOfMonthInJspTitle - 2)).
+                        setDailyWeight(resultDailyRecodesIntry.get(i).getDailyWeight());
+
+                dailyRecodesForJSP.get(recodeDay + (currentDayOfMonthInJspTitle - 2)).
+                        setDailyNo(resultDailyRecodesIntry.get(i).getDailyNo());
+
+                dailyRecodesForJSP.get(recodeDay + (currentDayOfMonthInJspTitle - 2)).
+                        setPointCheck(resultDailyRecodesIntry.get(i).isPointCheck());
+            }
+
+            System.out.println("handMadeCalendarList.size()" + handMadeCalendarList.size());
+            System.out.println("dailyRecodesForJSP.size()"  + dailyRecodesForJSP.size());
+
+            for(int i = 0; i < handMadeCalendarList.size(); i++){
+                handMadeCalendarList.get(i).setDailyRecode(dailyRecodesForJSP.get(i));
+            }
+
+            for(int i = 0; i < handMadeCalendarList.size(); i++){
+                System.out.println(handMadeCalendarList.get(i).getDailyRecode() + " i : " + i);
+            }
+
+
+            System.out.println("resultDailyRecodesIntry : " + resultDailyRecodesIntry);
+            System.out.println("dailyRecodesForJSP" + dailyRecodesForJSP);
+
+            session.setAttribute("dailyRecodesIntry", dailyRecodesIntry);
+        }
+        catch (Exception e){
+            e.printStackTrace();
+        }
+
         session.setAttribute("handMadeCalendarList", handMadeCalendarList);
         session.setAttribute("currentDayOfMonthInJspTitle", HandMadeCalendar.currentDayOfMonthInJspTitle);
-        session.setAttribute("dailyRecodes", dailyRecodes);
 
         System.out.println("forward수행 전!");
 
         req.getRequestDispatcher("/WEB-INF/views/member/memberMain.jsp").forward(req, resp);
-
     }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -200,21 +355,9 @@ public class MemberMainServlet extends HttpServlet {
 
         List<HandMadeCalendar> handMadeCalendarList = new ArrayList<HandMadeCalendar>();
 
-        //String changeMonth = req.getParameter("changeMonth");
-
         // 오늘의 달을 의미하는 wantMonth
         int wantMonth = prepageMonth;
         int wantYear = parepageYear;
-
-        // preHandMadeCalendarList이 null인 경우(즉, 다음 달 버튼을 누른 경우)
-//        if(pre == null){
-//            wantMonth += 1 ;
-//
-//        }
-//        // preHandMadeCalendarList이 null이 아닌 경우(즉, 이전 달 버튼을 누른 경우)
-//        else if(pre != null){
-//            wantMonth -= 1 ;
-//        }
 
         if(pre != null){
             wantMonth -= 1 ;
@@ -232,14 +375,6 @@ public class MemberMainServlet extends HttpServlet {
             }
             System.out.println("next가 null이 아닙니다. 다음 달 이동 버튼을 눌렀습니다.");
         }
-
-        //wantMonth가 13이면 wantMonth -1, yearWeight + 1 처리
-//        if((wantMonth / 12) == 1){
-//            wantMonth = 1;
-//            ++wantYear;
-//        }
-
-
 
         // 오늘의 년도, 달, 이번 달의 1일을 나타내는 변수 currentDate
         LocalDate currentDate = LocalDate.of(wantYear, wantMonth, LocalDate.now().withDayOfMonth(1).getDayOfMonth());
@@ -263,6 +398,9 @@ public class MemberMainServlet extends HttpServlet {
         // 0: 일, 1: 월, 2: 화, 3: 수.. 를 나타내는 변수 currentDayOfMonthInJspTitle
         int currentDayOfMonthInJspTitle = ((currentDate.getDayOfWeek().getValue()) % 7 ) + 1;
 
+
+
+
         // 더미 날짜 데이터, 한 달의 시작 일을 설정하도록 도움
         for(int i = 0; i < (currentDayOfMonthInJspTitle - 1); i++){
             handMadeCalendarList.add(new HandMadeCalendar());
@@ -278,6 +416,9 @@ public class MemberMainServlet extends HttpServlet {
         // wantMonth에 첫 날을 가리키는 monthStartDay변수
         LocalDate monthStartDay = LocalDate.of(currentDate.getYear(), wantMonth, currentDate.withDayOfMonth(1).getDayOfMonth());
 
+        int currentMonthYear = 0;
+        int currentDayMonth = 0;
+
         // 현재 달의 일 수 만큼 반복
         for(int i = 1; i <= lastDayOfMonth; i++){
 
@@ -291,10 +432,10 @@ public class MemberMainServlet extends HttpServlet {
             int _dayOfWeek = dayOfWeek.getValue(); // 월(1) ~ 일(7)
 
             // 현재의 년도
-            int currentMonthYear = calcCurrentDate.getYear();
+            currentMonthYear = calcCurrentDate.getYear();
 
             // 현재의 월
-            int currentDayMonth = calcCurrentDate.getMonth().getValue();
+            currentDayMonth = calcCurrentDate.getMonth().getValue();
 
             // 현재의 일(숫자)
             int currentDayOfMonth = calcCurrentDate.getDayOfMonth();
@@ -317,16 +458,64 @@ public class MemberMainServlet extends HttpServlet {
 //            System.out.println("Today: " +currentMonthYear + "년, " + currentDayMonth + "월, " + currentDayOfMonth + "일, " + currentDayOfWeekChar + "요일입니다.");
         }
 
-        System.out.println(handMadeCalendarList);
+        List<DailyRecode> dailyRecodesForJSP = new ArrayList<>();
 
-        List<DailyRecode> dailyRecodes = new DailyService().findAllDailyRecode();
-        System.out.println(dailyRecodes);
+        Daily daily = new Daily();
+        daily.setDailyYear(currentMonthYear);
+        daily.setDailyMonth(currentDayMonth);
 
-//        List<DailyRecode> dailyRecodesForJSP = new DailyService().findAllDailyRecodeByDate();
+        try{
+            List<DailyRecode> dailyRecodesIntry = new DailyService().findAllDailyRecode();
+            for(DailyRecode dailyRecodeIntry : dailyRecodesIntry){
+                System.out.println(dailyRecodeIntry + "dailyRecodesIntry(List)의 값");
+            }
+            List<DailyRecode> resultDailyRecodesIntry = null;
+
+            resultDailyRecodesIntry = new DailyService().findAllDailyRecodeByDate(daily);
+
+            // 더미 날짜 데이터, 한 달의 시작 일을 설정하도록 도움
+            for(int i = 0; i < (currentDayOfMonthInJspTitle - 1) + lastDayOfMonth; i++){
+                dailyRecodesForJSP.add(new DailyRecode());
+            }
+
+            int recodeDay = 0;
+
+            for(int i = 0; i < resultDailyRecodesIntry.size(); i++){
+                recodeDay = resultDailyRecodesIntry.get(i).getRecodeDate().getDayOfMonth();
+                dailyRecodesForJSP.get(recodeDay + (currentDayOfMonthInJspTitle - 2)).
+                        setDailyWeight(resultDailyRecodesIntry.get(i).getDailyWeight());
+
+                dailyRecodesForJSP.get(recodeDay + (currentDayOfMonthInJspTitle - 2)).
+                        setDailyNo(resultDailyRecodesIntry.get(i).getDailyNo());
+
+                dailyRecodesForJSP.get(recodeDay + (currentDayOfMonthInJspTitle - 2)).
+                        setPointCheck(resultDailyRecodesIntry.get(i).isPointCheck());
+            }
+
+            System.out.println("handMadeCalendarList.size()" + handMadeCalendarList.size());
+            System.out.println("dailyRecodesForJSP.size()"  + dailyRecodesForJSP.size());
+
+            for(int i = 0; i < handMadeCalendarList.size(); i++){
+                handMadeCalendarList.get(i).setDailyRecode(dailyRecodesForJSP.get(i));
+            }
+
+            for(int i = 0; i < handMadeCalendarList.size(); i++){
+                System.out.println(handMadeCalendarList.get(i).getDailyRecode() + " i : " + i);
+            }
+
+
+            System.out.println("resultDailyRecodesIntry : " + resultDailyRecodesIntry);
+            System.out.println("dailyRecodesForJSP" + dailyRecodesForJSP);
+
+            session.setAttribute("dailyRecodesIntry", dailyRecodesIntry);
+        }
+        catch (Exception e){
+            e.printStackTrace();
+        }
+
 
         session.setAttribute("handMadeCalendarList", handMadeCalendarList);
         session.setAttribute("currentDayOfMonthInJspTitle", HandMadeCalendar.currentDayOfMonthInJspTitle);
-        session.setAttribute("dailyRecodes", dailyRecodes);
 
         req.getRequestDispatcher("/WEB-INF/views/member/memberMain.jsp").forward(req, resp);
 

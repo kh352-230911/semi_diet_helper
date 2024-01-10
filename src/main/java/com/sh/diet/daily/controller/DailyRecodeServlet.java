@@ -4,6 +4,7 @@ import com.sh.diet.daily.model.entity.*;
 import com.sh.diet.daily.model.service.DailyService;
 import com.sh.diet.exercise.model.service.ExerciseDataService;
 import com.sh.diet.food.model.service.FoodDataService;
+import com.sh.diet.member.model.entity.Member;
 import com.sh.diet.member.model.service.MemberService;
 import com.sh.diet.point.model.entity.PointCount;
 import com.sh.diet.point.model.service.PointCountService;
@@ -27,13 +28,25 @@ public class DailyRecodeServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        
+        // 세션 객체 생성
+        HttpSession session = req.getSession();
 
         System.out.println("/daily/dailyRecode의 doGet실행");
+        
+        // DailyService 객체 생성
         DailyService dailyService = new DailyService();
 
+        // 세션에 존재하는 loginMember정보를 통해 Member객체 생성
+        Member loginMember = (Member)session.getAttribute("loginMember");
+
+        // loginMember의 MemberNo를 loginMemberNo에 저장
+        String loginMemberNo = loginMember.getMemberNo();
+
         //회원 M4의 오늘 일일 기록 테이블 조회.(없으면 null)
-        DailyRecode dailyRecode = dailyService.findTodayDailyRecodeByMemberNo("M4");
-        System.out.println(dailyRecode + ": 입력 폼이동시 실행되는 doGet의 dailtRecode의 값");
+        // 로그인 한 회원의 오늘 일일 기록 테이블 조회(없으면 dailyRecode가 null)
+        DailyRecode dailyRecode = dailyService.findTodayDailyRecodeByMemberNo(loginMemberNo);
+        System.out.println(dailyRecode + ": 입력 폼이동시 실행되는 doGet의 dailyRecode의 값");
         // 오늘 이미 생성한 dailyRecode가 있으면 생성하지 않고 넘어가기
         // 오늘 생성한 dailyRecode 객체가 없으면
         if(dailyRecode == null){
@@ -42,39 +55,52 @@ public class DailyRecodeServlet extends HttpServlet {
             // 생성할 dailyRecode의 정보 설정
             //dailyRecode.setDailyWeight(50);
             // dailyRecode의 memberNo를 로그인 멤버의 memberNo의 값으로 변경해야함. (하드코딩지점)
-            dailyRecode.setMemberNo("M4");
+            dailyRecode.setMemberNo(loginMemberNo);
             dailyRecode.setPointCheck(false);
 
             // 오늘 생성한 dailyRecode 객체가 없으면 새로 생성(insert)
             dailyService.insertDailyRecode(dailyRecode);
         }
+        
         req.getRequestDispatcher("/WEB-INF/views/dailyrecode/dailyrecode.jsp").forward(req, resp);
     }
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        // 세션 객체 생성
+        HttpSession session = req.getSession();
+        // 세션에 존재하는 loginMember정보를 통해 Member객체 생성
+        Member loginMember = (Member) session.getAttribute("loginMember");
+
+        // loginMember의 MemberNo를 loginMemberNo에 저장
+        String loginMemberNo = loginMember.getMemberNo();
 
         System.out.println("/daily/dailyRecode의 doPost실행");
-        File repository = new File("C:\\dev\\workspaces\\semi_diet_helper\\src\\main\\webapp\\images");
+//        File repository = new File("C:\\dev\\workspaces\\semi_diet_helper\\src\\main\\webapp\\images");
+        File repository = new File("C:\\dev\\workspaces\\semi_diet_helper\\src\\main\\webapp\\upload\\eyebodyattachment");
+
+
+        // 눈바디 업로드 파일 size 제한 설정
         int sizeThreshold = 10 * 1024 * 1024;
         DiskFileItemFactory factory = new DiskFileItemFactory();
+        // 파일 경로명 설정
         factory.setRepository(repository);
+        // 최대 파일 크기 설정
         factory.setSizeThreshold(sizeThreshold);
         ServletFileUpload servletFileUpload = new ServletFileUpload(factory);
 
         // 서비스 객체 생성
         DailyService dailyService = new DailyService();
 
+        // 테이블 정보를 처리할 Service객체들 생성
         ExerciseDataService exerciseDataService = new ExerciseDataService();
-
-        PointCountService pointCountService = new PointCountService();
-
+//        PointCountService pointCountService = new PointCountService();
         FoodDataService foodDataService = new FoodDataService();
 
-        // dailyRecode의 memberNo를 로그인 멤버의 memberNo의 값으로 변경해야함. (하드코딩지점)
-        DailyRecode dailyRecode = new DailyService().findTodayDailyRecodeByMemberNo("M4");
+        // 로그인한 멤버의 고유번호를 통해 오늘의 일일 기록 테이블 정보를 dailyRecode에 대입
+        DailyRecode dailyRecode = new DailyService().findTodayDailyRecodeByMemberNo(loginMemberNo);
 
-        // 일일기록 테이블 고유 번호 조회
+        // 오늘의 일일기록 테이블 고유 번호 조회
         String dailyRecodeNo = dailyRecode.getDailyNo();
 
         // 사용자 입력값 처리
@@ -86,30 +112,38 @@ public class DailyRecodeServlet extends HttpServlet {
 
             // 음식 Set가 몇 개인지 세는 변수 foodSetCount
             int foodSetCount = Integer.parseInt(fileItemMap.get("countFoodSet").get(0).getString("utf-8"));
+            // 운동 Set가 몇 개인지 세는 변수 ExerciseSet
+            int exerciseSetCount = Integer.parseInt(fileItemMap.get("countExerciseSet").get(0).getString("utf-8"));
+
             // 오늘의 몸무게를 의미하는 변수 todayWeight
             int todayWeight = Integer.parseInt(fileItemMap.get("today-weight").get(0).getString("utf-8"));
-            // 멤버 M4의 오늘의 몸무게를 설정
+            // 로그인한 멤버의 오늘의 일일 기록 테이블에 오늘의 몸무게를 설정 (update는 아직 수행x)
             dailyRecode.setDailyWeight(todayWeight);
             System.out.println("**입력 폼 입력이후 오늘의 몸무게: " + dailyRecode.getDailyWeight());
 
-            //fileItemMap을 통해 key값이 담겨있는 keySet반환
+            // fileItemMap을 통해 key값이 담겨있는 keySet반환
             Set<String> keySet = fileItemMap.keySet();
 
+            // 음식과 관련된 정보를 저장할 변수
             FoodTime mealTime = null;
             String meal = null;
             String gainKcal = null;
             List<String> gainKcals = new ArrayList<>();
 
+            // 운동과 관련된 정보를 저장할 변수
             String exercise = null;
             String consume = null;
             List<String> consumes = new ArrayList<>();
             int exerciseTime = 0;
 
-            // 눈바디 첨부파일 저장 테이블
+            // 오늘의 일일기록 테이블의 고유 번호를 통해 눈바디 객체 생성
             EyebodyAttachment eyebodyAttachment = new EyebodyAttachment();
             eyebodyAttachment.setDailyNo(dailyRecodeNo);
 
+            // 일일 음식 기록을 정보를 저장할 List선언(하루의 여러개의 음식을 먹을 수 있으므로)
             List<DailyFood> dailyFoods = new ArrayList<>();
+
+            // 음식 기록 Set의 갯수 만큼 반복 (음식 섭취 기간, 음식, kcal가 하나의 Set)
             for(int i = 0; i < foodSetCount; i++){
                 DailyFood dailyFood = new DailyFood();
                 dailyFood.setDailyNo(dailyRecodeNo);
@@ -117,18 +151,17 @@ public class DailyRecodeServlet extends HttpServlet {
                 dailyFoods.add(dailyFood);
             }
 
+            // 운동 기록 Set의 갯수 만큼 반복 (운동, 운동 시간, 운동-소모칼로리가 하나의 Set)
             List<DailyEx> dailyExes = new ArrayList<>();
-            for(int i = 0; i < foodSetCount; i++){
+            for(int i = 0; i < exerciseSetCount; i++){
                 DailyEx dailyEx = new DailyEx();
                 dailyEx.setDailyNo(dailyRecodeNo);
                 System.out.println(dailyEx + "dailyEx");
                 dailyExes.add(dailyEx);
             }
 
-
             //keySet의 담긴 값을 하나씩 가져와서 key에 대입한후 keySet의 크기만큼 반복
             for(String key : keySet){
-               System.out.println(key +  ": 가장 바깥쪽 forEach문의 key값");
                
                // key가 식사 기록용 데이터와 관련된 것이라면, DailyFood 객체의 필드 값 세팅
                if(key.equals("meal") || key.equals("meal-time") || key.equals("gain-kcal")) {
@@ -140,6 +173,7 @@ public class DailyRecodeServlet extends HttpServlet {
                        for (int i = 0; i < fileItemListInForEach.size(); i++) {
                            //List<FileItem>의 i번째 요소를 가져와 변수 meal에 대입
                            meal = fileItemListInForEach.get(i).getString("utf-8");
+                           meal = foodDataService.findFoodDataByName(meal).get(0).getFoodNo();
                            dailyFoods.get(i).setFoodNo(meal);
                            System.out.println("******* setMeal *******" + meal);
                        }
@@ -183,9 +217,11 @@ public class DailyRecodeServlet extends HttpServlet {
                        //List<FileItem>의 크기  만큼 반복을 수행
                        for (int i = 0; i < fileItemListInForEach.size(); i++) {
                            //List<FileItem>의 i번째 요소를 가져와 변수 exercise에 대입
-                           exercise = fileItemListInForEach.get(i).getString("utf-8");
+                           exercise = fileItemListInForEach .get(i).getString("utf-8");
+                           System.out.println("윗쪽 exercise : " + exercise);
+                           exercise = exerciseDataService.findByName(exercise).get(0).getExNo();
+                           System.out.println("아랫족 exercise : " + exercise);
                            dailyExes.get(i).setExId(exercise);
-
                        }
                    }
                    //key값이 consume-kcal이라면 다음을 수행 (key를 통해 가져오는 것은 List인 것에 주의)
@@ -228,10 +264,6 @@ public class DailyRecodeServlet extends HttpServlet {
                 exerciseDataService.insertDailyExercise(dailyExInforeEach);
             }
 
-            System.out.println("---- 일일 식단, 운동 기록 정상 insert 성공 이후 ----");
-            
-            System.out.println(dailyFoods.get(0).getFoodNo() + "는 첫 번째의 음식 고유 번호 입니다.");;
-
             // 눈바디 기록용 데이터
             FileItem eyebodyFileItem = fileItemMap.get("eyebody-photo").get(0);
             if(eyebodyFileItem.getSize() > 0){
@@ -252,36 +284,43 @@ public class DailyRecodeServlet extends HttpServlet {
                 eyebodyAttachment.setOriginalFile(originalFilename);
                 eyebodyAttachment.setRenamedFile(renamedFilename);
                 System.out.println(eyebodyAttachment + "는 눈바디 객체 입니다.");
+
+                if(dailyService.findTodayEyebodyAttachmentByDailyNo(dailyRecodeNo).size() >= 1){
+                    dailyService.deletePreEyebodyAttachment(eyebodyAttachment);
+                }
                 dailyService.insertEyebodyAttachment(eyebodyAttachment);
 
 
             }
-            
-            // "M4"를 로그인한 멤버의 memberNo로 변경 (하드코딩지점)
+
             // 멤버 M4의 일일기록 3개 테이블이 모두 작성되었는지 확인한 후 3개다 작성되었다면, 이하 if문을 실행
-            if(pointIncreaseCheck("M4")){
-                System.out.println("pointIncreaseCheck를 사용한 if문 실행");
-                // "M4"를 로그인한 멤버의 memberNo로 변경 (하드코딩지점)
+            if(pointIncreaseCheck(loginMemberNo)){
 
                 PointCount pointCount = new PointCount(null, null, 1,
-                        "M4", dailyRecodeNo, null);
+                        loginMemberNo, dailyRecodeNo, null);
                 // 로그인 멤버의 point를 올려주는 로직 (하드코딩지점)
                 // 회원고유 번호를 주고, 포인트 테이블 조회 일일기록 테이블 고유번호가 null인지 조회해서 null일떄 실행 하도록
 
+                System.out.println("loginMemberNo: " + loginMemberNo);
                 // memberNo로 오늘 만들어진 pointCount테이블을 조회한 후 테이블이 존재한다면, 이하 if문을 실행
-                if(new PointCountService().findTodayPointCountByMemberNo("M4") == null){
-                    //밑에 2줄의 코드는 멤버가 오늘 일일기록으로 포인트를 증가 시킨 기록이 있다면 실행되서는 안됨(수정필요) ****************
-                    new MemberService().updateIncreaseOnePointToMember("M4");
+                if(new PointCountService().findTodayPointCountByMemberNo(loginMemberNo) == null){
+                    new PointCountService().insertRecodeSatisfiedPoint(pointCount);
+                    // 밑에 2줄의 코드는 멤버가 오늘 일일기록으로 포인트를 증가 시킨 기록이 있다면 실행되서는 안됨(수정필요) ****************
+                    new MemberService().updateIncreaseOnePointToMember(loginMemberNo);
                     // 작성중인 일일 기록 테이블의 포인트 부여여부가 1로 설정하는 로직 필요 (수정필요) ******************
                     // insert가 아닌 update로 로직을 수정해야 한다.
-                    new PointCountService().insertRecodeSatisfiedPoint(pointCount);
+//                    new PointCountService().insertRecodeSatisfiedPoint(pointCount);
+                }
+                else {
+                    dailyService.updateIncreaseOnePointToDailyRecode(dailyRecodeNo);
                 }
             }
 
-            HttpSession session = req.getSession();
             System.out.println(gainKcals + "gainKcals");
             System.out.println(consume + "consume");
             System.out.println(todayWeight + "todayWeight");
+
+            dailyService.updateDailyRecode(dailyRecode);
 
             session.setAttribute("gainKcals", gainKcals);
             session.setAttribute("consumes", consumes);
@@ -293,14 +332,14 @@ public class DailyRecodeServlet extends HttpServlet {
             e.printStackTrace();
         }
 
-        System.out.println("flag-final");
+        // 가비지 컬렉터 호출(강제x)
+        System.gc();
         // " "안에 이동할 주소 입력
         resp.sendRedirect(req.getContextPath() + "/member/memberMain");
 
     }
 
     public boolean pointIncreaseCheck(String memberNo){
-        System.out.println("pointIncreaseCheck실행");
         // 포인트 증가 여부를 판단하는 변수, 3이되면 포인트 증가 여부를 true로 설정
         int increasePointCheck = 0;
 
@@ -334,7 +373,7 @@ public class DailyRecodeServlet extends HttpServlet {
             }
         }
 
-        EyebodyAttachment eyebodyAttachment = new DailyService().findTodayEyebodyAttachmentByDailyNo(dailyNo);
+        EyebodyAttachment eyebodyAttachment = new DailyService().findTodayEyebodyAttachmentByDailyNo(dailyNo).get(0);
         // 가져온 운동 일일기록 리스트에서 하나씩 요소를 순회
         // 가져온 운동 일일기록 리스트에서 하나라도 0이 아니면 check
         if(eyebodyAttachment != null && eyebodyAttachment.getOriginalFile() != null){

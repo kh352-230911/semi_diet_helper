@@ -25,9 +25,9 @@ public class PointCountService {
         return result;
     }
 
-    public PointCount findTodayPointCountByMemberNo(String memberNo) {
+    public PointCount findTodayPointCountByMemberNo(String loginMemberNo) {
         SqlSession session = getSqlSession();
-        PointCount pointCount = pointCountDao.findTodayPointCountByMemberNo(session, memberNo);
+        PointCount pointCount = pointCountDao.findTodayPointCountByMemberNo(session, loginMemberNo);
         session.close();
         return pointCount;
     }

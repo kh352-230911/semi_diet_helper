@@ -129,4 +129,44 @@
         where
             food_no = #{foodNo}
     </select>
+
+    <select id="findAllDailyRecodeByDate" resultType="dailyRecode">
+        select
+        *
+        from
+        daily_recode
+        where
+        to_char(recode_date, 'YYYY') = to_char(#{dailyYear})
+        and
+        to_char(recode_date, 'MM') = to_char(#{dailyMonth}, 'FM00')
+        order by
+        recode_date
+    </select>
+
+    <update id="updateDailyRecode">
+        update
+        daily_recode
+        set
+        daily_weight = #{dailyWeight}
+        where
+        daily_no = #{dailyNo}
+    </update>
+
+    <delete id="deletePreEyebodyAttachment">
+        delete
+        from
+        eyebody_attachment
+        where
+        ea_no != #{eaNo}
+    </delete>
+
+    <update id="updateIncreaseOnePointToDailyRecode">
+        update
+            daily_recode
+        set
+            point_check = 1
+        where
+            daily_no = #{dailyNo}
+    </update>
+
 </mapper>

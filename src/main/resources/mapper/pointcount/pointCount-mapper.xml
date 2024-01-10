@@ -24,9 +24,9 @@
         from
             point_count
         where
-            member_no = #{memberNo}
+            member_no = #{loginMemberNo}
         and
-            to_char(reg_data) = to_char(sysdate, 'YY/MM/DD')
+            to_char(reg_date) = to_char(sysdate, 'YY/MM/DD')
     </select>
 
 

@@ -20,7 +20,7 @@ $(".exerciseautocomplete").autocomplete({
                         const [id, name] = exercise.split(',');
                         return {
                             label : `${name}(${id})`,
-                            value : id
+                            value : name
                         };
                     });
                     console.log(exercises);
@@ -65,7 +65,7 @@ $(".mealautocomplete").autocomplete({
                         const [id, name] = meal.split(',');
                         return {
                             label : `${name}(${id})`,
-                            value : id
+                            value : name
                         };
                     });
                     console.log(meals);

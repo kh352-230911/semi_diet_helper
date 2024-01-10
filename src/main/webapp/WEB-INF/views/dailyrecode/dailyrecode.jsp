@@ -15,7 +15,7 @@
         <legend>일일 기록폼</legend>
             <div>
                 <label for="today-weight">오늘의 몸무게</label>
-                <input type="text" name="today-weight" id="today-weight" />
+                <input type="text" name="today-weight" id="today-weight" required/>
             </div>
             <fieldset>
                 <legend>음식</legend>
@@ -40,15 +40,15 @@
                             <label for="meal">음식</label>
                         </th>
                         <td>
-                            <input type="text" name="meal" id="meal" class="mealautocomplete"/>
+                            <input type="text" name="meal" id="meal" class="mealautocomplete" required/>
                         </td>
                     </tr>
                     <tr>
                         <th>
-                            <label for="gain-kcal">kcal</label>
+                            <label for="gain-kcal" >kcal</label>
                         </th>
                         <td>
-                            <input type="text" name="gain-kcal" id="gain-kcal" />
+                            <input type="text" name="gain-kcal" id="gain-kcal" required/>
                         </td>
                     </tr>
                     <tr>
@@ -69,7 +69,7 @@
                                 <label for="exercise">운동</label>
                             </th>
                             <td>
-                                <input type="text" name="exercise" id="exercise" class="exerciseautocomplete"/>
+                                <input type="text" name="exercise" id="exercise" class="exerciseautocomplete" required/>
                             </td>
                         </tr>
                         <tr>
@@ -77,7 +77,7 @@
                                 <label for="exercise-time">운동 시간(단위: 10분)</label>
                             </th>
                             <td>
-                                <input type="text" name="exercise-time" id="exercise-time" />
+                                <input type="text" name="exercise-time" id="exercise-time" required />
                             </td>
                         </tr>
                         <tr>
@@ -85,7 +85,7 @@
                                 <label for="consume-kcal">운동-소모칼로리</label>
                             </th>
                             <td>
-                                <input type="text" name="consume-kcal" id="consume-kcal" />
+                                <input type="text" name="consume-kcal" id="consume-kcal" required/>
                             </td>
                         </tr>
                         <tr>

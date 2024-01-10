@@ -57,12 +57,19 @@
             <tr>
                 <c:forEach items="${handMadeCalendarList}" var="handMadeCalendar" varStatus="vs">
                     <c:if test="${vs.count lt currentDayOfMonthInJspTitle}">
-                        <td id>
+                        <td>
                         </td>
                     </c:if>
                     <c:if test="${vs.count ge currentDayOfMonthInJspTitle}">
                         <td>
-                                <button class="calendarContentButton">${vs.count - (currentDayOfMonthInJspTitle - 1)}</button>
+                                <button class="calendarContentButton">
+                                        ${vs.count - (currentDayOfMonthInJspTitle - 1)}
+                                        <br>
+                                        ${handMadeCalendar.dailyRecode.dailyWeight}kg
+                                        <br>
+                                        달성 여부: ${handMadeCalendar.dailyRecode.pointCheck}
+
+                                </button>
                         </td>
                         <c:if test="${(vs.count % 7) eq 0}">
                             <tr></tr>
