@@ -102,7 +102,7 @@
         where
         qb_no = #{qbNo}
         order by
-        a.reg_date ,a.choice desc
+        a.reg_date desc ,a.choice desc
     </select>
 
 
