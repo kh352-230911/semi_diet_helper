@@ -8,7 +8,7 @@ public class PointCountDao {
         return session.insert("pointCount.insertRecodeSatisfiedPoint", pointCount);
     }
 
-    public PointCount findTodayPointCountByMemberNo(SqlSession session, String memberNo) {
-        return  session.selectOne("pointCount.findTodayPointCountByMemberNo", memberNo);
+    public PointCount findTodayPointCountByMemberNo(SqlSession session, String loginMemberNo) {
+        return  session.selectOne("pointCount.findTodayPointCountByMemberNo", loginMemberNo);
     }
 }

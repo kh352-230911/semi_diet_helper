@@ -52,4 +52,8 @@ public class ExerciseDataDao {
     public int deleteExerciseData(SqlSession session, String exNo) {
         return session.delete("exerciseData.deleteExerciseData", exNo);
     }
+
+    public ExerciseData findKcalByExId(SqlSession session, String exId) {
+        return session.selectOne("exerciseData.findKcalByExId", exId);
+    }
 }

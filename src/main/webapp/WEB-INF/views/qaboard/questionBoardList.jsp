@@ -30,7 +30,6 @@
                     onclick="location.href = '${pageContext.request.contextPath}/qaboard/questionBoardCreate';"
 
                     class="middle none center mr-4 rounded-lg bg-pink-500 py-3 px-5 font-sans text-base font-bold uppercase text-white shadow-md shadow-pink-500/20 transition-all hover:shadow-lg hover:shadow-pink-500/40 focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none">
-
                     글쓰기</button>
         </div>
     </c:if><br>

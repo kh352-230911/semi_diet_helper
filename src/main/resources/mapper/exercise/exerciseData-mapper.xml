@@ -37,9 +37,9 @@
         select
             *
         from
-            exercise_data
+            daily_ex
         where
-            de_no = #{dailyNo}
+            daily_no = #{dailyNo}
     </select>
 
     <select id="findByExNo" resultType="exerciseData">
@@ -129,6 +129,15 @@
             <result column="ex_no" property="exNo"/>
         </collection>
     </resultMap>
+
+    <select id="findKcalByExId" resultType="exerciseData">
+        select
+            kcal
+        from
+            exercise_data
+        where
+            ex_no = #{exId}
+    </select>
 
 
 </mapper>

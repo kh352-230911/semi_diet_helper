@@ -49,8 +49,8 @@ public class FoodData {
         return carbo;
     }
 
-    public void setCarbo(float caarbo) {
-        this.carbo = caarbo;
+    public void setCarbo(float carbo) {
+        this.carbo = carbo;
     }
 
     public float getProt() {
