@@ -3,39 +3,48 @@
 <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <jsp:include page="/WEB-INF/views/common/header.jsp"/>
-<body style="display: flex;
-            flex-direction: column;
-            flex: 1;
-            width: 100%;
-            height: 100%;
-            -webkit-font-smoothing: antialiased;
-            -moz-osx-font-smoothing: grayscale;">
-<div class="w-[1152px] h-[700px] relative overflow-hidden bg-white">
-    <div class="w-[161px] h-11 absolute left-[259px] top-[276px] bg-[#d9d9d9]"></div>
-    <p class="w-[141px] h-5 absolute left-[270px] top-[289px] text-xl text-center text-black">
-        <span class="w-[141px] h-5 text-xl text-center text-black">신고 게시물 관리</span><br />
-    </p>
-    <div class="w-[161px] h-11 absolute left-[492px] top-[276px] bg-[#d9d9d9]"></div>
-    <a href="${pageContext.request.contextPath}/adminMemberManage" class="w-[141px] h-5 absolute left-[503px] top-[289px] text-xl text-center text-black">
-        회원 관리
+<body>
 
+
+
+<div class="flex space-x-24 flex justify-center mt-24">
+<div class="max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-pink-300 dark:border-gray-700">
+    <a href="${pageContext.request.contextPath}/adminMemberManage">
+        <img class="rounded-t-lg" src="${pageContext.request.contextPath}/images/pizza.png" alt="" />
     </a>
-    <div class="w-[161px] h-11 absolute left-[725px] top-[276px] bg-[#d9d9d9]"></div>
-    <p class="w-[141px] h-5 absolute left-[736px] top-[289px] text-xl text-center text-black">
-        회원 통계 조회
-    </p>
-    <div class="w-[161px] h-11 absolute left-[251px] top-[477px] bg-[#d9d9d9]"></div>
-    <p class="w-[141px] h-5 absolute left-[262px] top-[490px] text-xl text-center text-black">
-        등록 음식 관리
-    </p>
-    <div class="w-[161px] h-11 absolute left-[494px] top-[477px] bg-[#d9d9d9]"></div>
-    <p class="w-[141px] h-5 absolute left-[505px] top-[490px] text-xl text-center text-black">
-        등록 운동 관리
-    </p>
-    <div class="w-[161px] h-11 absolute left-[733px] top-[477px] bg-[#d9d9d9]"></div>
-    <p class="w-[141px] h-5 absolute left-[744px] top-[490px] text-xl text-center text-black">
-        그룹 관리
-    </p>
+    <div class="p-5">
+        <a href="${pageContext.request.contextPath}/adminMemberManage">
+            <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">회원관리</h5>
+        </a>
+        <p class="mb-3 font-normal text-gray-700 dark:text-white">악성유저를 탈퇴시킬 수 있습니다.</p>
+        <a href="${pageContext.request.contextPath}/adminMemberManage" class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-pink-700 rounded-lg hover:bg-pink-800 focus:ring-4 focus:outline-none focus:ring-pink-300 dark:bg-pink-500 dark:hover:bg-red-700 dark:focus:ring-blue-800">
+            회원 관리 페이지로 이동
+            <svg class="rtl:rotate-180 w-3.5 h-3.5 ms-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
+                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 5h12m0 0L9 1m4 4L9 9"/>
+            </svg>
+        </a>
+    </div>
+</div>
+
+
+
+<div class="max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+    <a href="#">
+        <img class="rounded-t-lg" src="${pageContext.request.contextPath}/images/foodInsert.jpg" alt="" />
+    </a>
+    <div class="p-5">
+        <a href="#">
+            <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">등록된 음식관리</h5>
+        </a>
+        <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">증말~~ 마시케따~</p>
+        <a href="#" class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+            음식 관리 페이지로 이동
+            <svg class="rtl:rotate-180 w-3.5 h-3.5 ms-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
+                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 5h12m0 0L9 1m4 4L9 9"/>
+            </svg>
+        </a>
+    </div>
+</div>
 </div>
 </body>
 </html>
