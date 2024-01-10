@@ -19,7 +19,7 @@ public class MemberRegisterServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-
+        req.getRequestDispatcher("/WEB-INF/views/member/memberRegister.jsp").forward(req, resp);
     }
 
     //memberId, password, name, nickName, height, birthDay, weightLossGoal, answer
