@@ -37,5 +37,4 @@
         그룹 관리
     </p>
 </div>
-</body>
-</html>
+<jsp:include page="/WEB-INF/views/common/footer.jsp"/>

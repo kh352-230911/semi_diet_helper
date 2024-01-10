@@ -5,7 +5,7 @@ public class FoodData {
     String foodNo;
     String name;
     int kcal;
-    float caarbo;
+    float carbo;
     float prot;
     float fat;
 
@@ -16,7 +16,7 @@ public class FoodData {
         this.foodNo = foodNo;
         this.name = name;
         this.kcal = kcal;
-        this.caarbo = caarbo;
+        this.carbo = carbo;
         this.prot = prot;
         this.fat = fat;
     }
@@ -45,12 +45,12 @@ public class FoodData {
         this.kcal = kcal;
     }
 
-    public float getCaarbo() {
-        return caarbo;
+    public float getCarbo() {
+        return carbo;
     }
 
-    public void setCaarbo(float caarbo) {
-        this.caarbo = caarbo;
+    public void setCarbo(float caarbo) {
+        this.carbo = caarbo;
     }
 
     public float getProt() {
@@ -75,7 +75,7 @@ public class FoodData {
                 "foodNo='" + foodNo + '\'' +
                 ", name='" + name + '\'' +
                 ", kcal=" + kcal +
-                ", caarbo=" + caarbo +
+                ", carbo=" + carbo +
                 ", prot=" + prot +
                 ", fat=" + fat +
                 '}';

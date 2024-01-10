@@ -3,16 +3,17 @@
 <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <jsp:include page="/WEB-INF/views/common/header.jsp"/>
+<br><br>
     <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
         <table class="w-full text-sm text-left rtl:text-right text-gray-500">
             <thead class="text-xs text-gray-700 uppercase bg-gray-50">
             <tr>
-                <th scope="col" class="px-6 py-3">회원번호</th>
-                <th scope="col" class="px-6 py-3">닉네임</th>
                 <th scope="col" class="px-6 py-3">이름</th>
-                <th scope="col" class="px-6 py-3">가입일</th>
-                <th scope="col" class="px-6 py-3">포인트</th>
-                <th scope="col" class="px-6 py-3">회원 관리</th>
+                <th scope="col" class="px-6 py-3">총 칼로리(kcal)</th>
+                <th scope="col" class="px-6 py-3">탄수화물(g)</th>
+                <th scope="col" class="px-6 py-3">단백질(g)</th>
+                <th scope="col" class="px-6 py-3">지방(g)</th>
+                <th scope="col" class="px-6 py-3">삭제하기</th>
             </tr>
             </thead>
             <tbody>
@@ -36,4 +37,4 @@
             </tbody>
         </table>
     </div>
-</html>
+<jsp:include page="/WEB-INF/views/common/footer.jsp"/>
