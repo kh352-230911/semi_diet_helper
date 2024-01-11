@@ -116,9 +116,9 @@ public class DailyService {
         return eyebodyAttachments;
     }
 
-    public List<DailyRecode> findAllDailyRecode() {
+    public List<DailyRecode> findAllDailyRecodeByDailyNo(String dailyNo) {
         SqlSession session = getSqlSession();
-        List<DailyRecode> dailyRecodes = dailyDao.findAllDailyRecode(session);
+        List<DailyRecode> dailyRecodes = dailyDao.findAllDailyRecodeByDailyNo(session, dailyNo);
         session.close();
 
         return dailyRecodes;
@@ -190,5 +190,19 @@ public class DailyService {
         }
         session.close();
         return result;
+    }
+
+    public List<DailyRecode> findAllDailyRecodeByMemberNo(String memberNo) {
+        SqlSession session = getSqlSession();
+        List<DailyRecode> dailyRecodes = dailyDao.findAllDailyRecodeByMemberNo(session, memberNo);
+        session.close();
+        return dailyRecodes;
+    }
+
+    public List<DailyRecode> findAllDailyRecodeByLocalDate(LocalDate now) {
+        SqlSession session = getSqlSession();
+        List<DailyRecode> dailyRecodes = dailyDao.findAllDailyRecodeByLocalDate(session, now);
+        session.close();
+        return dailyRecodes;
     }
 }

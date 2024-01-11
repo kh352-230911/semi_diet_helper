@@ -37,7 +37,7 @@ public class DailyDao {
     }
 
     public DailyRecode findTodayDailyRecodeByMemberNo(SqlSession session, String memberNo) {
-        return session.selectOne("daily.findDailyRecodeByMemberNo", memberNo);
+        return session.selectOne("daily.findTodayDailyRecodeByMemberNo", memberNo);
     }
 
     public List<DailyEx> findTodayDailyExByDailyNo(SqlSession session, String dailyNo) {
@@ -52,8 +52,8 @@ public class DailyDao {
         return session.selectList("daily.findTodayEyebodyAttachmentByDailyNo", dailyNo);
     }
 
-    public List<DailyRecode> findAllDailyRecode(SqlSession session) {
-        return session.selectList("daily.findAllDailyRecode");
+    public List<DailyRecode> findAllDailyRecodeByDailyNo(SqlSession session, String dailyNo) {
+        return session.selectList("daily.findAllDailyRecodeByDailyNo" , dailyNo);
     }
 
     public FoodData findKcalByFoodNo(SqlSession session, String foodNo) {
@@ -74,5 +74,13 @@ public class DailyDao {
 
     public int updateIncreaseOnePointToDailyRecode(SqlSession session, String dailyRecodeNo) {
         return session.update("daily.updateIncreaseOnePointToDailyRecode", dailyRecodeNo);
+    }
+
+    public List<DailyRecode> findAllDailyRecodeByMemberNo(SqlSession session, String memberNo) {
+        return session.selectList("daily.findAllDailyRecodeByMemberNo", memberNo);
+    }
+
+    public List<DailyRecode> findAllDailyRecodeByLocalDate(SqlSession session, LocalDate now) {
+        return session.selectList("daily.findAllDailyRecodeByLocalDate", now);
     }
 }

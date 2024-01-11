@@ -3,6 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<jsp:include page="/WEB-INF/views/common/header.jsp"/>
 <html>
 <head>
     <title>Document</title>
@@ -14,32 +15,42 @@
     <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
     <style>
         .calendarContentButton{
-            width: 100px;
-            height: 100px;
+            width: 200px;
+            height: 95px;
+            font-size: 15px;
+            border: 1px solid deeppink;
         }
         th{
             font-size: 100px;
         }
+        .top-button{
+            width: 200px;
+            height: 95px;
+        }
+        .pre{
+            margin-left: 27%;
+        }
+        .next{
+            margin-right: 27%;
+        }
+
     </style>
 </head>
 <body>
     <div>
-        <button type="button" id="pre_month" onclick="document.preMonthFrm.submit()">이전 달</button>
-            ${handMadeCalendarList[20].calc_year}년도 ${handMadeCalendarList[20].calc_month}월
-        <button type="button" id="pre_month" onclick="document.nextMonthFrm.submit()">다음 달</button>
+        <button type="button" id="pre_month" class="top-button pre" onclick="document.preMonthFrm.submit()"> << </button>
+             ${handMadeCalendarList[20].calcYear}년도 ${handMadeCalendarList[20].calcMonth}월
+        <button type="button" id="next_month" class="top-button next" onclick="document.nextMonthFrm.submit()"> >> </button>
     </div>
     <form name="preMonthFrm" method="post">
-<%--        <input id="preMonth" value="${handMadeCalendarList[20].calc_month-1}" name="preMonth" type="hidden">--%>
         <input value="pre" name="pre" type="hidden">
-        <input value="${handMadeCalendarList[20].calc_month}" name="prepageMonth" type="hidden">
-        <input value="${handMadeCalendarList[20].calc_year}" name="prepageYear" type="hidden">
+        <input value="${handMadeCalendarList[20].calcMonth}" name="prepageMonth" type="hidden">
+        <input value="${handMadeCalendarList[20].calcYear}" name="prepageYear" type="hidden">
     </form>
     <form name="nextMonthFrm" method="post">
-<%--        <input id="currentViewMonth" value="${handMadeCalendarList[20].calc_month+1}" name="preMonth" type="hidden">--%>
         <input value="next" name="next" type="hidden">
-        <input value="${handMadeCalendarList[20].calc_month}" name="prepageMonth" type="hidden">
-        <input value="${handMadeCalendarList[20].calc_year}" name="prepageYear" type="hidden">
-
+        <input value="${handMadeCalendarList[20].calcMonth}" name="prepageMonth" type="hidden">
+        <input value="${handMadeCalendarList[20].calcYear}" name="prepageYear" type="hidden">
     </form>
     <table>
         <thead>
@@ -57,18 +68,23 @@
             <tr>
                 <c:forEach items="${handMadeCalendarList}" var="handMadeCalendar" varStatus="vs">
                     <c:if test="${vs.count lt currentDayOfMonthInJspTitle}">
-                        <td>
+                        <td class="${(vs.count) % 7}">
                         </td>
                     </c:if>
                     <c:if test="${vs.count ge currentDayOfMonthInJspTitle}">
-                        <td>
+                        <td class="${(vs.count) % 7}">
                                 <button class="calendarContentButton">
                                         ${vs.count - (currentDayOfMonthInJspTitle - 1)}
                                         <br>
-                                        ${handMadeCalendar.dailyRecode.dailyWeight}kg
+                                        ${handMadeCalendar.dailyWeight}kg
                                         <br>
-                                        달성 여부: ${handMadeCalendar.dailyRecode.pointCheck}
-
+<%--                                        달성 여부: ${handMadeCalendar.pointCheck}--%>
+                                        <c:if test="${handMadeCalendar.pointCheck eq true}">
+                                            😊일일기록 완료😊
+                                        </c:if>
+                                        <c:if test="${handMadeCalendar.pointCheck ne true}">
+                                            일일기록 미완료
+                                        </c:if>
                                 </button>
                         </td>
                         <c:if test="${(vs.count % 7) eq 0}">
