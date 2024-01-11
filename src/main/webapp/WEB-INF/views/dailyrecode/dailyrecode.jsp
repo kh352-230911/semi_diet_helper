@@ -1,4 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<jsp:include page="/WEB-INF/views/common/header.jsp"/>
 <html>
 <head>
     <title>Title</title>
@@ -8,6 +9,17 @@
             integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4="
             crossorigin="anonymous"></script>
     <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
+    <style>
+        form{
+            font-size: 30px;
+        }
+        tr{
+            border: deeppink 2px solid;
+        }
+        fieldset{
+            margin: 5px;
+        }
+    </style>
 </head>
 <body>
 <form name="dailyRecodeFrm" method="post">
@@ -141,7 +153,7 @@
                             <label for="meal">음식</label>
                         </th>
                         <td>
-                            <input type="text" name="meal" id="meal" class="mealautocomplete" />
+                            <input type="text" name="meal" id="meal" class="mealautocomplete" required/>
                         </td>
                     </tr>
                     <tr>
@@ -149,7 +161,7 @@
                             <label for="gain-kcal">kcal</label>
                         </th>
                         <td>
-                            <input type="text" name="gain-kcal" id="gain-kcal" />
+                            <input type="text" name="gain-kcal" id="gain-kcal" required/>
                         </td>
                     </tr>`;
 
@@ -175,11 +187,12 @@
         const value = e.target.innerHTML;
         const html = `
                      <tr>
+                        <div></div>
                             <th>
                                 <label for="exercise">운동</label>
                             </th>
                             <td>
-                                <input type="text" name="exercise" id="exercise" />
+                                <input type="text" name="exercise" id="exercise" class="exerciseautocomplete" required/>
                             </td>
                         </tr>
                         <tr>
@@ -187,7 +200,7 @@
                                 <label for="exercise-time">운동 시간(단위: 10분)</label>
                             </th>
                             <td>
-                                <input type="text" name="exercise-time" id="exercise-time" />
+                                <input type="text" name="exercise-time" id="exercise-time" required/>
                             </td>
                         </tr>
                         <tr>
@@ -195,7 +208,7 @@
                                 <label for="consume-kcal">운동-소모칼로리</label>
                             </th>
                             <td>
-                                <input type="text" name="consume-kcal" id="consume-kcal" />
+                                <input type="text" name="consume-kcal" id="consume-kcal" required/>
                             </td>
                         </tr>`;
 
