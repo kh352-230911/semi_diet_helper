@@ -5,7 +5,7 @@
 <jsp:include page="/WEB-INF/views/common/header.jsp"/>
     <div class="w-full p-8 bg-white border border-gray-200 rounded-lg shadow">
         <table class="w-full p-8 bg-white border border-gray-200 rounded-lg shadow">
-            <thead class="text-xs text-gray-700 uppercase bg-gray-50">
+            <thead class="text-xs text-pink-700 uppercase bg-pink-50">
             <tr>
                 <th scope="col" class="px-6 py-3">회원번호</th>
                 <th scope="col" class="px-6 py-3">닉네임</th>
@@ -43,4 +43,3 @@
             </ul>
         </nav>
     </div>
-</html>

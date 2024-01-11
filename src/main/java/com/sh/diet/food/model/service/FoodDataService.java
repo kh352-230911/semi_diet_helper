@@ -2,9 +2,11 @@ package com.sh.diet.food.model.service;
 
 import com.sh.diet.food.model.dao.FoodDataDao;
 import com.sh.diet.food.model.entity.FoodData;
+import com.sh.diet.member.model.entity.Member;
 import org.apache.ibatis.session.SqlSession;
 
 import java.util.List;
+import java.util.Map;
 
 import static com.sh.diet.common.SqlSessionTemplate.getSqlSession;
 
@@ -75,5 +77,19 @@ public class FoodDataService {
             session.close();
         }
         return result;
+    }
+
+    public List<FoodData> findAll(Map<String, Object> param) {
+        SqlSession session = getSqlSession();
+        List<FoodData> foodDatas = foodDataDao.findAll(session, param);
+        session.close();
+        return foodDatas;
+    }
+
+    public int getTotalCount(Map<String, Object> param) {
+        SqlSession session = getSqlSession();
+        int totalCount = foodDataDao.getTotalCount(session, param);
+        session.close();
+        return totalCount;
     }
 }

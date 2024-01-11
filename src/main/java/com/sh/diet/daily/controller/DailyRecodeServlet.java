@@ -76,7 +76,7 @@ public class DailyRecodeServlet extends HttpServlet {
 
         System.out.println("/daily/dailyRecode의 doPost실행");
 //        File repository = new File("C:\\dev\\workspaces\\semi_diet_helper\\src\\main\\webapp\\images");
-        File repository = new File("C:\\dev\\workspaces\\semi_diet_helper\\src\\main\\webapp\\upload\\eyebodyattachment");
+        File repository = new File("/Users/hanjunhee/WorkSpaces/diet_helper_workspace/src/main/webapp/upload/eyebodyattachment");
 
 
         // 눈바디 업로드 파일 size 제한 설정

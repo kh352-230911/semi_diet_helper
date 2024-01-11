@@ -33,33 +33,32 @@ public class ExerciseBodyPartDetail extends HttpServlet {
 
         List<ExerciseData> exerciseDatas = exerciseDataService.findByBodyPart(bodyPart);
 
-        // System.out.println(exerciseDatas);
+        //"https://img.youtube.com/vi/" + 영상 고유주소 + "/mqdefault.jpg" 로 변환
         ArrayList<String> imgUrls = new ArrayList<>();
-        // List<ScrapExercise> loginMemberScrap =
         List<ScrapExercise> scrapExercises = new ArrayList<>();
 
         for(int i = 0; i < exerciseDatas.size(); i++){
             // 썸네일 출력부
-            // System.out.println(exerciseDatas.get(i).getExUrl());
             String url = exerciseDatas.get(i).getExUrl();
-
+            // https://youtu.be/Hv5BsujA3Ys 식으로 뜨는 주소의 마지막이 필요하기에
+            // /을 기준으로 4번째 요소가 필요
             String[] splurl = url.split("/");
             String videoId = splurl[3];
 
             String imgUrl = "https://img.youtube.com/vi/" + videoId + "/mqdefault.jpg";
-            // System.out.println(imgUrl);
             imgUrls.add(imgUrl);
 
+            //스크랩 여부를 확인하기
             String exNo = exerciseDatas.get(i).getExNo();
             String memberNo = member.getMemberNo();
 
             ScrapExercise scrapExercise = new ScrapExercise();
-            ScrapExercise _scrapExercise;
             scrapExercise.setExNo(exNo);
             scrapExercise.setMemberNo(memberNo);
 
-            _scrapExercise = scrapExerciseService.findByScrapChecker(scrapExercise);
-            scrapExercises.add(_scrapExercise);
+            //조회된 값이 존재한다면 scrapExercise 객체를, 없다면 null이 담기게 됨
+            scrapExercise = scrapExerciseService.findByScrapChecker(scrapExercise);
+            scrapExercises.add(scrapExercise);
         }
         System.out.println(scrapExercises);
 
