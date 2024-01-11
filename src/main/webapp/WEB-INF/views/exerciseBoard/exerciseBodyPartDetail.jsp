@@ -138,14 +138,9 @@
                                 <form action="${pageContext.request.contextPath}/exercise/deleteScrapExercise"
                                       method="post">
                                     <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                                        <button
-                                                style="width: 100px"
-                                                class="scrapButton middle none center mr-4 rounded-lg bg-blue-500 py-3 px-5 font-sans text-xs font-bold uppercase text-white shadow-md shadow-blue-500/20 transition-all hover:shadow-lg hover:shadow-blue-500/40 focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
-                                                data-ripple-light="true"
-                                                onmouseover="changeText()"
-                                                onmouseout="defaultText()"
+                                        <button class="scrapButton middle none center mr-4 rounded-lg bg-pink-500 py-3 px-5 font-sans text-xs font-bold uppercase text-white shadow-md shadow-blue-500/20 transition-all focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
                                         >
-                                            스크랩 중
+                                            스크랩 취소
                                         </button>
                                     </td>
                                     <input type="hidden" name="memberNo" value="${loginMember.memberNo}">
@@ -155,30 +150,12 @@
                         </tr>
                     </c:forEach>
                     <form
-
                             method="post"
                             name="exerciseDeleteFrm">
                         <input type="hidden" name="exNo" value="${exerciseData.exNo}">
                     </form>
                     </tbody>
                 </table>
-                <div
-                        class="px-5 py-5 bg-white border-t flex flex-col xs:flex-row items-center xs:justify-between          ">
-						<span class="text-xs xs:text-sm text-gray-900">
-                            Showing 1 to 4 of 50 Entries
-                        </span>
-                    <div class="inline-flex mt-2 xs:mt-0">
-                        <button
-                                class="text-sm text-indigo-50 transition duration-150 hover:bg-indigo-500 bg-indigo-600 font-semibold py-2 px-4 rounded-l">
-                            Prev
-                        </button>
-                        &nbsp; &nbsp;
-                        <button
-                                class="text-sm text-indigo-50 transition duration-150 hover:bg-indigo-500 bg-indigo-600 font-semibold py-2 px-4 rounded-r">
-                            Next
-                        </button>
-                    </div>
-                </div>
             </div>
         </div>
     </div>

@@ -6,6 +6,7 @@ import org.apache.ibatis.session.SqlSession;
 
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import static com.sh.diet.common.SqlSessionTemplate.getSqlSession;
 
@@ -132,5 +133,12 @@ public class MemberService {
         session.close();
         return member;
 
+    }
+
+    public int getTotalCount(Map<String, Object> param) {
+        SqlSession session = getSqlSession();
+        int totalCount = memberDao.getTotalCount(session, param);
+        session.close();
+        return totalCount;
     }
 }
