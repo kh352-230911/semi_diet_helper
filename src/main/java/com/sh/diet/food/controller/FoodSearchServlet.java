@@ -19,18 +19,15 @@ public class FoodSearchServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-
         req.setCharacterEncoding("utf-8");
-        // 1. 사용자입력값 처리
+
         String term = req.getParameter("term");
         System.out.println(term);
 
-        // 2. 업무로직
+
         List<FoodData> foodDatas = foodDataService.findFoodDataByName(term);
         System.out.println(foodDatas);
 
-        // 3. 응답출력 csv
-        // 1,홍길동\n2,고길동
         resp.setContentType("text/csv; charset=utf-8");
         PrintWriter out = resp.getWriter();
         for(int i = 0; i < foodDatas.size(); i++) {

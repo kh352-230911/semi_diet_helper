@@ -76,7 +76,7 @@
             recode_date = #{recodeDate}
     </select>
 
-    <select id="findDailyRecodeByMemberNo" resultType="dailyRecode">
+    <select id="findTodayDailyRecodeByMemberNo" resultType="dailyRecode">
         select
         *
         from
@@ -115,10 +115,12 @@
     </select>
 
 
-    <select id="findAllDailyRecode" resultType="dailyRecode">
+    <select id="findAllDailyRecodeByDailyNo" resultType="dailyRecode">
         select *
         from
             daily_recode
+        where
+            daily_no = #{dailyNo}
     </select>
 
     <select id="findKcalByFoodNo" resultType="foodData">
@@ -169,4 +171,23 @@
             daily_no = #{dailyNo}
     </update>
 
+    <select id="findAllDailyRecodeByMemberNo" resultType="dailyRecode">
+        select
+            *
+        from
+            daily_recode
+        where
+            member_no = #{memberNo}
+    </select>
+
+    <select id="findAllDailyRecodeByLocalDate" resultType="dailyRecode">
+        select
+            *
+        from
+            daily_recode
+        where
+            to_char(recode_date, 'YY/MM') = to_char(#{now}, 'YY/MM')
+        order by
+            recode_date
+    </select>
 </mapper>

@@ -1,64 +1,71 @@
 package com.sh.diet.calendar.entity;
 
 import com.sh.diet.daily.model.entity.DailyRecode;
+import org.apache.tomcat.jni.Local;
+
+import java.time.LocalDate;
 
 public class HandMadeCalendar {
 
-    private int calc_year;
-    private int calc_month;
-    private int calc_day;
-    private char calc_dayOfWeek;
-
+    private int calcYear;
+    private int calcMonth;
+    private int calcDay;
+    private char calcDayOfWeek;
     public static int currentDayOfMonthInJspTitle;
 
-    // 일일포인트 부여 여부, 일일 몸무게를 조회하기 위한 dailyRecode
-    private DailyRecode dailyRecode;
-
-
-
+    // 일일포인트 부여 여부, 일일 몸무게를 조회하기 위한 dailyRecode의 요소들
+    private String dailyNo;
+    private int dailyWeight;
+    private int memberNo;
+    private LocalDate recodeDate;
+    private boolean pointCheck;
 
     public HandMadeCalendar() {
     }
 
-    public HandMadeCalendar(int calc_year, int calc_month, int calc_day, char calc_dayOfWeek, DailyRecode dailyRecode) {
-        this.calc_year = calc_year;
-        this.calc_month = calc_month;
-        this.calc_day = calc_day;
-        this.calc_dayOfWeek = calc_dayOfWeek;
-        this.dailyRecode = dailyRecode;
+    public HandMadeCalendar(int calcYear, int calcMonth, int calcDay, char calcDayOfWeek, String dailyNo, int dailyWeight,
+                            int memberNo, LocalDate recodeDate, boolean pointCheck) {
+        this.calcYear = calcYear;
+        this.calcMonth = calcMonth;
+        this.calcDay = calcDay;
+        this.calcDayOfWeek = calcDayOfWeek;
+        this.dailyNo = dailyNo;
+        this.dailyWeight = dailyWeight;
+        this.memberNo = memberNo;
+        this.recodeDate = recodeDate;
+        this.pointCheck = pointCheck;
     }
 
-
-    public int getCalc_year() {
-        return calc_year;
+    public int getCalcYear() {
+        return calcYear;
     }
 
-    public void setCalc_year(int calc_year) {
-        this.calc_year = calc_year;
+    public void setCalcYear(int calcYear) {
+        this.calcYear = calcYear;
     }
 
-    public int getCalc_month() {
-        return calc_month;
+    public int getCalcMonth() {
+        return calcMonth;
     }
 
-    public void setCalc_month(int calc_month) {
-        this.calc_month = calc_month;
+    public void setCalcMonth(int calcMonth) {
+        this.calcMonth = calcMonth;
     }
 
-    public int getCalc_day() {
-        return calc_day;
+    public int getCalcDay() {
+        return calcDay;
     }
 
-    public void setCalc_day(int calc_day) {
-        this.calc_day = calc_day;
+    public void setCalcDay(int calcDay) {
+        this.calcDay = calcDay;
     }
 
-    public char getCalc_dayOfWeek() {
-        return calc_dayOfWeek;
+    public char getCalcDayOfWeek() {
+        return calcDayOfWeek;
     }
 
-    public void setCalc_dayOfWeek(char calc_dayOfWeek) {
-        this.calc_dayOfWeek = calc_dayOfWeek;
+    public void setCalcDayOfWeek(char calcDayOfWeek) {
+        this.calcDayOfWeek = calcDayOfWeek;
     }
 
     public static int getCurrentDayOfMonthInJspTitle() {
@@ -69,22 +76,58 @@ public class HandMadeCalendar {
         HandMadeCalendar.currentDayOfMonthInJspTitle = currentDayOfMonthInJspTitle;
     }
 
-    public DailyRecode getDailyRecode() {
-        return dailyRecode;
+    public String getDailyNo() {
+        return dailyNo;
     }
 
-    public void setDailyRecode(DailyRecode dailyRecode) {
-        this.dailyRecode = dailyRecode;
+    public void setDailyNo(String dailyNo) {
+        this.dailyNo = dailyNo;
+    }
+
+    public int getDailyWeight() {
+        return dailyWeight;
+    }
+
+    public void setDailyWeight(int dailyWeight) {
+        this.dailyWeight = dailyWeight;
+    }
+
+    public int getMemberNo() {
+        return memberNo;
+    }
+
+    public void setMemberNo(int memberNo) {
+        this.memberNo = memberNo;
+    }
+
+    public LocalDate getRecodeDate() {
+        return recodeDate;
+    }
+
+    public void setRecodeDate(LocalDate recodeDate) {
+        this.recodeDate = recodeDate;
+    }
+
+    public boolean isPointCheck() {
+        return pointCheck;
+    }
+
+    public void setPointCheck(boolean pointCheck) {
+        this.pointCheck = pointCheck;
     }
 
     @Override
     public String toString() {
         return "HandMadeCalendar{" +
-                "calc_year=" + calc_year +
-                ", calc_month=" + calc_month +
-                ", calc_day=" + calc_day +
-                ", calc_dayOfWeek=" + calc_dayOfWeek +
-                ", dailyRecode=" + dailyRecode +
+                "calcYear=" + calcYear +
+                ", calcMonth=" + calcMonth +
+                ", calcDay=" + calcDay +
+                ", calcDayOfWeek=" + calcDayOfWeek +
+                ", dailyNo='" + dailyNo + '\'' +
+                ", dailyWeight=" + dailyWeight +
+                ", memberNo=" + memberNo +
+                ", recodeDate=" + recodeDate +
+                ", pointCheck=" + pointCheck +
                 '}';
     }
 }

@@ -61,7 +61,6 @@ public class DailyRecodeServlet extends HttpServlet {
             // 오늘 생성한 dailyRecode 객체가 없으면 새로 생성(insert)
             dailyService.insertDailyRecode(dailyRecode);
         }
-        
         req.getRequestDispatcher("/WEB-INF/views/dailyrecode/dailyrecode.jsp").forward(req, resp);
     }
 
@@ -218,9 +217,7 @@ public class DailyRecodeServlet extends HttpServlet {
                        for (int i = 0; i < fileItemListInForEach.size(); i++) {
                            //List<FileItem>의 i번째 요소를 가져와 변수 exercise에 대입
                            exercise = fileItemListInForEach .get(i).getString("utf-8");
-                           System.out.println("윗쪽 exercise : " + exercise);
                            exercise = exerciseDataService.findByName(exercise).get(0).getExNo();
-                           System.out.println("아랫족 exercise : " + exercise);
                            dailyExes.get(i).setExId(exercise);
                        }
                    }
@@ -309,11 +306,8 @@ public class DailyRecodeServlet extends HttpServlet {
                     new MemberService().updateIncreaseOnePointToMember(loginMemberNo);
                     // 작성중인 일일 기록 테이블의 포인트 부여여부가 1로 설정하는 로직 필요 (수정필요) ******************
                     // insert가 아닌 update로 로직을 수정해야 한다.
-//                    new PointCountService().insertRecodeSatisfiedPoint(pointCount);
                 }
-                else {
                     dailyService.updateIncreaseOnePointToDailyRecode(dailyRecodeNo);
-                }
             }
 
             System.out.println(gainKcals + "gainKcals");
@@ -373,7 +367,13 @@ public class DailyRecodeServlet extends HttpServlet {
             }
         }
 
-        EyebodyAttachment eyebodyAttachment = new DailyService().findTodayEyebodyAttachmentByDailyNo(dailyNo).get(0);
+        EyebodyAttachment eyebodyAttachment = null;
+        try{
+            eyebodyAttachment = new DailyService().findTodayEyebodyAttachmentByDailyNo(dailyNo).get(0);
+        }
+        catch (IndexOutOfBoundsException ignore){
+        }
+
         // 가져온 운동 일일기록 리스트에서 하나씩 요소를 순회
         // 가져온 운동 일일기록 리스트에서 하나라도 0이 아니면 check
         if(eyebodyAttachment != null && eyebodyAttachment.getOriginalFile() != null){
