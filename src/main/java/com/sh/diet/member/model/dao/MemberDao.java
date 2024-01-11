@@ -56,4 +56,8 @@ public class MemberDao {
     public int updateIncreaseOnePointToMember(SqlSession session, String memberNo) {
         return session.update("member.updateIncreaseOnePointToMember", memberNo);
     }
+
+    public int getTotalCount(SqlSession session, Map<String, Object> param) {
+        return session.selectOne("member.getTotalCount");
+    }
 }

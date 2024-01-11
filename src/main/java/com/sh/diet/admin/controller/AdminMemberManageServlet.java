@@ -1,5 +1,6 @@
 package com.sh.diet.admin.controller;
 
+import com.sh.diet.common.DawumiUtils;
 import com.sh.diet.member.model.entity.Member;
 import com.sh.diet.member.model.service.MemberService;
 
@@ -34,8 +35,11 @@ public class AdminMemberManageServlet extends HttpServlet {
 
         List<Member> members = memberService.findAll(param);
         req.setAttribute("members", members);
-        // System.out.println(members);
 
+        int totalCount = memberService.getTotalCount(param);
+        String url = req.getRequestURI();
+        String pagebar = DawumiUtils.getPagebar(page, limit, totalCount, url);
+        req.setAttribute("pagebar", pagebar);
         req.getRequestDispatcher("/WEB-INF/views/admin/adminMemberManage.jsp").forward(req, resp);
 
     }

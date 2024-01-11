@@ -181,4 +181,11 @@
         member_no = #{memberNo}
     </update>
 
+    <select id="getTotalCount" resultType="_int">
+        select
+            count(*)
+        from
+            member
+    </select>
+
 </mapper>
