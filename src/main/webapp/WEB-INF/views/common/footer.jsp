@@ -141,10 +141,14 @@
     </div>
     <div class="content">
         <div>
-            <div><b>한준희</b><a href="#">코딩</a></div>
-            <div><b>김명준</b><a href="#">코딩</a></div>
-            <div><b>한승훈</b><a href="#">코딩</a></div>
-            <div><b>한보경</b><a href="#">코딩</a></div>
+            <div><b>한준희</b><a href="#">멤버관리, 운동, 음식 게시판 구현 DB 테이블 설정
+            </a></div>
+            <div><b>김명준</b><a href="#">개인 기록 페이지 구현 캘린더 페이지 구현
+            </a></div>
+            <div><b>한승훈</b><a href="#">회원가입프론트 페이지 구현
+            </a></div>
+            <div><b>한보경</b><a href="#">질답 게시판 구현
+            </a></div>
         </div>
     </div>
 </div>
