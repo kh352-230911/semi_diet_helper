@@ -5,7 +5,7 @@
 <configuration>
 
     <!-- 본인 local 파일로 테스트할거면 datasource-local.properties 로 바꾸고 사용할 것 -->
-    <properties resource="configs/datasource-staging.properties"></properties>
+    <properties resource="datasource-staging.properties"></properties>
 
 
     <settings>

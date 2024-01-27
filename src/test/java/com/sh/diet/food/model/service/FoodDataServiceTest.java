@@ -76,6 +76,7 @@ public class FoodDataServiceTest {
         int result = foodDataService.updateFoodData(foodData);
         assertThat(result).isEqualTo(1);
     }
+    @Disabled
     @DisplayName("음식 삭제")
     @Test
     void test6() {

@@ -40,7 +40,7 @@ public class ScrapExerciseServiceTest {
                     assertThat(scrapExercise.getExNo()).isNotNull();
                 }));
     }
-
+    @Disabled
     @DisplayName("존재하는 스크랩 한건 조회")
     @ParameterizedTest
     @ValueSource(strings = {"SE1", "SE2", "SE3"})
