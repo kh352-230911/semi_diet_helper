@@ -153,7 +153,7 @@
                             <label for="meal">음식</label>
                         </th>
                         <td>
-                            <input type="text" name="meal" id="meal" class="mealautocomplete" required/>
+                            <input type="text" name="meal" id="meal" required/>
                         </td>
                     </tr>
                     <tr>
@@ -192,7 +192,7 @@
                                 <label for="exercise">운동</label>
                             </th>
                             <td>
-                                <input type="text" name="exercise" id="exercise" class="exerciseautocomplete" required/>
+                                <input type="text" name="exercise" id="exercise" required/>
                             </td>
                         </tr>
                         <tr>
